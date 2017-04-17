@@ -49,6 +49,10 @@ include::FON-030-utilisateurs.adoc[leveloffset=+1]
 
 include::FON-040-systeme-de-fichiers.adoc[leveloffset=+1]
 
+include::FON-050-gestion-processus.adoc[leveloffset=+1]
+
+include::FON-060-sauvegardes.adoc[leveloffset=+1]
+
 include::glossary.adoc[]
 
 [index]

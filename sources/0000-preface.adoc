@@ -38,7 +38,7 @@ La distribution présentée dans ces pages est la CentOS, qui est le pendant gra
 Ce support de cours a été rédigé par les formateurs :
   
 * Patrick Finet ;
-* Antoine Le_Morvan ;
+* Antoine Le Morvan ;
 * Xavier Sauvignon ;
 
 === Licence
