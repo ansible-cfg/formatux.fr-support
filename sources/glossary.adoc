@@ -1,0 +1,54 @@
+////
+Les supports de Formatux sont publiés sous licence Creative Commons-BY-SA et sous licence Art Libre.
+Vous êtes ainsi libre de copier, de diffuser et de transformer librement les œuvres dans le respect des droits de l’auteur.
+
+    BY : Paternité. Vous devez citer le nom de l’auteur original.
+    SA : Partage des Conditions Initiales à l’Identique.
+
+Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
+Licence Art Libre : http://artlibre.org/
+
+Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
+////
+
+[glossary]
+== Glossaire
+
+BASH::
+    Bourne Again SHell
+BIOS::
+    Basic Input Output System
+CIDR::
+    Classless Inter-Domain Routing
+Daemon::
+    Disk And Execution MONitor
+DHCP::
+	Dynamic Host Control Protocol
+DNS::
+	Domain Name Service
+FQDN::
+    Fully Qualified Domain Name
+LAN::
+    Local Area Network
+NTP::
+    Network Time Protocol
+nsswitch::
+    Name Service Switch
+POSIX::
+    Portable Operating System Interface
+POST::
+    Power On Self Test
+SHELL::
+    En français "coquille". Á traduire par "interface système".
+SMB::
+    Server Message Block
+SMTP::
+    Simple Mail Tranfer Protocol
+SSH::
+    Secure SHell
+TLS::
+    Transport Layer Security, un protocole de cryptographie pour sécuriser les communications IP.
+TTY::
+    teletypewriter, qui se traduit téléscripteur. C'est la console physique.
+UEFI::
+    Unified Extensible Firmware Interface

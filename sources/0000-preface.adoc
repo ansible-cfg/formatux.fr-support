@@ -1,0 +1,63 @@
+////
+Les supports de Formatux sont publiés sous licence Creative Commons-BY-SA et sous licence Art Libre.
+Vous êtes ainsi libre de copier, de diffuser et de transformer librement les œuvres dans le respect des droits de l’auteur.
+
+    BY : Paternité. Vous devez citer le nom de l’auteur original.
+    SA : Partage des Conditions Initiales à l’Identique.
+
+Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
+Licence Art Libre : http://artlibre.org/
+
+Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
+////
+
+[preface]
+== Préface
+
+GNU/Linux est un **système d'exploitation** libre fonctionnant sur la base d'un **noyau Linux**, également appelé **kernel Linux**.
+
+Linux est une implémentation libre du système **UNIX** et respecte les spécifications **POSIX**.
+
+GNU/Linux est généralement distribué dans un ensemble cohérent de logiciels, assemblés autour du noyau Linux et prêt à être installé. Cet ensemble porte le nom de “**Distribution**”.
+
+*  La plus ancienne des distributions est la distribution **Slackware**.
+*  Les plus connues et utilisées sont les distributions **Debian**, **Redhat** et **Arch**, et servent de base pour d'autres distributions comme **Ubuntu**, **CentOS**, **Fedora**, **Mageia** ou **Manjaro**.
+
+Chaque distribution présente des particularités et peut être développée pour répondre à des besoins très précis : 
+
+*  services d'infrastructure ;
+*  pare-feu ;
+*  serveur multimédia ;
+*  serveur de stockage ;
+* etc.
+
+La distribution présentée dans ces pages est la CentOS, qui est le pendant gratuit de la distribution RedHat. La distribution CentOS est particulièrement adaptée pour un usage sur des serveurs d'entreprises.
+
+=== Crédits
+
+Ce support de cours a été rédigé par les formateurs :
+  
+* Patrick Finet ;
+* Antoine Le_Morvan ;
+* Xavier Sauvignon ;
+
+=== Licence
+
+Formatux propose des supports de cours Linux libres de droits à destination des formateurs ou des personnes désireuses d'apprendre à administrer un système Linux en autodidacte.
+
+Les supports de Formatux sont publiés sous licence Creative Commons-BY-SA et sous licence Art Libre. Vous êtes ainsi libre de copier, de diffuser et de transformer librement les œuvres dans le respect des droits de l’auteur.
+
+*BY* : Paternité. Vous devez citer le nom de l’auteur original.
+
+*SA* : Partage des Conditions Initiales à l’Identique.
+    
+* Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
+* Licence Art Libre : http://artlibre.org/
+
+Les documents de formatux et leurs sources sont librements téléchargeables sur framagit :
+
+* https://framagit.org/alemorvan/formatux.fr-support/
+
+Vous y trouverez la dernière version de ce document.
+
+A partir des sources, vous pouvez générer votre support de formation personnalisé. Nous vous recommandons le logiciel AscidocFX téléchargeable ici : http://asciidocfx.com/
