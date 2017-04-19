@@ -1,0 +1,137 @@
+= TD commandes de bases
+
+'''
+*ATELIER AFFICHAGE ET IDENTIFICATION*
+
+* Objectifs
+
+** Prendre en main un poste de travail,
+** Se renseigner sur les utilisateurs connectés.
+
+'''
+
+* Se connecter sur la console 1.
+* Afficher les informations concernant le login courant.
+* Se connecter sur la console 2 avec le même utilisateur.
+* Afficher les informations concernant le login courant.
+* Afficher les informations concernant l’utilisateur **patrick**.
+* D'autres utilisateurs sont-ils connectés sur le serveur ?
+* Depuis quelle console êtes-vous connecté ? 
+
+A L’AIDE !
+
+* Rechercher de l’aide sur la commande passwd
+* Rechercher des informations sur le formatage du fichier passwd
+* Quel est l’emplacement de l’UID dans le fichier « passwd » à l’aide du man.
+* Vérifier la date et la mettre à jour si nécessaire.
+* Effacer la console.
+
+'''
+*ATELIER ARBORESCENCE ET FICHIERS*
+
+* Objectifs
+
+** créer, supprimer, déplacer des fichiers ou des répertoires ;
+** se déplacer dans l’arborescence.
+
+'''
+
+CREATION DE REPERTOIRES
+
+* Afficher le répertoire courant.
+* Se déplacer de deux façons différentes sous le répertoire « /home ».
+** chemin absolu : 
+** chemin relatif : 
+* Vérifier que /home soit bien le nouveau répertoire courant.
+* Retourner dans le répertoire de connexion, et vérifier.
+* Créer les répertoires suivants : /home/stagiaire/tickets/ /home/stagiaire/tickets/pierre/ /home/stagiaire/tickets/jacques/
+
+GESTION DES FICHIERS
+
+* Créer le fichier « /home/stagiaire/tickets/listing_en_cours ».
+* Copier ce fichier dans les répertoires « /home/stagiaire/tickets/pierre » et « /home/stagiaire/tickets/jacques ». Vérifier la taille de ces fichiers.
+** Vérifier la copie en comparant les tailles :
+* Renommer le fichier « /home/stagiaire/tickets/jacques/listing_en_cours » en « listing_fini ».
+* Déplacer et renommer le fichier « /home/stagiaire/listing_en_cours » en « /STAGE/commandes/archive_listing ».
+
+GESTION DES REPERTOIRES
+
+* Copier le répertoire « /home/stagiaire/tickets/pierre/ » et son contenu en le renommant « /home/stagiaire/tickets/sauvegarde ».
+* Renommer le répertoire « /home/stagiaire/tickets/sauvegarde/ » en « /home/stagiaire/tickets/archives ».
+* Copier le répertoire « /home/stagiaire/tickets/ » dans le répertoire « /STAGE/commandes/ ».
+
+SUPPRESSION DE FICHIERS ET REPERTOIRES
+
+* Afficher le contenu des répertoires « /home/stagiaire/tickets/jacques/ » et « /home/stagiaire/tickets/pierre/ ».
+* Supprimer le répertoire « /home/stagiaire/tickets/jacques/ » avec la commande « rmdir ».
+* Supprimer le répertoire « /home/stagiaire/pierre/ » en une seule commande.
+
+'''
+
+*ATELIER RECHERCHES ET FILTRES*
+
+* Objectifs
+
+** rechercher un fichier ;
+** rechercher du texte dans un fichier ;
+** afficher un fichier, trier son contenu.
+
+'''
+
+* Copier dans le répertoire de connexion « /home/stagiaire » le fichier « /etc/passwd ».
+Dorénavant, travailler sur cette copie.
+
+* Afficher les 7 premières lignes puis les 3 dernières.
+*  Retrouvez la ligne contenant alain.
+* Trier ce fichier par ordre d'UID croissant.
+* Combien y a-t-il d'utilisateurs créés sur le serveur ?
+* Déplacer ce fichier dans le répertoire « /STAGE/commandes ».
+* Afficher les fichiers « passwd » présents dans le dossier /STAGE en précisant leur type.
+
+'''
+
+*ATELIER TUBES ET REDIRECTIONS*
+
+* Objectifs
+
+** utiliser un tube ;
+** utiliser une redirection.
+
+'''
+
+* Créer un fichier « /home/stagiaire/suivi_admin ».
+* Se connecter sur le terminal 2 et suivre les modifications du fichier en direct.
+Se connecter sur le terminal 2 avec kbd:[CTRL+SHIFT+ALT+F2] et afficher le fichier en temps réel : 
+
+[IMPORTANT]
+====
+La suite de ce TP se fait sans éditeur de texte !
+====
+
+* Retourner sous le terminal 1 et ajouter au fichier « suivi_admin » le texte "Voici les répertoires de /STAGE/commandes/gestion/ :".
+
+* Toujours dans suivi_admin, ajouter la liste des répertoires de « /STAGE/commandes/gestion/ » en faisant apparaître les tailles avec l’indication Ko, Mo, Go ou To.
+
+* Vérifier le contenu du fichier en basculant sur le terminal 2.
+
+Se connecter sur le terminal 2 avec kbd:[CTRL+SHIFT+ALT+F2]
+
+* Retourner sous terminal 1 et ajouter au fichier « suivi_admin » le texte "Voici les personnes ayant un fichier listing_en_cours sous /STAGE/commandes/gestion/ :".
+
+Retourner sur l'interface graphique avec kbd:[ALT+F1].
+
+* Tapez la commande :
+[source,bash]
+----
+[stagiaire]$ find /STAGE/commandes/tickets –listing_en_cours >> /home/stagiaire/suivi_admin 2>/home/stagiaire/erreur
+----
+
+* Basculer sur le terminal 2 et vérifier que la commande se soit bien exécutée.
+
+Sur le terminal 2, rien n'a été modifié. En fait, la commande saisie comporte une erreur. Son affichage a donc été redirigé sur le canal d'erreur, le fichier erreur, et non suivi_admin.
+
+* Corriger la commande pour remplir le fichier « suivi_admin ».
+
+* Afficher parmi les 3 dernières lignes du fichier suivi_admin celles qui contiennent "pierre".
+
+* Retourner sous le terminal 2 et se déconnecter.

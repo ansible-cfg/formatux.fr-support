@@ -1,0 +1,221 @@
+////
+Les supports de Formatux sont publiés sous licence Creative Commons-BY-SA et sous licence Art Libre.
+Vous êtes ainsi libre de copier, de diffuser et de transformer librement les œuvres dans le respect des droits de l’auteur.
+
+    BY : Paternité. Vous devez citer le nom de l’auteur original.
+    SA : Partage des Conditions Initiales à l’Identique.
+
+Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
+Licence Art Libre : http://artlibre.org/
+
+Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
+////
+= IPtables, le parefeu Linux
+
+Gérer le trafic réseau est certainement la partie la plus difficile du métier d'administrateur système. Il faut impérativement configurer les firewalls sur l'ensemble des éléments actifs du réseau, serveurs inclus, en prenant en compte les besoins des utilisateurs et des systèmes à la fois pour le trafic entrant et sortant, sans laisser des systèmes vulnérables à des attaques.
+
+C'est le rôle du pare-feu **IPTables**, entièrement administrable en ligne de commandes.
+
+IPtables utilise un jeu de tables qui contiennent des chaînes comprenant les règles du firewall.
+
+Il existe 3 types de tables :
+
+* La table **FILTER**, qui est la table par défaut.
+Elle est composée de 3 chaines :
+** La chaîne **INPUT** : les paquets sont destinés à une socket locale.
+** La chaîne **FORWARD** : les paquets sont routés par le système.
+** La chaîne **OUTPUT** : les paquets sont générés en local.
+* La table **NAT**, qui est consultée lorsque un paquet tente de créer une nouvelle connexion. Elle est composée de 3 chaînes :
+** **PREROUTING** : utilisée pour modifier des paquets dès leur reception par le système.
+** **OUTPUT** : utilisée pour modifier des paquets générés en local.
+** **POSTROUTING** : utilisée pour modifier des paquets au moment de leur sortie du système.
+* La table **MANGLE** : cette table est utilisée pour modifier des paquets. Il y a 5 chaînes :
+** **PREROUTING** : pour modifier des connexions entrantes.
+** **OUTPUT** : pour modifier des paquets générés en local.
+** **INPUT** : pour modifier les paquets entrants.
+** **POSTROUTING** : pour modifier les paquets avant leur départ du système.
+** **FORWARD** : pour modifier les paquets qui sont routés par le système.
+
+== Gestion du pare-feu
+
+=== Démarrer/arrêter ou redémarrer le parefeu
+En fonction de la distribution, si elle utilise les scripts de démarrage SystemD (RHEL 7 et +) ou SysVinit, il faudra utiliser les lignes de commandes suivantes :
+
+.Distribution basée sur SystemD
+[source,bash]
+----
+[admin]$ sudo systemctl start iptables
+[admin]$ sudo systemctl stop iptables
+[admin]$ sudo systemctl restart iptables
+----
+
+.Distribution basée sur SysVinit
+[source,bash]
+----
+[admin]$ sudo service iptables start
+[admin]$ sudo service iptables stop
+[admin]$ sudo service iptables restart
+----
+
+=== Afficher les règles
+
+Pour afficher les règles IPTables :
+
+[source,bash]
+----
+[admin]$ sudo iptables -L -n -v
+Chain INPUT (policy ACCEPT 927K packets, 219M bytes)
+pkts bytes target prot opt in out source destination
+...
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+pkts bytes target prot opt in out source destination
+...
+
+Chain OUTPUT (policy ACCEPT 127 packets, 18M bytes)
+pkts bytes target prot opt in out source destination
+...
+----
+
+Il est possible de spécifier, avec l'option -t, quelle table afficher :
+[source,bash]
+----
+[admin]$ sudo iptables -t input -L -n -v
+Chain INPUT (policy ACCEPT 927K packets, 219M bytes)
+pkts bytes target prot opt in out source destination
+...
+----
+
+== Quelques exemples
+
+Voici quelques règles qui mettent en oeuvre les fonctionnalités d'IPTables :
+
+=== Bloquer des adresses IP spécifiques
+
+Pour bloquer une adresse qui aurait un comportement abusif :
+
+[source,bash]
+----
+iptables -A INPUT -s xxx.xxx.xxx.xxx -j DROP
+----
+
+[NOTE]
+====
+Changer xxx.xxx.xxx.xxx par l'adresse IP à bloquer.
+====
+
+pour la débloquer :
+
+[source,bash]
+----
+iptables -D INPUT -s xxx.xxx.xxx.xxx -j DROP
+----
+
+L'option **-D** ou **--delete** supprime la règle dans la chaîne spécifiée.
+
+=== Bloquer/accepter des ports spécifiques
+
+Pour bloquer un port spécifique en sortie :
+
+[source,bash]
+----
+iptables -A OUTPUT -p tcp --dport xxx -j DROP
+----
+
+alors que pour autoriser une connexion entrante :
+
+[source,bash]
+----
+iptables -A INPUT -p tcp --dport xxx -j ACCEPT
+----
+
+Pour bloquer le protocole udp, remplacer simplement tcp par udp.
+
+Plusieurs ports peuvent être spécifiés en même temps :
+
+[source,bash]
+----
+iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT
+----
+
+=== Autoriser un réseau
+Un réseau complet peut être spécifié, par exemple pour autoriser un accès SSH :
+
+[source,bash]
+----
+iptables -A OUTPUT -p tcp -d 10.10.10.0/24 --dport 22 -j ACCEPT
+----
+
+=== Limiter le nombre de connexion d'une adresse
+Pour limiter le nombre de paquets par adresse (protection contre le flooding) :
+[source,bash]
+----
+iptables -A INPUT -p tcp --dport 80 -m limit --limit 50/minute --limit-burst 100 -j ACCEPT
+----
+
+Pour limiter le nombre de connexions actives (ici 3 sur le port ssh) :
+[source,bash]
+----
+iptables -A INPUT -p tcp --syn --dport 22 -m connlimit --connlimit-above 3 -j REJECT
+----
+
+=== Bloquer le protocole ICMP (ping)
+
+Bloquer le protocole ICMP peut être considéré comme une mesure de sécurité.
+
+[source,bash]
+----
+iptables -A INPUT -p icmp -i eth0 -j DROP
+----
+
+=== Accès à la loopback
+
+L'accès à l'interface de loopback doit toujours être possible. Les lignes suivantes doivent impérativement être présentes :
+
+[source,bash]
+----
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A OUTPUT -o lo -j ACCEPT
+----
+
+=== Logger les paquets refusés
+
+Iptables peut envoyer à syslog (/var/log/messages) les paquets qu'il refuse :
+
+[source,bash]
+----
+iptables -A INPUT -i eth0 -J LOG --log-prefix "REFUS IPTABLES : "
+----
+
+Cette règle est à mettre en toute dernière, juste avant la suppression des paquets.
+
+=== Gérer les connexions établies
+Il est nécessaire d'autoriser les paquets provenant de connexions déjà établies ou en relation avec d'autres connexions.
+
+[source,bash]
+----
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED -j ACCEPT
+----
+
+=== Supprimer les paquets invalides
+Certains paquets sont marqués invalides à l'arrivée (duplication, déséquencement, etc.). Il est possible de les loggers pour pouvoir éventuellement mener des actions correctrices, puis de les supprimer :
+[source,bash]
+----
+iptables -A INPUT -m conntrack --ctstate INVALID -J LOG --log-prefix "REFUS IPTABLES : 
+iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
+----
+
+=== Bloquer le trafic SMTP sortant
+
+Pour empêcher toute sortie de mails depuis un des ports correspondant aux ports SMTP  :
+
+----
+iptables -A OUTPUT -p tcp --dports 25,465,587 -j REJECT
+----
+
+== Conclusion
+
+Ces exemples permettent de faire le tour des fonctionnalités offertes par le parefeu iptables. Quelques règles permettent d'offrir un niveau de sécurité plus important. 
+
+La mise en place du parefeu n'est donc pas un élément à négliger.

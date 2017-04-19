@@ -1,0 +1,122 @@
+////
+Les supports de Formatux sont publiés sous licence Creative Commons-BY-SA et sous licence Art Libre.
+Vous êtes ainsi libre de copier, de diffuser et de transformer librement les œuvres dans le respect des droits de l’auteur.
+
+    BY : Paternité. Vous devez citer le nom de l’auteur original.
+    SA : Partage des Conditions Initiales à l’Identique.
+
+Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
+Licence Art Libre : http://artlibre.org/
+
+Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
+////
+= Autorité de certification indexterm2:[TLS] avec easy-rsa
+
+*indexterm2:[SSL]* (Secure Socket Layer) est le protocole historique développé par la société Netscape pour sécuriser les échanges entre les clients et les serveurs Web. SSL a été *standardisé par l'IETF* sous le nom de *TLS* (Transport Layer Security). TLS n'est rien d'autre que SSLv3 avec quelques corrections et améliorations.
+
+Une autorité de certification (**indexterm2:[CA], Certificate Authority**) agit comme une entité disposant d'une biclé (couple de clé privée/publique) de confiance représentant un “certificat racine”. Ce certificat va seulement être employé pour signer d'autres certificats après avoir vérifié l'identité qui y est inscrite. Tout client voulant utiliser un service s'appuyant sur TLS devra disposer du certificat de sa CA pour valider l'authenticité du certificat TLS du serveur.
+
+== Installer easy-rsa :
+
+[NOTE]
+====
+Easy-rsa est disponible dans le dépot EPEL.
+====
+
+[source,bash]
+----
+[root]# yum install easy-rsa
+----
+
+== Configuration
+
+* Se déplacer dans le répertoire easy-rsa :
+
+[source,bash]
+----
+[root]# cd /usr/share/easy-rsa/2.0/
+----
+
+* Configurer les réponses par défaut :
+
+[source,bash]
+----
+[root]# vim vars
+...
+export KEY_COUNTRY="FR"
+export KEY_PROVINCE="fr"
+export KEY_CITY="Rennes"
+export KEY_ORG="Formatux"
+export KEY_EMAIL="admin@formatux.fr"
+export KEY_OU="formatux.fr"
+ 
+# X509 Subject Field
+export KEY_NAME="Formatux"
+----
+
+== Créer une autorité de certification
+
+* Se déplacer dans le répertoire easy-rsa :
+
+[source,bash]
+----
+[root]# cd /usr/share/easy-rsa/2.0/
+[root]# source ./vars
+[root]# ./clean-all
+[root]# ./build-ca
+Generating a 2048 bit RSA private key
+..........................+++
+............................................................................+++
+writing new private key to 'ca.key'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [FR]:
+State or Province Name (full name) [fr]:
+Locality Name (eg, city) [Rennes]:
+Organization Name (eg, company) [Formatux]:
+Organizational Unit Name (eg, section) [formatux.fr]:
+Common Name (eg, your name or your server's hostname) [Formatux CA]:
+Name [Formatux]:
+Email Address [admin@formatux.fr]:
+
+[root]# ./build-dh
+----
+
+== Créer une biclé serveur
+
+[source,bash]
+----
+[root]# cd /usr/share/easy-rsa/2.0/
+[root]# source ./vars
+[root]# ./build-key-server servername
+----
+
+== Installer le certificat de l'autorité de certification
+
+* Installer le package ca-certificates
+
+[source,bash]
+----
+[root]# yum install ca-certificates
+----
+
+* Activer la configuration dynamique de l'autorité de certification :
+
+[source,bash]
+----
+[root]# update-ca-trust enable
+----
+
+* Ajouter le certificat de l'autorité :
+
+[source,bash]
+----
+[root]# cp foo.crt /etc/pki/ca-trust/source/anchors/
+[root]# update-ca-trust extract
+----

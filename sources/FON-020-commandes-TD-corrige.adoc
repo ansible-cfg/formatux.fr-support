@@ -1,0 +1,442 @@
+= Correction du TD commandes de bases
+
+'''
+*ATELIER AFFICHAGE ET IDENTIFICATION*
+
+* Objectifs
+
+** Prendre en main un poste de travail,
+** Se renseigner sur les utilisateurs connectés.
+
+'''
+
+* Se connecter sur la console 1.
+* Afficher les informations concernant le login courant.
+[source,bash]
+----
+[stagiaire]$ id
+uid=1000(stagiaire) gid=100(users) groupes=100(users) …
+----
+
+* Se connecter sur la console 2 avec le même utilisateur.
+* Afficher les informations concernant le login courant.
+
+[source,bash]
+----
+[stagiaire]$ id
+uid=1000(stagiaire) gid=100(users) groupes=100(users) …
+----
+
+* Afficher les informations concernant l’utilisateur **patrick**.
+
+[source,bash]
+----
+[stagiaire]$ id patrick
+uid=503(patrick) gid=501(GroupeP) groupes=501(GroupeP)
+----
+
+* D'autres utilisateurs sont-ils connectés sur le serveur ?
+
+[source,bash]
+----
+[stagiaire]$ who 
+stagiaire tty1 2016-01-04 13:05 
+stagiaire tty2 2016-01-04 13:10
+----
+
+[NOTE]
+====
+Il n'y a que l'utilisateur stagiaire de connecté sur le serveur.
+Il est connecté sur le terminal 1 (tty1)
+Les terminaux physiques sont nommés ttyX, les terminaux virtuels (ceux de l’interface graphique) sont nommés (pts/X).
+====
+
+* Depuis quelle console êtes-vous connecté ? 
+[source,bash]
+----
+[stagiaire]$ who am i 
+stagiaire tty2 2016-01-04 13:10 
+[stagiaire]$ whoami 
+stagiaire
+----
+
+A L’AIDE !
+
+* Rechercher de l’aide sur la commande passwd
+
+[source,bash]
+----
+[stagiaire]$ whatis passwd
+passwd (1) – Mettre à jour les marques d’authentification d’un utilisateur 
+passwd (5) – Fichier des mots de passe
+----
+
+[source,bash]
+----
+[stagiaire]$ man passwd
+----
+
+* Rechercher des informations sur le formatage du fichier passwd :
+[source,bash]
+----
+[stagiaire]$ man 5 passwd
+----
+
+* Quel est l’emplacement de l’UID dans le fichier « passwd » à l’aide du man.
+[source,bash]
+----
+[stagiaire]$ man 5 passwd 
+/UID
+----
+
+
+* Vérifier la date et la mettre à jour si nécessaire.
+[source,bash]
+----
+[stagiaire]$ date
+jeu. mars 14 15:15:25 CET 2015
+----
+
+* Effacer la console.
+[source,bash]
+----
+[stagiaire]$ clear
+----
+
+'''
+*ATELIER ARBORESCENCE ET FICHIERS*
+
+* Objectifs
+
+** créer, supprimer, déplacer des fichiers ou des répertoires ;
+** se déplacer dans l’arborescence.
+
+'''
+
+CREATION DE REPERTOIRES
+
+* Afficher le répertoire courant.
+[source,bash]
+----
+[stagiaire]$ pwd 
+/home/stagiaire
+----
+
+* Se déplacer de deux façons différentes sous le répertoire « /home ».
+** chemin absolu : 
+[source,bash]
+----
+[stagiaire]$ cd /home/
+----
+** chemin relatif : 
+[source,bash]
+----
+[stagiaire]$ cd ..
+----
+
+* Vérifier que /home soit bien le nouveau répertoire courant.
+[source,bash]
+----
+[stagiaire]$ pwd
+/home
+----
+
+* Retourner dans le répertoire de connexion, et vérifier.
+[source,bash]
+----
+[stagiaire]$ cd
+[stagiaire]$ pwd
+/home/stagiaire
+----
+
+* Créer les répertoires suivants : /home/stagiaire/tickets/ /home/stagiaire/tickets/pierre/ /home/stagiaire/tickets/jacques/
+[source,bash]
+----
+[stagiaire]$ mkdir -p tickets/pierre tickets/jacques 
+[stagiaire]$ ls tickets/
+jacques pierre
+----
+
+GESTION DES FICHIERS
+
+* Créer le fichier « /home/stagiaire/tickets/listing_en_cours ».
+
+[source,bash]
+----
+[stagiaire]$ touch tickets/listing_en_cours
+----
+
+* Copier ce fichier dans les répertoires « /home/stagiaire/tickets/pierre » et « /home/stagiaire/tickets/jacques ». Vérifier la taille de ces fichiers.
+
+[source,bash]
+----
+[stagiaire]$ cp tickets/listing_en_cours tickets/pierre/ 
+[stagiaire]$ cp tickets/listing_en_cours tickets/jacques/
+----
+
+** Vérifier la copie en comparant les tailles :
+[source,bash]
+----
+[stagiaire]$ ls -lh tickets/listing_en_cours tickets/pierre/listing_en_cours tickets/jacques/listing_en_cours 
+-rw-r--r-- 1 stagiaire users 0 […] tickets/listing_en_cours 
+-rw-r--r-- 1 stagiaire users 0 […] tickets/pierre/listing_en_cours 
+-rw-r--r-- 1 stagiaire users 0 […] tickets/jacques/listing_en_cours
+----
+
+[NOTE]
+====
+La taille des fichiers est identique, 0 octet (ils sont vides).
+====
+
+* Renommer le fichier « /home/stagiaire/tickets/jacques/listing_en_cours » en « listing_fini ».
+[source,bash]
+----
+[stagiaire]$ mv tickets/jacques/listing_en_cours tickets/jacques/listing_fini
+----
+
+* Déplacer et renommer le fichier « /home/stagiaire/listing_en_cours » en « /STAGE/commandes/archive_listing ».
+
+[NOTE]
+====
+Pour déplacer le fichier listing_en_cours du répertoire /home/stagiaire/tickets vers /STAGE/commandes, il faut d'abord créer ce dernier dossier :
+
+[source,bash]
+----
+[stagiaire]$ mkdir –p /STAGE/commandes
+----
+====
+
+puis le déplacer :
+[source,bash]
+----
+[stagiaire]$ mv tickets/listing_en_cours /STAGE/commandes/archive_listing
+----
+
+GESTION DES REPERTOIRES
+
+* Copier le répertoire « /home/stagiaire/tickets/pierre/ » et son contenu en le renommant « /home/stagiaire/tickets/sauvegarde ».
+
+[source,bash]
+----
+[stagiaire]$ cp –r tickets/pierre/ tickets/sauvegarde
+----
+
+* Renommer le répertoire « /home/stagiaire/tickets/sauvegarde/ » en « /home/stagiaire/tickets/archives ».
+
+[source,bash]
+----
+[stagiaire]$ mv tickets/sauvegarde/ tickets/archives
+----
+
+* Copier le répertoire « /home/stagiaire/tickets/ » dans le répertoire « /STAGE/commandes/ ».
+[source,bash]
+----
+[stagiaire]$ cp –r tickets/ /STAGE/commandes/
+----
+SUPPRESSION DE FICHIERS ET REPERTOIRES
+
+* Afficher le contenu des répertoires « /home/stagiaire/tickets/jacques/ » et « /home/stagiaire/tickets/pierre/ ».
+
+[source,bash]
+----
+[stagiaire]$ ls tickets/jacques/ tickets/pierre/
+tickets/jacques/: 
+listing_fini 
+
+tickets/pierre/:
+listing_en_cours
+----
+
+* Supprimer le répertoire « /home/stagiaire/tickets/jacques/ » avec la commande « rmdir ».
+[source,bash]
+----
+[stagiaire]$ rmdir tickets/jacques/
+rmdir : échec de suppression de « tickets/jacques/ » : Le dossier n’est pas vide 
+[root]# rm –f tickets/jacques/listing_fini
+[root]# rmdir tickets/jacques/
+----
+
+* Supprimer le répertoire « /home/stagiaire/pierre/ » en une seule commande.
+[source,bash]
+----
+[stagiaire]$ rm -rf tickets/pierre/
+----
+
+[NOTE]
+====
+Vérifier les suppressions :
+[source,bash]
+----
+[stagiaire]$ ls –R tickets/
+tickets/: 
+archives 
+
+tickets/archives:
+listing_en_cours
+----
+====
+
+'''
+
+*ATELIER RECHERCHES ET FILTRES*
+
+* Objectifs
+
+** rechercher un fichier ;
+** rechercher du texte dans un fichier ;
+** afficher un fichier, trier son contenu.
+
+'''
+
+* Copier dans le répertoire de connexion « /home/stagiaire » le fichier « /etc/passwd ».
+Dorénavant, travailler sur cette copie.
+
+[source,bash]
+----
+[stagiaire]$ cp /etc/passwd ./
+----
+
+* Afficher les 7 premières lignes puis les 3 dernières.
+[source,bash]
+----
+[stagiaire]$ head -n 7 /home/stagiaire/passwd
+[stagiaire]$ tail -n 3 /home/stagiaire/passwd
+----
+
+*  Retrouvez la ligne contenant alain.
+[source,bash]
+----
+[stagiaire]$ grep "^alain" /home/stagiaire/passwd
+alain:x:500:500::/home/GroupeA/alain:/bin/bash
+----
+Ou 
+[source,bash]
+----
+[stagiaire]$ less /home/stagiaire/passwd
+----
+Puis
+[source,bash]
+----
+/alain
+----
+
+* Trier ce fichier par ordre d'UID croissant.
+[source,bash]
+----
+[stagiaire]$ sort -k3 -t: -n /home/stagiaire/passwd
+----
+
+* Combien y a-t-il d'utilisateurs créés sur le serveur ?
+[source,bash]
+----
+[stagiaire]$ wc -l /home/stagiaire/passwd
+39 /home/stagiaire/passwd
+----
+
+[TIP]
+====
+Le fichier passwd contient 39 lignes, il y a donc 39 utilisateurs créés sur le serveur.
+====
+
+* Déplacer ce fichier dans le répertoire « /STAGE/commandes ».
+[source,bash]
+----
+[stagiaire]$ mv /home/stagiaire/passwd /STAGE/commandes
+----
+
+* Afficher les fichiers « passwd » présents dans le dossier /STAGE en précisant leur type.
+[source,bash]
+----
+[stagiaire]$ find /STAGE -name "passwd" –exec file {} \;
+/STAGE/commandes/passwd: ASCII text
+----
+
+'''
+
+*ATELIER TUBES ET REDIRECTIONS*
+
+* Objectifs
+
+** utiliser un tube ;
+** utiliser une redirection.
+
+'''
+
+* Créer un fichier « /home/stagiaire/suivi_admin ».
+[source,bash]
+----
+[stagiaire]$ touch /home/stagiaire/suivi_admin
+----
+
+* Se connecter sur le terminal 2 et suivre les modifications du fichier en direct.
+Se connecter sur le terminal 2 avec kbd:[CTRL+SHIFT+ALT+F2] et afficher le fichier en temps réel : 
+[source,bash]
+----
+[stagiaire]$ tail -f /home/stagiaire/suivi_admin
+----
+
+[IMPORTANT]
+====
+La suite de ce TP se fait sans éditeur de texte !
+====
+
+Retourner sous le terminal 1 et ajouter au fichier « suivi_admin » le texte "Voici les répertoires de /STAGE/commandes/gestion/ :".
+
+* Retourner sur l'interface graphique avec kbd:[ALT+F1] et modifier le fichier :
+
+[source,bash]
+----
+[stagiaire]$ echo "Voici les répertoires de /STAGE/commandes/gestion/ :" > /home/stagiaire/suivi_admin
+----
+
+* Toujours dans suivi_admin, ajouter la liste des répertoires de « /STAGE/commandes/gestion/ » en faisant apparaître les tailles avec l’indication Ko, Mo, Go ou To.
+
+[source,bash]
+----
+[stagiaire]$ find /STAGE/commandes/gestion/ –type d –exec ls –sdh ‘{}’ \; >> /home/stagiaire/suivi_admin
+----
+
+* Vérifier le contenu du fichier en basculant sur le terminal 2.
+
+Se connecter sur le terminal 2 avec kbd:[CTRL+SHIFT+ALT+F2]
+
+* Retourner sous terminal 1 et ajouter au fichier « suivi_admin » le texte "Voici les personnes ayant un fichier listing_en_cours sous /STAGE/commandes/gestion/ :".
+
+Retourner sur l'interface graphique avec kbd:[ALT+F1].
+[source,bash]
+----
+[stagiaire]$ echo "Voici les personnes ayant un fichier listing_en_cours sous /STAGE/commandes/gestion/:" >> /home/stagiaire/suivi_admin
+----
+
+* Tapez la commande :
+[source,bash]
+----
+[stagiaire]$ find /STAGE/commandes/tickets –listing_en_cours >> /home/stagiaire/suivi_admin 2>/home/stagiaire/erreur
+----
+
+* Basculer sur le terminal 2 et vérifier que la commande se soit bien exécutée.
+
+Sur le terminal 2, rien n'a été modifié. En fait, la commande saisie comporte une erreur. Son affichage a donc été redirigé sur le canal d'erreur, le fichier erreur, et non suivi_admin.
+
+* Corriger la commande pour remplir le fichier « suivi_admin ».
+
+Il faut donc corriger la commande :
+
+[source,bash]
+----
+[stagiaire]$ find /STAGE/commandes/tickets -name listing_en_cours >> /home/stagiaire/suivi_admin 2> /home/stagiaire/erreur
+----
+
+* Afficher parmi les 3 dernières lignes du fichier suivi_admin celles qui contiennent "pierre".
+[source,bash]
+----
+[stagiaire]$ tail –n3 /home/stagiaire/suivi_admin | grep "pierre" /STAGE/commandes/tickets/pierre/listing_en_cours
+----
+
+* Retourner sous le terminal 2 et se déconnecter.
+
+taper kbd:[Ctrl+d] puis: 
+[source,bash]
+----
+[stagiaire]$ exit
+----

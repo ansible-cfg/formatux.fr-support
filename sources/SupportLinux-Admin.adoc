@@ -42,6 +42,12 @@ include::FON-010-presentation.adoc[leveloffset=+1]
 
 include::FON-020-commandes.adoc[leveloffset=+1]
 
+<<<
+include::FON-020-commandes-TD.adoc[leveloffset=+2]
+
+<<<
+include::FON-020-commandes-TD-corrige.adoc[leveloffset=+2]
+
 include::FON-030-utilisateurs.adoc[leveloffset=+1]
 
 include::FON-040-systeme-de-fichiers.adoc[leveloffset=+1]
@@ -49,6 +55,16 @@ include::FON-040-systeme-de-fichiers.adoc[leveloffset=+1]
 include::FON-050-gestion-processus.adoc[leveloffset=+1]
 
 include::FON-060-sauvegardes.adoc[leveloffset=+1]
+
+include::FON-070-demarrage.adoc[leveloffset=+1]
+
+include::FON-071-demarrage-EL7.adoc[leveloffset=+1]
+
+include::FON-080-gestion-des-taches.adoc[leveloffset=+1]
+
+include::FON-090-mise-en-oeuvre-reseau.adoc[leveloffset=+1]
+
+include::FON-100-gestion-des-logiciels.adoc[leveloffset=+1]
 
 include::glossary.adoc[]
 

@@ -45,6 +45,12 @@ include::FON-010-presentation.adoc[leveloffset=+1]
 
 include::FON-020-commandes.adoc[leveloffset=+1]
 
+<<<
+include::FON-020-commandes-TD.adoc[leveloffset=+2]
+
+<<<
+include::FON-020-commandes-TD-corrige.adoc[leveloffset=+2]
+
 include::FON-030-utilisateurs.adoc[leveloffset=+1]
 
 include::FON-040-systeme-de-fichiers.adoc[leveloffset=+1]
@@ -52,6 +58,32 @@ include::FON-040-systeme-de-fichiers.adoc[leveloffset=+1]
 include::FON-050-gestion-processus.adoc[leveloffset=+1]
 
 include::FON-060-sauvegardes.adoc[leveloffset=+1]
+
+include::FON-070-demarrage.adoc[leveloffset=+1]
+
+include::FON-071-demarrage-EL7.adoc[leveloffset=+1]
+
+include::FON-080-gestion-des-taches.adoc[leveloffset=+1]
+
+include::FON-090-mise-en-oeuvre-reseau.adoc[leveloffset=+1]
+
+include::FON-100-gestion-des-logiciels.adoc[leveloffset=+1]
+
+= Securité
+
+include::SEC-010-elevation-privilege-su-sudo.adoc[leveloffset=+1]
+
+include::SEC-020-PAM.adoc[leveloffset=+1]
+
+include::SEC-030-SELinux.adoc[leveloffset=+1]
+
+include::SEC-040-iptables.adoc[leveloffset=+1]
+
+include::SEC-041-fail2ban.adoc[leveloffset=+1]
+
+include::SEC-050-securiser-ssh.adoc[leveloffset=+1]
+
+include::SEC-060-autorite-certification-tls-easyrsa.adoc[leveloffset=+1]
 
 include::glossary.adoc[]
 

@@ -1,0 +1,87 @@
+////
+Les supports de Formatux sont publiés sous licence Creative Commons-BY-SA et sous licence Art Libre.
+Vous êtes ainsi libre de copier, de diffuser et de transformer librement les œuvres dans le respect des droits de l’auteur.
+
+    BY : Paternité. Vous devez citer le nom de l’auteur original.
+    SA : Partage des Conditions Initiales à l’Identique.
+
+Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
+Licence Art Libre : http://artlibre.org/
+
+Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
+////
+= Sécuriser le serveur SSH
+
+Le serveur openSSH permet l'administration d'un serveur à distance.
+
+== Configuration
+
+La configuration du serveur SSH se fait dans le fichier **/etc/ssh/sshd_config**.
+
+Á chaque modification, il faut relancer le service :
+
+[source,bash]
+----
+service sshd restart
+----
+
+== Changer le port d'écoute et la version du protocole
+
+Il est préférable de changer le port par défaut (22) par un port connu de vous seul et de n'utiliser que la dernière version du protocole :
+
+[source,bash]
+----
+Port XXXX
+Protocol 2
+----
+
+== Utilisation de clefs privées/publiques
+
+Dans la mesure du possible, utilisez un couple de clef privée/publique pour l'accès au serveur, et désactivez les autres possibilités de connexion (authentification par utilisateur + mot de passe) :
+
+[source,bash]
+----
+PasswordAuthentication no
+RSAAuthentication yes
+PubkeyAuthentication yes
+----
+
+== Limiter les accès
+
+Il est possible de limiter les accès directement dans la configuration du service avec la directive AllowUsers :
+
+[source,bash]
+----
+AllowUsers antoine
+----
+
+Il est également possible de limiter les accès par adresse IP via TCP Wrapper. Par exemple, refusez tous les accès dans le fichier /etc/hosts.deny :
+
+[source,bash]
+----
+sshd: ALL
+----
+
+et n'acceptez dans le fichier /etc/hosts.allow que les connexions depuis des adresses IP validées :
+
+[source,bash]
+----
+sshd: 192.168.1. 221.10.140.10
+----
+
+Voir la configuration de TCP Wrapper pour plus d'informations.
+
+== Interdire l'accès à root !!!
+
+La mesure essentielle à prendre est d'interdire l'accès direct à root au serveur ssh :
+
+[source,bash]
+----
+PermitRootLogin no
+----
+
+et d'utiliser les sudoers pour permettre aux utilisateurs administrateurs de lancer des commandes admins.
+
+== Sécurité par le parefeu
+
+Il est également important de limiter les accès aux services grâce au parefeu et de bannir les adresses IP tentant des attaques par dictionnaire.
