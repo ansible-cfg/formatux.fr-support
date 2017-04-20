@@ -87,6 +87,14 @@ include::SEC-060-autorite-certification-tls-easyrsa.adoc[leveloffset=+1]
 
 include::glossary.adoc[]
 
+= Shell
+
+include::SHL-010-niveau1.adoc[leveloffset=+1]
+
+include::SHL-020-mecanismes-de-base.adoc[leveloffset=+1]
+
+include::SHL-TP.adoc[leveloffset=+1]
+
 [index]
 == Index
 ////////////////////////////////////////////////////////////////
