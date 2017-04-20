@@ -89,6 +89,8 @@ include::SEC-060-autorite-certification-tls-easyrsa.adoc[leveloffset=+1]
 
 include::SVR-040-Bind.adoc[leveloffset=+1]
 
+include::SVR-050-Samba.adoc[leveloffset=+1]
+
 = Shell
 
 include::SHL-010-niveau1.adoc[leveloffset=+1]

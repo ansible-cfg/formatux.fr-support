@@ -35,7 +35,7 @@ indexterm2:[*RPM*] (RedHat Package Manager) est un système de gestion des logic
 Le nom d'un paquet RPM répond à une nomenclature précise :
 
 .nom-version-edition.architecture.rpm
-image::./images/LNXUTI-020-001.png["Nomenclature RPM",scaledwidth="80%"]
+image::./images/FON-100-001.png["Nomenclature RPM",scaledwidth="80%"]
 
 === Commande rpm
 

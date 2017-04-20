@@ -41,6 +41,8 @@ include::0000-preface.adoc[]
 
 include::SVR-040-Bind.adoc[leveloffset=+1]
 
+include::SVR-050-Samba.adoc[leveloffset=+1]
+
 include::glossary.adoc[]
 
 [index]
