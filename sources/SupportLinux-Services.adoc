@@ -39,6 +39,7 @@ include::0000-preface.adoc[]
 | 1.0 | Avril 2017 | Version initiale.
 |====================
 
+include::SVR-040-Bind.adoc[leveloffset=+1]
 
 include::glossary.adoc[]
 

@@ -85,7 +85,9 @@ include::SEC-050-securiser-ssh.adoc[leveloffset=+1]
 
 include::SEC-060-autorite-certification-tls-easyrsa.adoc[leveloffset=+1]
 
-include::glossary.adoc[]
+= Services
+
+include::SVR-040-Bind.adoc[leveloffset=+1]
 
 = Shell
 
@@ -94,6 +96,8 @@ include::SHL-010-niveau1.adoc[leveloffset=+1]
 include::SHL-020-mecanismes-de-base.adoc[leveloffset=+1]
 
 include::SHL-TP.adoc[leveloffset=+1]
+
+include::glossary.adoc[]
 
 [index]
 == Index
