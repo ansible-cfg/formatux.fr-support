@@ -95,6 +95,12 @@ include::SVR-060-Apache.adoc[leveloffset=+1]
 
 include::SVR-065-Apache-securise.adoc[leveloffset=+1]
 
+= Automatisation - DevOPS
+
+include::DEVOPS-010-Puppet.adoc[leveloffset=+1]
+
+include::DEVOPS-020-Ansible.adoc[leveloffset=+1]
+
 = Shell
 
 include::SHL-010-niveau1.adoc[leveloffset=+1]

@@ -1,0 +1,52 @@
+////
+Les supports de Formatux sont publiés sous licence Creative Commons-BY-SA et sous licence Art Libre.
+Vous êtes ainsi libre de copier, de diffuser et de transformer librement les œuvres dans le respect des droits de l’auteur.
+
+    BY : Paternité. Vous devez citer le nom de l’auteur original.
+    SA : Partage des Conditions Initiales à l’Identique.
+
+Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
+Licence Art Libre : http://artlibre.org/
+
+Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
+////
+= FORMATUX - Support de cours GNU/Linux : Automatisation - DevOPS
+:doctype: book
+:toc!:
+:docinfo:
+:encoding: utf-8
+:lang: fr
+:numbered:
+:sectnumlevels: 2
+:description: Support de cours Linux de Formatux - Automatisation - DevOPS
+:revnumber: 1.0
+:revdate: 17-04-2017
+:revremark: Version 1 
+:version-label!: 
+:experimental:
+:source-highlighter: coderay
+:checkedbox: pass:normal[+&#10004;]+]
+
+include::0000-preface.adoc[]
+
+=== Gestion des versions
+
+.Historique des versions du document
+[width="100%",options="header",cols="1,2,4"]
+|====================
+| Version | Date | Observations 
+| 1.0 | Avril 2017 | Version initiale.
+|====================
+
+include::DEVOPS-010-Puppet.adoc[leveloffset=+1]
+
+include::DEVOPS-020-Ansible.adoc[leveloffset=+1]
+
+include::glossary.adoc[]
+
+[index]
+== Index
+////////////////////////////////////////////////////////////////
+The index is normally left completely empty, it's contents being
+generated automatically by the DocBook toolchain.
+////////////////////////////////////////////////////////////////  
