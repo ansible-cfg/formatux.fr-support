@@ -1,0 +1,485 @@
+////
+Les supports de Formatux sont publiés sous licence Creative Commons-BY-SA et sous licence Art Libre.
+Vous êtes ainsi libre de copier, de diffuser et de transformer librement les œuvres dans le respect des droits de l’auteur.
+
+    BY : Paternité. Vous devez citer le nom de l’auteur original.
+    SA : Partage des Conditions Initiales à l’Identique.
+
+Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
+Licence Art Libre : http://artlibre.org/
+
+Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
+////
+
+= Editeur de texte VI
+
+Objectif du cours :
+
+* Utiliser les principales commandes de l'éditeur VI ;
+* Modifier un texte grâce à l'éditeur VI.
+
+== Introduction
+
+Visual (VI) est un éditeur de texte très populaire sous Linux malgré une ergonomie qui semble limitée. C'est en effet un éditeur entièrement en mode texte : chacune des actions se faisant avec une touche du clavier ou des commandes dédiées.
+
+Très puissant, il est surtout très pratique puisqu'il est présent dans le noyau et donc accesssible en cas de défaillance du système. Son universalité (il est présent sur toutes les distributions Linux et sous Unix) en fait un outil *incontournable* de l'administrateur.
+
+Ses fonctionnalités sont :
+
+* Insertion, suppression, modification de texte ;
+* Copie de mots, lignes ou blocs de texte ;
+* Recherche et remplacement de caractères.
+
+== La commande indexterm2:[vi]
+
+La commande *vi* ouvre l'éditeur de texte VI.
+
+.Syntaxe de la commande vi
+[source,bash]
+----
+vi [-c commande] [fichier]
+----
+
+Exemple :
+
+[source,bash]
+----
+$ vi /home/stagiaire/fichier
+----
+
+.Option de la commande vi
+[cols="3,7",width="100%",options="header"]
+|====================
+| Option | 	Information
+| -c commande | Exécute VI en précisant une commande à l'ouverture
+|====================
+
+Si le fichier existe à l'endroit mentionné par le chemin, celui-ci est lu par VI qui se place en mode Commandes.
+
+Si le fichier n'existe pas, VI ouvre un fichier vierge et une page vide est affichée à l'écran. A l'enregistrement du fichier, celui-ci prendra le nom précisé avec la commande.
+
+Si la commande vi est exécutée sans préciser de nom de fichier, VI ouvre un fichier vierge et une page vide est affichée à l'écran. A l'enregistrement du fichier, VI demandera un nom de fichier.
+
+L'éditeur *indexterm2:[vim]* reprend l'interface et les fonctions de VI avec de nombreuses améliorations.
+
+.Syntaxe de la commande vim
+[source,bash]
+----
+vim [-c commande] [fichier]
+----
+
+Parmi ces améliorations, l'utilisateur dispose de la coloration syntaxique, très utile pour éditer des scripts shell.
+
+Pendant une session, VI utilise un fichier tampon dans lequel il inscrit toutes les modifications effectuées par l'utilisateur.
+
+[NOTE]
+====
+Tant que l'utilisateur n'a pas enregistré son travail, le fichier d'origine n'est pas modifié.
+====
+
+Au démarrage, VI est en mode *commandes*.
+
+[IMPORTANT]
+====
+Une ligne de texte se termine en appuyant sur [ENTREE] mais si l'écran n'est pas assez large, VI effectue des retours à la ligne automatiques.
+====
+
+Pour sortir de VI, il faut, depuis le mode Commandes, taper sur [:] puis saisir :
+
+* *q* pour sortir sans sauvegarder ;
+* *w* pour enregistrer son travail ;
+* *wq* ou *x* pour sortir et sauvegarder.
+
+Pour forcer la sortie sans confirmation, il faut ajouter *!* aux commandes précédentes.
+
+[IMPORTANT]
+====
+Il n'y a pas de sauvegarde automatique, il faut donc penser à sauvegarder son travail régulièrement.
+====
+
+== Mode opératoires
+
+Dans VI, il existe 3 modes de travail :
+
+* Le mode *Commandes* ;
+* Le mode *Insertion* ;
+* Le mode *Ex*.
+
+La philosophie de VI est d'alterner entre le mode Commandes et le mode Insertion.
+
+Le troisième mode, Ex, est un mode de commandes de bas de page issu d'un ancien éditeur de texte.
+
+=== Le mode Commandes
+
+C'est le mode par défaut au démarrage de VI. Pour y accéder à partir d'un des autres modes, il suffit de taper sur la touche *[ECHAP]*.
+
+Toutes les saisies sont interprétées comme des commandes et les actions correspondantes sont exécutées. Ce sont essentiellement des commandes permettant la modification de texte (copier, coller, ...).
+
+Les commandes ne s'affichent pas à l'écran.
+
+=== Le mode Insertion
+
+C'est le mode de modification du texte. Pour y accéder à partir du mode Commandes, il faut taper sur des touches particulières qui effectueront une action en plus de changer de mode.
+
+La saisie du texte ne s'effectue pas directement sur le fichier mais dans une zone tampon de la mémoire. Les modifications ne sont effectives que lors de l'enregistrement du fichier.
+
+=== Le mode Ex
+
+C'est le mode de modification du fichier. Pour y accéder, il faut d'abord passer en mode Commandes, puis saisir la commande Ex commençant fréquemment par le caractère "*:*".
+
+La commande est validée en appuyant sur la touche *[ENTREE]*
+
+== Déplacer le curseur
+
+En mode Commandes, il existe plusieurs façons de déplacer le curseur.
+
+La souris n'étant pas active, il est possible de le déplacer caractère par caractère, mais des raccourcis existent pour aller plus vite.
+
+VI reste en mode Commandes après le déplacement du curseur.
+
+Le curseur est placé sous le caractère désiré.
+
+=== À partir d'un caractère
+
+* Déplacement d'un ou _n_ caractères vers la gauche :
+
+*[←]* ou *[_n_][←]*
+
+* Déplacement d'un ou _n_ caractères vers la droite :
+
+*[→]* ou **[_n_][→]**
+
+* Déplacement d'un ou _n_ caractères vers le haut :
+
+*[↑]* ou **[_n_][↑]**
+
+* Déplacement d'un ou _n_ caractères vers le bas :
+
+*[↓]* ou **[_n_][↓]**
+
+* Déplacement à la fin de la ligne :
+
+*[$]* ou *[FIN]*
+
+* Déplacement au début de la ligne :
+
+*[0]* ou *[POS1]*
+
+=== À partir du premier caractère d'un mot
+
+Les mots sont constitués de lettres ou de chiffres. Les caractères de ponctuation et les apostrophes séparent les mots.
+
+Si le curseur se trouve au milieu d'un mot *[w]* passe au mot suivant, *[b]* passe au début du mot.
+
+Si la ligne est finie, VI passe automatiquement à la ligne suivante.
+
+* Déplacement d'un ou _n_ mots vers la droite :
+
+*[w]* ou **[_n_][w]**
+
+* Déplacement d'un ou _n_ mots vers la gauche :
+
+*[b]* ou **[_n_][b]**
+
+=== À partir du premier caractère d'une ligne
+
+* Déplacement à la dernière ligne du texte :
+
+*[G]*
+
+* Déplacement à la ligne _n_ :
+
+*[_n_][G]*
+
+* Déplacement à la première ligne de l'écran :
+
+*[H]*
+
+* Déplacement à la ligne du milieu de l'écran :
+
+*[M]*
+
+* Déplacement à la dernière ligne de l'écran :
+
+*[L]*
+
+== Insérer du texte
+
+En mode Commandes, il existe plusieurs façons d'insérer du texte.
+
+VI bascule en mode Insertion après la saisie d'une de ces touches.
+
+[NOTE]
+====
+VI bascule en mode Insertion. Il faudra donc appuyer sur la touche *[ECHAP]* pour revenir en mode Commandes.
+====
+
+=== Par rapport à un caractère
+
+* Insertion de texte avant un caractère :
+
+*[i]*
+
+* Insertion de texte après un caractère :
+
+*[a]*
+
+=== Par rapport à une ligne
+
+* Insertion de texte au début d'une ligne :
+
+*[I]*
+
+* Insertion de texte à la fin d'une ligne :
+
+*[A]*
+
+=== Par rapport au texte
+
+* Insertion de texte avant une ligne :
+
+*[O]*
+
+* Insertion de texte après une ligne :
+
+*[o]*
+
+== Caractères, mots et lignes
+
+VI permet l'édition de texte en gérant :
+
+* les caractères,
+* les mots,
+* les lignes.
+
+Il est possible pour chaque cas de :
+
+* supprimer,
+* remplacer,
+* copier,
+* couper,
+* coller.
+
+Ces opérations se font en mode Commandes.
+
+=== Caractères
+
+* Supprimer un ou _n_ caractères :
+
+*[x]* ou **[_n_][x]**
+
+* Remplacer un caractère par un autre :
+
+**[r][caractère]**
+
+* Remplacer plus d'un caractère par d'autres :
+
+**[R][caractères][ECHAP]**
+
+[NOTE]
+====
+La commande [R] bascule en mode Remplacement, qui est une sorte de mode Insertion.
+====
+
+=== Mots
+
+* Supprimer (couper) un ou _n_ mots :
+
+**[d][w]** ou **[_n_][d][w]**
+
+* Copier un ou _n_ mots :
+
+**[y][w]** ou **[_n_][y][w]**
+
+* Coller un mot une ou _n_ fois après le curseur :
+
+**[p]** ou **[_n_][p]**
+
+* Coller un mot une ou _n_ fois avant le curseur :
+
+**[P]** ou **[_n_][P]**
+
+* Remplacer un mot :
+
+**[c][w][_mot_][ECHAP]**
+
+[IMPORTANT]
+====
+Il faut positionner le curseur sous le premier caractère du mot à couper (ou copier) sinon VI coupera (ou copiera) seulement la partie du mot entre le curseur et la fin.
+
+Supprimer un mot revient à la couper. S'il n'est pas collé ensuite, le tampon est vidé et le mot est supprimé.
+====
+
+=== Lignes
+
+* Supprimer (couper) une ou _n_ lignes :
+
+**[d][d]** ou **[_n_][d][d]**
+
+* Copier une ou _n_ lignes :
+
+**[y][y]** ou **[_n_][y][y]**
+
+* Coller ce qui a été copié ou supprimé une ou _n_ fois après la ligne courante :
+
+**[p]** ou **[_n_][p]**
+
+*  Coller ce qui a été copié ou supprimé une ou _n_ fois avant la ligne courante :
+
+**[P]** ou **[_n_][P]**
+
+* Supprimer (couper) du début de la ligne jusqu'au curseur :
+
+**[d][0]**
+
+* Supprimer (couper) du curseur jusqu'à la fin de la ligne :
+
+**[d][$]**
+
+* Copier du début de la ligne jusqu'au curseur :
+
+**[y][0]**
+
+* Copier du curseur jusqu'à la fin de la ligne :
+
+**[y][$]**
+
+* Supprimer (couper) le texte à partir de la ligne courante :
+
+**[d][L]** ou **[d][G]**
+
+* Copier le texte à partir de la ligne courante :
+
+**[y][L]** ou **[y][G]**
+
+=== Annuler une action
+
+* Annuler la dernière action :
+
+**[u]**
+
+* Annuler les actions sur la ligne courante  :
+
+**[U]**
+
+== Commandes EX
+
+Le mode Ex permet d'agir sur le fichier (enregistrement, mise en page, options, ...). C'est aussi en mode Ex que se saisissent les commandes de recherche et de remplacement. Les commandes sont affichées en bas de page et doivent être validées avec la touche **[ENTREE]**.
+
+Pour passer en mode Ex, du mode Commandes, taper **[:]**.
+
+=== Numéroter les lignes
+
+* Afficher/masquer la numérotation :
+
+**:set nu**
+
+**:set nonu**
+
+=== Rechercher une chaîne de caractères
+
+* Rechercher une chaîne de caractères à partir du curseur :
+
+**/chaîne**
+
+* Rechercher une chaîne de caractères avant le curseur :
+
+**?chaîne**
+
+* Aller à l'occurrence trouvée suivante :
+
+**[n]**
+
+* Aller à l'occurence trouvée précédente :
+
+**[N]**
+
+Il existe des caractères jokers permettant de faciliter la recherche sous VI.
+
+* **[]** : Recherche d'un unique caractère dont les valeurs possibles sont précisées. 
+
+Exemple : 
+
+*/[Mm]ot*.
+
+* *^* : Recherche d'une chaîne débutant la ligne.
+
+Exemple : 
+
+*/Mot*.
+
+* **,$** : Recherche d'une chaîne finissant la ligne.
+
+Exemple : 
+
+*/Mot,$*
+
+* *** : Recherche d'un ou de plusieurs caractères, quels qu'ils soient.
+
+Exemple :
+
+**/M*t**
+
+=== Remplacer une chaîne de caractères
+
+De la 1ère à la dernière ligne du texte, remplacer la chaîne recherchée par la chaîne précisée :
+
+**:1,$s/recherche/remplace**
+
+De la ligne _n_ à la ligne _m_, remplacer la chaîne recherchée par la chaîne précisée :
+
+**:n,ms/recherche/remplace**
+
+Par défaut, seule la première occurence trouvée de chaque ligne est remplacée. Pour forcer le remplacement de chaque occurence, il faut ajouter "**/g**" à la fin de la commande :
+
+**:n,ms/recherche/remplace/g**
+
+=== Opérations sur les fichiers
+
+* Enregistrer le fichier :
+
+**:w**
+
+* Enregistrer sous un autre nom :
+
+**:w fichier**
+
+* Enregistrer de la ligne _n_ à la ligne _m_ dans un autre fichier :
+
+**:n,mw fichier**
+
+* Recharger le dernier enregistrement du fichier :
+
+**e!**
+
+* Coller le contenu d'un autre fichier après le curseur :
+
+**:r fichier**
+
+* Quitter le fichier sans enregistrer :
+
+**:q**
+
+* Quitter le fichier et enregistrer :
+
+**:wq** ou **:x**
+
+== Autres fonctions
+
+Il est possible d'exécuter VI en précisant les options à charger pour la session. Pour cela, il faut utiliser l'option "**-c**" :
+
+[source,bash]
+----
+$ vi -c "set nu" /home/stagiaire/fichier
+----
+
+Il est aussi possible de saisir les commandes Ex dans un fichier nommé ".exrc" mis dans le répertoire de connexion de l'utilisateur. À chaque démarrage de VI ou de VIM les commandes seront lues et appliquées.
+
+=== La commande indexterm2:[vimtutor]
+
+Il existe un tutoriel pour apprendre à utiliser VI. Il est accessible avec la commande **vimtutor**.
+
+[source,bash]
+----
+$ vimtutor
+----

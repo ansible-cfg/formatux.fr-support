@@ -1,0 +1,97 @@
+////
+Les supports de Formatux sont publiés sous licence Creative Commons-BY-SA et sous licence Art Libre.
+Vous êtes ainsi libre de copier, de diffuser et de transformer librement les œuvres dans le respect des droits de l’auteur.
+
+    BY : Paternité. Vous devez citer le nom de l’auteur original.
+    SA : Partage des Conditions Initiales à l’Identique.
+
+Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
+Licence Art Libre : http://artlibre.org/
+
+Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
+////
+
+= Memento VI
+
+Lancer VI ou vimtutor
+[source,bash]
+----
+vi [-c commande] [fichier]
+$ vi -c "set nu" /home/stagiaire/fichier
+$ vimtutor
+----
+
+== Mode Commandes
+
+.Commandes vi
+[width="100%",options="header",cols="6,11"]
+|====================
+| Caractères            | Actions
+| *[←]* ou *[_n_][←]*   | Déplacement d'un ou _n_ caractères vers la gauche 
+| *[→]* ou **[_n_][→]** | Déplacement d'un ou _n_ caractères vers la droite 
+| *[↑]* ou **[_n_][↑]** | Déplacement d'un ou _n_ caractères vers le haut 
+| *[↓]* ou **[_n_][↓]** | Déplacement d'un ou _n_ caractères vers le bas 
+| *[$]* ou *[FIN]* | Déplacement à la fin de la ligne
+| *[0]* ou *[POS1]* | Déplacement au début de la ligne
+| *[w]* ou **[_n_][w]** | Déplacement d'un ou _n_ mots vers la droite
+| *[b]* ou **[_n_][b]** | Déplacement d'un ou _n_ mots vers la gauche
+| *[G]* | Déplacement à la dernière ligne du texte
+| *[_n_][G]* | Déplacement à la ligne _n_
+| *[H]* | Déplacement à la première ligne de l'écran
+| *[M]* | Déplacement à la ligne du milieu de l'écran
+| *[L]* | Déplacement à la dernière ligne de l'écran
+| *[i]* | Insertion de texte avant un caractère
+| *[a]* | Insertion de texte après un caractère
+| *[I]* | Insertion de texte au début d'une ligne
+| *[A]* | Insertion de texte à la fin d'une ligne
+| *[O]* | Insertion de texte avant une ligne
+| *[o]* | Insertion de texte après une ligne
+| *[x]* ou **[_n_][x]** | Supprimer un ou _n_ caractères
+| **[r][caractère]** | Remplacer un caractère par un autre
+| **[R][caractères][ECHAP]** | Remplacer plus d'un caractère par d'autres
+| **[d][w]** ou **[_n_][d][w]** | Supprimer (couper) un ou _n_ mots
+| **[y][w]** ou **[_n_][y][w]** | Copier un ou _n_ mots
+| **[p]** ou **[_n_][p]** | Coller un mot une ou _n_ fois après le curseur
+| **[P]** ou **[_n_][P]** | Coller un mot une ou _n_ fois avant le curseur
+| **[c][w][_mot_][ECHAP]** | Remplacer un mot
+| **[d][d]** ou **[_n_][d][d]** | Supprimer (couper) une ou _n_ lignes
+| **[y][y]** ou **[_n_][y][y]** | Copier une ou _n_ lignes
+| **[p]** ou **[_n_][p]** | Coller ce qui a été copié ou supprimé une ou _n_ fois après la ligne courante
+| **[P]** ou **[_n_][P]** | Coller ce qui a été copié ou supprimé une ou _n_ fois avant la ligne courante 
+| **[d][0]** | Supprimer (couper) du début de la ligne jusqu'au curseur
+| **[d][$]** | Supprimer (couper) du curseur jusqu'à la fin de la ligne
+| **[y][0]** | Copier du début de la ligne jusqu'au curseur
+| **[y][$]** | Copier du curseur jusqu'à la fin de la ligne
+| **[d][L]** ou **[d][G]** | Supprimer (couper) le texte à partir de la ligne courante
+| **[y][L]** ou **[y][G]** | Copier le texte à partir de la ligne courante
+| **[u]** | Annuler la dernière action
+| **[U]** | Annuler les actions sur la ligne courante
+|====================
+
+== Mode EX
+
+.Commandes du mode Ex
+[width="100%",options="header",cols="7,10"]
+|====================
+| Caractères            | Actions
+| **:set nu** | Afficher la numérotation
+| **:set nonu** | Mmasquer la numérotation
+| **/chaîne** | Rechercher une chaîne de caractères à partir du curseur
+| **?chaîne** | Rechercher une chaîne de caractères avant le curseur
+| **[n]** | Aller à l'occurrence trouvée suivante
+| **[N]** | Aller à l'occurence trouvée précédente
+| */[Mm]ot* | Recherche d'un unique caractère dont les valeurs possibles sont précisées
+| */Mot,^* | Recherche d'une chaîne débutant la ligne
+| */Mot,$* | Recherche d'une chaîne finissant la ligne
+| **/M*t** | Recherche d'un ou de plusieurs caractères, quels qu'ils soient
+| **:1,$s/recherche/remplace** | De la 1ère à la dernière ligne du texte, remplacer la chaîne recherchée par la chaîne précisée
+| **:n,ms/recherche/remplace** | De la ligne _n_ à la ligne _m_, remplacer la chaîne recherchée par la chaîne précisée
+| **:n,ms/recherche/remplace/g** | Par défaut, seule la première occurence trouvée de chaque ligne est remplacée. Pour forcer le remplacement de chaque occurence, il faut ajouter "**/g**" à la fin de la commande
+| **:w** | Enregistrer le fichier
+| **:w fichier** | Enregistrer sous un autre nom
+| **:n,mw fichier** | Enregistrer de la ligne _n_ à la ligne _m_ dans un autre fichier
+| **e!** | Recharger le dernier enregistrement du fichier
+| **:r fichier** | Coller le contenu d'un autre fichier après le curseur
+| **:q** | Quitter le fichier sans enregistrer
+| **:wq** ou **:x** |  Quitter le fichier et enregistrer
+|====================
