@@ -69,6 +69,8 @@ include::FON-090-mise-en-oeuvre-reseau.adoc[leveloffset=+1]
 
 include::FON-100-gestion-des-logiciels.adoc[leveloffset=+1]
 
+include::FON-110-xargs.adoc[leveloffset=+1]
+
 = Securité
 
 include::SEC-010-elevation-privilege-su-sudo.adoc[leveloffset=+1]
