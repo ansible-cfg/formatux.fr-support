@@ -499,6 +499,7 @@ La commande ls offre toutefois de très nombreuses options (voir le man) :
 | -A | 	Affiche tous les fichiers du répertoire sauf “.” et “..”.
 | -R | 	Affiche récursivement le contenu des sous répertoires.
 | -F | 	Affiche le type des fichiers. Imprime un / pour un répertoire, * pour les exécutables, @ pour un lien symbolique, et rien pour un fichier texte.
+| -X | 	Trier les fichiers en fonction de leurs extensions.
 |====================
 
 ==== Description des colonnes
@@ -619,6 +620,12 @@ Dans certains cas, comme pour des scripts par exemple, il est utile de les affic
 /etc/
 ----
 
+* Masquer certaines extensions :
+
+[source,bash]
+----
+[root]# ls /etc --hide=*.conf
+----
 
 === La commande indexterm2:[mkdir]
 
