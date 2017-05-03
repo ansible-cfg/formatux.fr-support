@@ -83,7 +83,7 @@ commencent par deux tirets (--list). Un double tiret (--) indique la fin de la l
 .Options courtes
 [source,bash]
 ----
-[root]# ls –l –i –a
+$ ls –l –i –a
 ----
 
 est équivalent à :
@@ -91,7 +91,7 @@ est équivalent à :
 .Regroupement d'options
 [source,bash]
 ----
-[root]# ls -lia
+$ ls -lia
 ----
 
 Il peut bien entendu y avoir plusieurs arguments après une option :
@@ -99,7 +99,7 @@ Il peut bien entendu y avoir plusieurs arguments après une option :
 .Arguments d'une commande
 [source,bash]
 ----
-[root]# ls –lia /etc /home /var
+$ ls –lia /etc /home /var
 ----
 
 Dans la littérature, le terme « option » est équivalent au terme « paramètre », plus utilisé dans le domaine de la programmation. Le côté optionnel d’une option ou d’un argument est symbolisé en le mettant entre crochets **[** et **]**. Lorsque plusieurs options sont possibles, une barre verticale appelée « pipe » les sépare [a**|**e**|**i].
@@ -128,7 +128,7 @@ La commande :
 .Syntaxe de la commande man
 [source,bash]
 ----
-[root]# man passwd
+$ man passwd
 ----
 
 informera l’administrateur sur la commande passwd, ses options, etc. Alors qu’un :
@@ -136,7 +136,7 @@ informera l’administrateur sur la commande passwd, ses options, etc. Alors qu�
 .Syntaxe de la commande man avec section
 [source,bash]
 ----
-[root]# man 5 passwd
+$ man 5 passwd
 ----
 
 l’informera sur les fichiers en relations avec la commande.
@@ -150,7 +150,7 @@ La commande **whatis** permet de faire une recherche par mot clef au sein des pa
 .Syntaxe de la commande whatis
 [source,bash]
 ----
-[root]# whatis clear
+$ whatis clear
 ----
 
 === La commande indexterm2:[shutdown]
@@ -194,7 +194,7 @@ Les commandes sont mémorisées dans le fichier **.bash_history** du répertoire
 .Exemple de commande history
 [source,bash]
 ----
-[root]# history
+$ history
   147 man ls
   148 man history
 ----
@@ -270,16 +270,16 @@ La commande date permet d’afficher la date et l’heure. La commande respecte 
 .Syntaxe de la commande date
 [source,bash]
 ----
-[root]# date [-d AAAAMMJJ] [format]
+date [-d AAAAMMJJ] [format]
 ----
 
 Exemples :
 
 [source,bash]
 ----
-[root]# date
+$ date
 mer. Avril 17 16:46:53 CEST 2013
-[root]# date –d 20150729 +%j
+$ date –d 20150729 +%j
 210
 ----
 
@@ -331,7 +331,7 @@ La commande id affiche le nom de l’utilisateur courant et ses groupes ou ceux 
 
 [source,bash]
 ----
-[root]# id util1 
+$ id util1 
 uid=501(util1) gid=501(group1) groups=501(group1),502(group2)
 ----
 
@@ -343,9 +343,9 @@ La commande who seule affiche le nom des utilisateurs connectés :
 
 [source,bash]
 ----
-[root]# who
-root	tty1	2014-09-15 10:30
-root	pts/0	2014-09-15 10:31
+$ who
+stagiaire	tty1	2014-09-15 10:30
+root    	pts/0	2014-09-15 10:31
 ----
 
 Linux étant multi-utilisateurs, il est probable que plusieurs sessions soient ouvertes sur la même station, que ce soit physiquement ou à travers le réseau. Il est intéressant de savoir quels utilisateurs sont connectés, ne serait-ce que pour communiquer avec eux par l’envoi de messages.
@@ -428,8 +428,8 @@ La commande pwd (Print Working Directory) affiche le chemin absolu du répertoir
 
 [source,bash]
 ----
-[root]# pwd
-/root/instructeur
+$ pwd
+/home/stagiaire
 ----
 
 Pour se déplacer à l’aide d’un chemin relatif, il faut impérativement connaître son positionnement dans l’arborescence.
@@ -442,15 +442,15 @@ La commande cd (Change Directory) permet de changer le répertoire courant, autr
 
 [source,bash]
 ----
-[root]# cd /tmp
-[root]# pwd
+$ cd /tmp
+$ pwd
 /tmp
-[root]# cd ../
-[root]# pwd
+$ cd ../
+$ pwd
 /
-[root]# cd
-[root]# pwd
-/root
+$ cd
+$ pwd
+/home/stagiaire
 ----
 
 Comme vous pouvez le constater dans le dernier exemple ci-dessus, la commande cd sans argument permet de repositionner le répertoire courant sur le répertoire de connexion (home directory).
@@ -469,8 +469,8 @@ Exemple :
 
 [source,bash]
 ----
-[root]# ls /home
-.	..	STAGE
+$ ls /home
+.	..	stagiaire
 ----
 
 ==== Options
@@ -506,8 +506,8 @@ La commande ls offre toutefois de très nombreuses options (voir le man) :
 
 [source,bash]
 ----
-[root]# ls -lia /root
-78489 drwxr-xr-x 4 root root 4096 25 oct. 08:10 STAGE
+$ ls -lia /home
+78489 drwx------ 4 stagiaire users 4096 25 oct. 08:10 stagiaire
 ----
 
 .Description des colonnes du résultat généré par la commande ls
@@ -515,14 +515,14 @@ La commande ls offre toutefois de très nombreuses options (voir le man) :
 |====================
 | Valeur | 	Information.
 | 78489 | 	Numéro d’inode.
-| drwxr-xr-x | 	Type de fichier (d) et droits (rwxr-xr-x).
+| drwx------ | 	Type de fichier (d) et droits (rwx------).
 | 4 | 	Nombre de sous-répertoires (“.” et “..” inclus). +
 Pour un fichier de type lien physique : nombre de liens physiques.
-| root | 	Utilisateur propriétaire.
-| root | 	Groupe propriétaire.
+| stagiaire | 	Utilisateur propriétaire.
+| users | 	Groupe propriétaire.
 | 4096 | 	Taille en octets.
 | 25 oct. 08:10 | 	Date de dernière modification.
-| STAGE | 	Nom du fichier (ou du répertoire).
+| stagiaire | 	Nom du fichier (ou du répertoire).
 |====================
 
 ==== Alias
@@ -543,7 +543,7 @@ alias ll='ls -l --color=auto'
 
 [source,bash]
 ----
-[root]# ls -ltr /etc
+$ ls -ltr /etc
 total 1332
 -rw-r--r--.  1 root root    662 29 aout   2007 logrotate.conf
 -rw-r--r--.  1 root root    272 17 nov.   2009 mailcap
@@ -572,7 +572,7 @@ Pour connaître les droits sur un dossier, dans notre exemple /etc, la commande 
 
 [source,bash]
 ----
-[root]# ls -l /etc
+$ ls -l /etc
 total 1332
 -rw-r--r--.  1 root root     44 18 nov.  17:04 adjtime
 -rw-r--r--.  1 root root   1512 12 janv.  2010 aliases
@@ -587,7 +587,7 @@ Pour ce faire, il faut utiliser l'option -d :
 
 [source,bash]
 ----
-[root]# ls -ld /etc
+$ ls -ld /etc
 drwxr-xr-x. 69 root root 4096 18 nov.  17:05 /etc
 ----
 
@@ -595,14 +595,14 @@ drwxr-xr-x. 69 root root 4096 18 nov.  17:05 /etc
 
 [source,bash]
 ----
-[root]# ls -lhS
+$ ls -lhS
 ----
 
 * Afficher la date de modification au format “timestamp” :
 
 [source,bash]
 ----
-[root]# ls -l --time-style="+%Y-%m-%d $newline%m-%d %H:%M"
+$ ls -l --time-style="+%Y-%m-%d $newline%m-%d %H:%M" /
 total 12378
 dr-xr-xr-x. 2 root root 4096 2014-11-23 11-23 03:13 bin
 dr-xr-xr-x. 5 root root 1024 2014-11-23 11-23 05:29 boot
@@ -616,7 +616,7 @@ Dans certains cas, comme pour des scripts par exemple, il est utile de les affic
 
 [source,bash]
 ----
-[root]# ls -dF /etc
+$ ls -dF /etc
 /etc/
 ----
 
@@ -624,7 +624,7 @@ Dans certains cas, comme pour des scripts par exemple, il est utile de les affic
 
 [source,bash]
 ----
-[root]# ls /etc --hide=*.conf
+$ ls /etc --hide=*.conf
 ----
 
 === La commande indexterm2:[mkdir]
@@ -641,10 +641,10 @@ Exemple :
 
 [source,bash]
 ----
-[root]# mkdir /home/STAGE/travail
+$ mkdir /home/stagiaire/travail
 ----
 
-Le répertoire « STAGE » devra exister pour créer le répertoire « travail ».
+Le répertoire « stagiaire » devra exister pour créer le répertoire « travail ».
 
 Sinon, l’option « –p » devra être utilisée. L’option « –p » crée les répertoires parents s’ils n’existent pas.
 
@@ -667,7 +667,7 @@ Exemple :
 
 [source,bash]
 ----
-[root]# touch /home/STAGE/fichier
+$ touch /home/stagiaire/fichier
 ----
 
 
@@ -692,7 +692,7 @@ Exemple :
 
 [source,bash]
 ----
-[root]# rmdir /home/STAGE/travail
+$ rmdir /home/stagiaire/travail
 ----
 
 [cols="1,4",width="100%",options="header"]
@@ -745,8 +745,8 @@ Dans l'exemple :
 
 [source,bash]
 ----
-[root]# >-dur-dur # Creer un fichier vide appelé -dur-dur
-[root]# rm -f -- -dur-dur
+$ >-dur-dur # Creer un fichier vide appelé -dur-dur
+$ rm -f -- -dur-dur
 ----
 
 Le nom du fichier -dur-dur commence par un “-”. Sans l'usage du “--” le shell aurait interprété le “-d” de “-dur-dur” comme une option.
@@ -765,8 +765,8 @@ Exemples :
 
 [source,bash]
 ----
-[root]# mv /home/fic1 /home/fic2
-[root]# mv /home/fic1 /home/fic2 /tmp
+$ mv /home/stagiaire/fic1 /home/stagiaire/fic2
+$ mv /home/stagiaire/fic1 /home/stagiaire/fic2 /tmp
 ----
 
 .Options de la commande mv
@@ -781,39 +781,39 @@ Exemples :
 
 [source,bash]
 ----
-[root]# mv /home/fic1 /home/fic2
+$ mv /home/stagiaire/fic1 /home/stagiaire/fic2
 ----
 Permet de renommer “fic1” en “fic2”, si “fic2” existe déjà, il sera remplacé par “fic1”.
 
 [source,bash]
 ----
-[root]# mv /home/fic1 /home/fic2 /tmp
+$ mv /home/stagiaire/fic1 /home/stagiaire/fic2 /tmp
 ----
 
 Permet de déplacer “fic1” et “fic2” dans le répertoire “/tmp”.
 
 [source,bash]
 ----
-[root]# mv fic1 /repexiste/fic2
+$ mv fic1 /repexiste/fic2
 ----
 « fic1 » est déplacé dans « /repexiste » et renommé « fic2 ».
 
 [source,bash]
 ----
-[root]# mv fic1 fic2
+$ mv fic1 fic2
 ----
 « fic1 » est renommé « fic2 ».
 
 [source,bash]
 ----
-[root]# mv fic1 /repexiste
+$ mv fic1 /repexiste
 ----
 
 Si le répertoire de destination existe, « fic1 » est déplacé dans « /repexiste ».
 
 [source,bash]
 ----
-[root]# mv fic1 /repexistepas
+$ mv fic1 /repexistepas
 ----
 
 Si le répertoire de destination n’existe pas, « fic1 » est renommé « repexistepas » à la racine.
@@ -832,7 +832,7 @@ cp fichier [fichier …] destination
 Exemple :
 [source,bash]
 ----
-[root]# cp –r /home/STAGE /tmp
+$ cp –r /home/stagiaire /tmp
 ----
 
 .Options de la commande cp
@@ -849,26 +849,26 @@ Exemple :
 
 [source,bash]
 ----
-[root]# cp fic1 /repexiste/fic2
+$ cp fic1 /repexiste/fic2
 ----
 
 « fic1 » est copié dans « /repexiste » sous le nom « fic2 ».
 
 [source,bash]
 ----
-[root]# cp fic1 fic2
+$ cp fic1 fic2
 ----
 « fic1 » est copié sous le nom « fic2 » dans ce répertoire.
 
 [source,bash]
 ----
-[root]# cp fic1 /repexiste
+$ cp fic1 /repexiste
 ----
 Si le répertoire de destination existe, « fic1 » est copié dans « /repexiste ».
 
 [source,bash]
 ----
-[root]# cp fic1 /repexistepas
+$ cp fic1 /repexistepas
 ----
 Si le répertoire de destination n’existe pas, « fic1 » est copié sous le nom « repexistepas ».
 
@@ -888,7 +888,7 @@ Exemple :
 
 [source,bash]
 ----
-[root]# file /etc/passwd /etc
+$ file /etc/passwd /etc
 /etc/passwd:	ASCII text
 /etc:		directory
 ----
@@ -907,7 +907,7 @@ Exemple :
 
 [source,bash]
 ----
-[root]# more /etc/passwd
+$ more /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 ...
 ----
@@ -957,28 +957,28 @@ Exemple 1 - Afficher le contenu d'un fichier vers la sortie standard :
 
 [source,bash]
 ----
-[root]# cat /etc/passwd
+$ cat /etc/passwd
 ----
 
 Exemple 2 - Afficher le contenu de plusieurs fichiers vers la sortie standard :
 
 [source,bash]
 ----
-[root]# cat /etc/passwd /etc/group
+$ cat /etc/passwd /etc/group
 ----
 
 Exemple 3 - Afficher le contenu de plusieurs fichiers et rediriger la sortie standard :
 
 [source,bash]
 ----
-[root]# cat /etc/passwd /etc/group > utilisateursEtGroupes.txt
+$ cat /etc/passwd /etc/group > utilisateursEtGroupes.txt
 ----
 
 Exemple 4 - Afficher la numérotation des lignes :
 
 [source,basg]
 ----
-[root]# cat -n /etc/passwd
+$ cat -n /etc/passwd
  1 root:x:0:0:root:/root:/bin/bash
  2 bin:x:1:1:bin:/bin:/sbin/nologin
 ...
@@ -988,7 +988,7 @@ Exemple 5 - Affiche la numérotation des lignes non vides :
 
 [source,bash]
 ----
-[root]# cat -b /etc/openldap/ldap.conf
+$ cat -b /etc/openldap/ldap.conf
 1 #
 2 # LDAP Defaults
 3 #
@@ -1049,7 +1049,7 @@ Exemple :
 
 [source,bash]
 ----
-[root]# tail -n 3 /etc/passwd
+$ tail -n 3 /etc/passwd
 sshd:x:74:74:Privilege-separeted sshd:/var/empty /sshd:/sbin/nologin
 tcpdump::x:72:72::/:/sbin/nologin
 user1:x:500:500:grp1:/home/user1:/bin/bash
@@ -1075,7 +1075,7 @@ Exemple :
 
 [source,bash]
 ----
-[root]# sort -k3 -t: -n /etc/passwd
+$ sort -k3 -t: -n /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ----
@@ -1101,7 +1101,7 @@ La commande sort permet d'inverser l'ordre des résultats, avec l'option -r :
 
 [source,bash]
 ----
-[root]# sort -k3 -t: -n -r /etc/passwd
+$ sort -k3 -t: -n -r /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 adm:x:3:4:adm:/var/adm/:/sbin/nologin
 ----
@@ -1114,7 +1114,7 @@ La commande sort permet également de mélanger les valeurs avec l'option -R :
 
 [source,bash]
 ----
-[root]# sort -R /etc/passwd
+$ sort -R /etc/passwd
 ----
 
 ==== Trier des adresses IP
@@ -1134,7 +1134,7 @@ Voici un exemple avec le fichier client-dns.txt :
 
 [source,bash]
 ----
-[root]# sort -nr client-dns.txt
+$ sort -nr client-dns.txt
 208.128.150.99
 208.128.150.98
 192.168.1.200
@@ -1228,7 +1228,7 @@ Il est possible d’utiliser l’option –exec pour exécuter une commande à c
 
 [source,bash]
 ----
-[root]# find /tmp –name *.log –exec rm –f {} \;
+$ find /tmp –name *.txt –exec rm –f {} \;
 ----
 
 La commande précédente recherche tous les fichiers du répertoire /tmp nommés *.log et les supprime.
@@ -1237,13 +1237,13 @@ La commande précédente recherche tous les fichiers du répertoire /tmp nommés
 
 Dans l'exemple ci-dessus, la commande find va construire une chaîne de caractères représentant la commande à exécuter.
 
-Si la commande find trouve trois fichiers nommés log1.log, log2.log et log3.log, alors la commande find va construire la chaîne en remplaçant dans la chaîne “rm -f {} \;” les accolades par un des résultats de la recherche, et cela autant de fois qu'il y a de résultats.
+Si la commande find trouve trois fichiers nommés log1.txt, log2.txt et log3.txt, alors la commande find va construire la chaîne en remplaçant dans la chaîne “rm -f {} \;” les accolades par un des résultats de la recherche, et cela autant de fois qu'il y a de résultats.
 
 Ce qui nous donnera :
 
 [source,bash]
 ----
-rm -f /tmp/log1 ; rm -f /tmp/log2 ; rm -f /tmp/log3 ;
+rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
 ----
 
 Le caractère “;” est un caractère spécial du Shell qui doit être protégé par un “\” pour éviter son interprétation trop tôt par la commande find (et non plus dans le exec).
@@ -1262,7 +1262,7 @@ Exemple :
 
 [source,bash]
 ----
-[root]# whereis –b ls
+$ whereis –b ls
 ls: /bin/ls
 ----
 
@@ -1289,7 +1289,7 @@ Exemple :
 
 [source,bash]
 ----
-[root]# grep –w "root:" /etc/passwd
+$ grep –w "root:" /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 ----
 
@@ -1309,7 +1309,7 @@ La commande grep retourne la ligne complète comprenant la chaîne de caractère
 
 [source,bash]
 ----
-[root]# grep -w "^root" /etc/passwd
+$ grep -w "^root" /etc/passwd
 ----
 
 [NOTE]
@@ -1323,7 +1323,7 @@ Il est possible de rechercher une chaîne de caractères dans une arborescence d
 
 [source,bash]
 ----
-[root]# grep -R "Virtual" /etc/httpd
+$ grep -R "Virtual" /etc/httpd
 ----
 
 === Les méta-caractères
@@ -1336,12 +1336,12 @@ Le caractère * remplace une chaîne composée de plusieurs caractères quelconq
 
 [source,bash]
 ----
-[root]# find /home -name test*
-/home/test
-/home/test1
-/home/test11
-/home/tests
-/home/test362
+$ find /home -name test*
+/home/stagiaire/test
+/home/stagiaire/test1
+/home/stagiaire/test11
+/home/stagiaire/tests
+/home/stagiaire/test362
 ----
 
 Les méta-caractères permettent des recherches plus complexes en remplaçant tout ou partie d'un mot. Il suffit de remplacer les inconnues par ces caractères spéciaux.
@@ -1350,19 +1350,19 @@ Le caractère “?” remplace un unique caractère, quel qu'il soit.
 
 [source,bash]
 ----
-[root]# find /home -name test?
-/home/test1
-/home/tests
+$ find /home -name test?
+/home/stagiaire/test1
+/home/stagiaire/tests
 ----
 
 Les crochets “[ ]” permettent de spécifier les valeurs que peut prendre un unique caractère.
 
 [source,bash]
 ----
-[root]# find /home -name test[123]*
-/home/test1
-/home/test11
-/home/test362
+$ find /home -name test[123]*
+/home/stagiaire/test1
+/home/stagiaire/test11
+/home/stagiaire/test362
 ----
 
 [CAUTION]
@@ -1397,7 +1397,7 @@ Il est possible de rediriger le flux d'entrée depuis un autre fichier avec le c
 
 [source,bash]
 ----
-[root]# ftp -in serverftp << cdes-ftp.txt
+$ ftp -in serverftp << cdes-ftp.txt
 ----
 
 [NOTE]
@@ -1411,7 +1411,7 @@ Cette fonctionnalité est utilisée pour scripter des commandes interactives :
 
 [source,bash]
 ----
-[root]# ftp -in serverftp << FIN
+$ ftp -in serverftp << FIN
 user alice password
 put fichier
 bye
@@ -1422,7 +1422,7 @@ Le mot clef FIN peut être remplacé par n'importe quel mot.
 
 [source,bash]
 ----
-[root]# ftp -in serverftp << STOP
+$ ftp -in serverftp << STOP
 user alice password
 put fichier
 bye
@@ -1437,9 +1437,9 @@ La commande wc pourrait s'utiliser ainsi :
 
 [source,bash]
 ----
-[root]# wc -l .bash_profile
+$ wc -l .bash_profile
 27 .bash_profile # le nombre de lignes est suivi du nom du fichier
-[root]# wc -l < .bash_profile
+$ wc -l < .bash_profile
 27 # le nombre de lignes est seul
 ----
 
@@ -1451,14 +1451,14 @@ La redirection simple ">" écrase le contenu du fichier de sortie :
 
 [source,bash]
 ----
-[root]# date +%F > fic_date
+$ date +%F > fic_date
 ----
 
 alors que la redirection double ">>" ajoute (concatène) au contenu du fichier de sortie.
 
 [source,bash]
 ----
-[root]# date +%F >> fic_date
+$ date +%F >> fic_date
 ----
 
 Dans les deux cas, le fichier est automatiquement créé lorsqu'il n'existe pas.
@@ -1467,8 +1467,8 @@ La sortie d'erreur standard peut être également redirigée vers un autre fichi
 
 [source,bash]
 ----
-[root]# ls -R / 2> fic_erreurs
-[root]# ls -R / 2>> fic_erreurs
+$ ls -R / 2> fic_erreurs
+$ ls -R / 2>> fic_erreurs
 ----
 
 ==== Exemples
@@ -1477,34 +1477,22 @@ Redirection de 2 sorties vers 2 fichiers :
 
 [source,bash]
 ----
-[root]# ls -R / >> fic_ok 2>> fic_nok
+$ ls -R / >> fic_ok 2>> fic_nok
 ----
 
 Redirection des 2 sorties vers un fichier unique :
 
 [source,bash]
 ----
-[root]# ls -R / >> fic_log 2>&1
+$ ls -R / >> fic_log 2>&1
 ----
 
 Redirection de *stderr* vers un "puit sans fond" (/dev/null) :
 
 [source,bash]
 ----
-[root]# ls -R / 2>> /dev/null
+$ ls -R / 2>> /dev/null
 ----
-
-Redirection vers la ou les consoles actives :
-
-[source,bash]
-----
-[root]# ls -R / 2>> /dev/console
-----
-
-[NOTE]
-====
-L'exemple précédent utilisant une redirection vers */dev/console* est utilisé lors du TP sur les tâches planifiées (crontab).
-====
 
 Lorsque les 2 flux de sortie sont redirigés, aucune information n'est affichée à l'écran. Pour utiliser à la fois la redirection de sortie et conserver l'affichage, il faudra utiliser la commande tee.
 
@@ -1525,19 +1513,19 @@ Les commandes particulièrement utilisées après un pipe sont des filtres.
 [source,bash]
 ----
 # N'afficher que le début :
-[root]# ls -lia / | head
+$ ls -lia / | head
  
 # N'afficher que la fin :
-[root]# ls -lia / | tail
+$ ls -lia / | tail
  
 # Trier le résultat
-[root]# ls -lia / | sort
+$ ls -lia / | sort
  
 # Compter le nombre de mots / caractères
-[root]# ls -lia / | wc
+$ ls -lia / | wc
  
 # Chercher une chaîne de caractères dans le résultat :
-[root]# ls -lia / | grep fichier
+$ ls -lia / | grep fichier
 ----
 
 == Points particuliers
@@ -1550,7 +1538,8 @@ Elle est combinée avec le pipe “|” pour recevoir en entrée la sortie de la
 
 [source,bash]
 ----
-[root]# ls -lia / | tee fic
+$ ls -lia / | tee fic
+$ cat fic
 ----
 
 L'option -a permet d'ajouter au fichier au lieu de l'écraser.
@@ -1563,28 +1552,25 @@ Par exemple :
 
 [source,bash]
 ----
-[root]# ll
+$ ll
 ----
 
 remplacera la commande :
 
 [source,bash]
 ----
-root]# ls -l
+$ ls -l
 ----
 
 La commande alias liste les alias de la session en cours. Des alias sont positionnés par défaut sur les distributions linux. Ici, les alias d'un serveur centos :
 
 [source,bash]
 ----
-[root]# alias
-alias
-alias cp='cp -i'
+$ alias
 alias l.='ls -d .* --color=auto'
 alias ll='ls -l --color=auto'
 alias ls='ls --color=auto'
-alias mv='mv -i'
-alias rm='rm -i'
+alias vi='vim'
 alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
 ----
 
@@ -1606,10 +1592,10 @@ La commande unalias permet de supprimer les alias.
 
 [source,bash]
 ----
-[root]# unalias ll
+$ unalias ll
 
 # Pour supprimer tous les alias :
-root]# unalias -a
+$ unalias -a
 ----
 
 ==== Alias et fonctions utiles
@@ -1703,5 +1689,5 @@ Les commandes s'exécuteront toutes séquentiellement dans l'ordre de saisie une
 
 [source,bash]
 ----
-[root]# ls /; cd /home; ls -lia; cd /
+$ ls /; cd /home; ls -lia; cd /
 ----
