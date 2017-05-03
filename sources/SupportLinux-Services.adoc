@@ -47,6 +47,8 @@ include::SVR-060-Apache.adoc[leveloffset=+1]
 
 include::SVR-065-Apache-securise.adoc[leveloffset=+1]
 
+include::SVR-070-Postfix.adoc[leveloffset=+1]
+
 include::SVR-071-Supervision-Shinken-Installation.adoc[leveloffset=+1]
 
 include::glossary.adoc[]
