@@ -784,3 +784,16 @@ Listen 1664
   </Directory>
 </VirtualHost>
 ----
+
+== Redirection des logs vers syslog
+
+Il est possible, en passant par la commande *logger* de rediriger les logs d'apache vers le syslog local ou vers un serveur syslog distant avec le mot clé *apache*.
+
+Modification des lignes **CustomLog** et **ErrorLogs** du fichier .conf correspondant au VHOST désiré :
+
+.fichier .conf du vhost
+[source,apache]
+----
+    ErrorLog "|usr/bin/logger -t apache -p local6.info"
+    CustomLog "|usr/bin/logger -t apache -p local6.info" combined
+----
