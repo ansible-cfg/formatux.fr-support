@@ -69,7 +69,7 @@ include::FON-090-mise-en-oeuvre-reseau.adoc[leveloffset=+1]
 
 include::FON-100-gestion-des-logiciels.adoc[leveloffset=+1]
 
-include::FON-110-xargs.adoc[leveloffset=+1]
+include::FON-021-commandes-avancees.adoc[leveloffset=+1]
 
 = Securité
 
@@ -88,6 +88,8 @@ include::SEC-050-securiser-ssh.adoc[leveloffset=+1]
 include::SEC-060-autorite-certification-tls-easyrsa.adoc[leveloffset=+1]
 
 = Services
+
+include::SVR-010-Nfs.adoc[leveloffset=+1]
 
 include::SVR-040-Bind.adoc[leveloffset=+1]
 

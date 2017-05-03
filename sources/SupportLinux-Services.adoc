@@ -11,7 +11,7 @@ Licence Art Libre : http://artlibre.org/
 Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 ////
 
-= FORMATUX - Support de cours GNU/Linux : Les services et la sécurité sur CentOS 6
+= FORMATUX - Support de cours GNU/Linux : Les services sur CentOS 6
 :doctype: book
 :toc!:
 :docinfo:
@@ -38,6 +38,8 @@ include::0000-preface.adoc[]
 | Version | Date | Observations 
 | 1.0 | Avril 2017 | Version initiale.
 |====================
+
+include::SVR-010-Nfs.adoc[leveloffset=+1]
 
 include::SVR-040-Bind.adoc[leveloffset=+1]
 
