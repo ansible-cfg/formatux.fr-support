@@ -76,6 +76,19 @@ Règles de nommage des groupes :
 * Pas d'accents, ni caractères spéciaux ;
 * Différents du nom d'un utilisateur ou fichier système existant.
 
+[NOTE]
+====
+Sous **Debian**, l'administrateur devrait privilégier, sauf dans des scripts ayant la vocation d'être portables vers toutes les distributions Linux, les commandes addgroup/delgroup comme précisé dans le man :
+
+[source,bash]
+----
+[root] # man addgroup
+DESCRIPTION
+    adduser et addgroup ajoutent des utilisateurs ou des groupes au système en fonction des options fournies en ligne de commande et des informations contenues dans le fichier de configuration /etc/adduser.conf. Ce sont des interfaces plus conviviales que les programmes useradd et groupadd. Elles  permettent de choisir par défaut des UID ou des GID conformes à la charte Debian, de créer un répertoire personnel configuré suivant un modèle (squelette), d'utiliser un script sur mesure, et d'autres fonctionnalités encore.
+----
+====
+
+
 === Commande indexterm2:[groupmod]
 
 La commande groupmod permet de modifier un groupe existant sur le système.
@@ -272,6 +285,18 @@ Exemple :
 ----
 [root]# useradd -u 500 -g GroupeA -G GroupeP,GroupeC albert
 ----
+
+[NOTE]
+====
+Sous **Debian**, il faudra spécifier l'option *-m* pour forcer la création du répertoire de connexion ou positionner la variable CREATE_HOME du fichier login.defs. Dans tous les cas, l'administrateur devrait privilégier, sauf dans des scripts ayant la vocation d'être portables vers toutes les distributions Linux, les commandes adduser/deluser comme précisé dans le man :
+
+[source,bash]
+----
+[root] # man useradd
+DESCRIPTION
+    **useradd** is a low level utility for adding users. On Debian, administrators should usually use **adduser(8)** instead. 
+----
+====
 
 ==== Valeur par défaut de création d'utilisateur.
 
