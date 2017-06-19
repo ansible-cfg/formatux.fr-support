@@ -20,9 +20,9 @@ Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 :numbered:
 :sectnumlevels: 2
 :description: Support de cours Linux de Formatux
-:revnumber: 1
-:revdate: 17-04-2017
-:revremark: Version 1 
+:revnumber: 1.1
+:revdate: 19-06-2017
+:revremark: Version 1.1
 :version-label!: 
 :experimental:
 :source-highlighter: coderay
@@ -37,6 +37,7 @@ include::0000-preface.adoc[]
 |====================
 | Version | Date | Observations 
 | 1.0 | Avril 2017 | Version initiale.
+| 1.1 | Juin 2017 | Ajout des cours Nginx et Php-fpm.
 |====================
 
 include::SVR-010-Nfs.adoc[leveloffset=+1]
@@ -60,6 +61,10 @@ include::SVR-071-Supervision-Shinken-Installation.adoc[leveloffset=+1]
 include::SVR-090-Squid.adoc[leveloffset=+1]
 
 include::SVR-105-Rsyslog.adoc[leveloffset=+1]
+
+include::SVR-110-Nginx.adoc[leveloffset=+1]
+
+include::SVR-121-Php-fpm.adoc[leveloffset=+1]
 
 include::glossary.adoc[]
 

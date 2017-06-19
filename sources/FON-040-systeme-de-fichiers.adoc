@@ -439,7 +439,7 @@ La partition devant être vérifiée doit impérativement être démontée.
 
 == Organisation d'un système de fichiers
 
-Par définition, un Système de Fichiers est une structure arborescentre de répertoires construite à partir d'un répertoire racine (un périphérique logique ne peut contenir qu'un seul système de fichiers).
+Par définition, un Système de Fichiers est une structure arborescente de répertoires construite à partir d'un répertoire racine (un périphérique logique ne peut contenir qu'un seul système de fichiers).
 
 .Organisation du système de fichiers
 image::./images/FON-040-008.png[scaledwidth="100%"]
@@ -819,7 +819,7 @@ Dans certaines commandes, il est possible de désigner tout le monde avec **a** 
 
 === Droits associés aux fichiers ordinaires
 * **r**ead : Permet la lecture d'un fichier (cat, less, …) et autorise la copie (cp, …).
-* **w**rite : Aurotise la modification du contenu du fichier (cat, », vim, …).
+* **w**rite : Autorise la modification du contenu du fichier (cat, », vim, …).
 * e**x**ecute : Considère le fichier comme une commande (binaire, script).
 * **-** : Aucune permission.
 
@@ -970,9 +970,9 @@ image::./images/FON-040-014.png[scaledwidth="100%"]
 === Les droits particuliers
 En complément des droits fondamentaux (rwx), il existe les droits particuliers :
 
-* set-user-ID
+* set-user-ID (SUID)
 * set-group-ID (SGID)
-* sticky-bit (SUID)
+* sticky-bit
 
 Comme pour les droits fondamentaux, les droits particuliers possèdent chacun une valeur. Celle-ci se place avant l'ensemble de droits **ugo**.
 

@@ -54,7 +54,8 @@ La sauvegarde nécessite de l'administrateur du système beaucoup de discipline 
 
 * *Complète* : un ou plusieurs *systèmes de fichiers* sont sauvegardés (noyau, données, utilitaires, …).
 * *Partielle* : un ou plusieurs *fichiers* sont sauvegardés (configurations, répertoires, …).
-* *Incrémentale* : uniquement les *fichiers modifiés* depuis la dernière sauvegarde sont sauvegardés.
+** *Différentielle* : uniquement les fichiers modifiés depuis la dernière sauvegarde *complète* sont sauvegardés.
+** *Incrémentale* : uniquement les fichiers modifiés depuis la dernière sauvegarde sont sauvegardés.
 
 === Périodicité
 
@@ -191,7 +192,7 @@ Exemple :
 
 [source,bash]
 ----
-[root]# tar cvf /sauvegardes/home.133.tar
+[root]# tar cvf /sauvegardes/home.133.tar /home/
 ----
 
 .Clefs principales de la commande tar
@@ -220,7 +221,7 @@ Exemple :
 
 [source,bash]
 ----
-[root]# tar cvfP /sauvegardes/home.133.P.tar /home
+[root]# tar cvfP /sauvegardes/home.133.P.tar /home/
 ----
 
 [cols="1,4",width="100%",options="header"]

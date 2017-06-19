@@ -894,7 +894,7 @@ Ces fichiers sont copiés automatiquement à partir du répertoire /etc/skel.
 * .bash_profile
 * .bashrc
 
-Tous les fichiers et répertoires placés dans ce répertoire seront copiés dans l'arborescence des utilistateurs lors de leur création.
+Tous les fichiers et répertoires placés dans ce répertoire seront copiés dans l'arborescence des utilisateurs lors de leur création.
 
 == Changement d'identité
 
