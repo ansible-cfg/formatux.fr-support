@@ -1,0 +1,152 @@
+////
+Les supports de Formatux sont publiés sous licence Creative Commons-BY-SA et sous licence Art Libre.
+Vous êtes ainsi libre de copier, de diffuser et de transformer librement les œuvres dans le respect des droits de l’auteur.
+
+    BY : Paternité. Vous devez citer le nom de l’auteur original.
+    SA : Partage des Conditions Initiales à l’Identique.
+
+Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
+Licence Art Libre : http://artlibre.org/
+
+Auteurs : Antoine Le Morvan
+////
+
+= Serveur de base de données indexterm2:[MySQL]
+
+== Généralités
+
+MySQL est un système de gestion de base de données relationnelles (SGBDR - en anglais is Relational DataBase Managed System(RDBMS) open source.
+
+== Installation
+
+=== Sous Debian
+
+=== Sous CentOS
+
+== Securisation
+
+== Configuration
+
+== Utilisation
+
+=== La commande mysql
+
+La commande *mysql* permet de se connecter à un serveur MySQL.
+
+.Syntaxe de la commande mysql
+[source,bash]
+----
+[root]# mysql [–u utilisateur] [-p[password]] [-D database] [-h host] 
+----
+
+.Exemples de la commande shutdown
+[source,bash]
+----
+[root]# mysql -u root -pmdparoot
+----
+
+.Options de la commande shutdown
+[cols="1,4",width="100%",options="header"]
+|====
+| Options  |  Observations
+| -u    |  L'utilisateur MySQL a utilisé lors de la connexion au serveur.
+| -p    |  Le mot de passe à utiliser lors de la connexion au serveur. Il ne doit pas y avoir d'espace entre l'option -p et le mot de passe. Sans mot de passe suivant l'option -p, MySQL en demandera un.
+| -D    | La base de données à utiliser.
+| -h    | Se connecter à un serveur distant.
+|====
+
+=== Gestion des utilisateurs
+
+==== Création/suppression d'un utilisateur et gestion de ses privilèges
+
+* Connexion au serveur MySQL :
+
+[source,bash]
+----
+$ mysql -u root -p
+----
+
+* Créer un nouvel utilisateur :
+
+[source,sql]
+----
+CREATE USER 'utilisateur'@'localhost' IDENTIFIED BY 'password';
+----
+
+Dans la requête ci-dessus, l'utilisateur ne pourra se connecter au serveur MySQL que localement (localhost). Si l'utilisateur doit pouvoir se connecter à distance depuis l'adresse IP 172.16.1.100, il faudra utiliser la requête suivante :
+
+[source,sql]
+----
+CREATE USER 'utilisateur'@'172.16.1.100' IDENTIFIED BY 'password';
+----
+
+* Donner des droits à l'utilisateur :
+
+Si l'utilisateur doit accéder à la totalité des bases en lecture :
+
+[source,sql]
+----
+GRANT SELECT ON *.* TO 'utilisateur'@'localhost';
+----
+
+.Syntaxe de la requête GRANT
+[source,]
+----
+GRANT <permission type> ON <database>.<table> TO '<username>'@'<host>';
+----
+
+* Suppression des droits :
+
+Pour supprimer les droits d'un utilisateur les mots clefs *indexterm2:[GRANT]* et *ON* seront remplacés par *indexterm2:[REVOKE]* et **TO**.
+
+.Syntaxe de la commande REVOKE
+[source,]
+----
+REVOKE <permission type> ON <database>.<table> FROM '<username>'@'<host>';
+----
+
+* Suppression d'un utilisateur :
+
+Un utilisateur est supprimé avec le mot clé *DROP* :
+
+[source,sql]
+----
+DROP USER 'utilisateur'@'localhost';
+----
+
+* Appliquer les modifications :
+
+Pour que les modifications prennent effet, il faut recharger tous les privilèges :
+
+[source,sql]
+----
+FLUSH PRIVILEGES;
+----
+
+* Quitter l'environnement mysql :
+
+Pour quitter l'environnement mysql, il faudra saisir la commande :
+
+[source,sql]
+----
+exit;
+----
+
+==== Les types de permissions
+
+Il existe différents types de permissions à offrir aux utilisateurs :
+
+* *SELECT* : lecture sur les données
+* *USAGE* : autorisation de se connecter au serveur (donné par défaut à la création d'un nouvel utilisateur)
+* *INSERT* : ajouter de nouveaux tuples dans une table. 
+* *UPDATE* : modifier des tuples existantes
+* *DELETE* : supprimer des tuples
+* *CREATE* : créer des nouvelles tables ou des bases de données
+* *DROP* : supprimer des tables ou des bases de données existantes
+* *ALL PRIVILEGES* : tous les droits
+* *GRANT OPTION* : donner ou supprimer des droits aux autres utilisateurs
+
+[TIP]
+====
+Définition de *tuple* : Collection ordonnée des valeurs d'un nombre indéfini d'attributs relatifs à un même objet.
+====

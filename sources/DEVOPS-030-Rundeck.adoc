@@ -1,0 +1,30 @@
+////
+Les supports de Formatux sont publiés sous licence Creative Commons-BY-SA et sous licence Art Libre.
+Vous êtes ainsi libre de copier, de diffuser et de transformer librement les œuvres dans le respect des droits de l’auteur.
+
+    BY : Paternité. Vous devez citer le nom de l’auteur original.
+    SA : Partage des Conditions Initiales à l’Identique.
+
+Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
+Licence Art Libre : http://artlibre.org/
+
+Auteurs : Antoine Le Morvan
+////
+
+= Ordonnanceur centralisé indexterm2:[Rundeck]
+
+Rundeck est un ordonnanceur centralisé open source (licence Apache) écrit en Java.
+
+Depuis l'interface de Rundeck, il est possible de gérer les différents travaux à exécuter sur les serveurs distants.
+
+Fonctionnalités :
+
+* Ordonnancement des tâches selon un scénario;
+* Exécution de scripts/tâches distantes à la demande ou de manière planifiée ;
+* Notifications ;
+* Interface CLI (ligne de commande) et API.
+
+Rundeck peut être intégré aux autres outils de gestion de configuration comme Puppet, Ansible et d'intégration continue comme Jenkins, etc.
+
+La connexion avec les hôtes clients est gérée en SSH.
+

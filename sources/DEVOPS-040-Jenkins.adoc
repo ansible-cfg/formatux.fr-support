@@ -1,0 +1,122 @@
+////
+Les supports de Formatux sont publiés sous licence Creative Commons-BY-SA et sous licence Art Libre.
+Vous êtes ainsi libre de copier, de diffuser et de transformer librement les œuvres dans le respect des droits de l’auteur.
+
+    BY : Paternité. Vous devez citer le nom de l’auteur original.
+    SA : Partage des Conditions Initiales à l’Identique.
+
+Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
+Licence Art Libre : http://artlibre.org/
+
+Auteurs : Antoine Le Morvan
+////
+
+= indexterm2:[Jenkins]
+
+Jenkins est un outil Open Source d'intégration continue écrit en Java.
+
+Interfacé avec des systèmes de gestion de version tel que Git, Subversion etc., il permet d'exécuter des scripts Shell ou des projets Ant, Maven, etc, selon des planifications ou des requêtes à des URLs.
+
+Le principe de l'intégration continue est de vérifier, idéalement à chaque modification du code, la non-régression sur l'application des modifications apportées. Cette vérification systématique est primordiale pour une équipe de développeur : le projet est stable tout au long du développement et peut être livré à tout moment.
+
+Le code source de l'application doit être :
+
+* partagé avec un système de gestion versions ;
+* testé automatiquement ;
+* les modifications doivent être poussées régulièrement.
+
+Ainsi, les problèmes d'intégrations peuvent être corrigés au plus tôt et la dernière version stable de l'application est connue.
+
+== Installation
+
+Jenkins peut fonctionner :
+
+* en mode *standalone* : avec le serveur web intégré ;
+* en tant que servlet : avec le serveur applicatif tomcat.
+
+=== En mode standalone
+
+Installation de Jenkins :
+
+* Sous debian :
+
+Installation de la clé et ajout du dépot dans /etc/apt/sources.list :
+
+[source,bash]
+----
+wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+----
+
+[source,bash]
+----
+deb http://pkg.jenkins-ci.org/debian binary/
+----
+
+Installation :
+
+[source,]
+----
+apt-get update
+apt-get install jenkins
+----
+
+* Sous RedHat :
+
+Installation du dépôt et ajout de la clé GPG :
+
+[source,bash]
+----
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+----
+
+Installation du paquet :
+
+[source,bash]
+----
+yum update && yum install jenkins
+----
+
+Jenkins est directement accessible à l'adressse :
+
+* http://IPSERVEUR:8080/jenkins
+
+=== Sous tomcat
+
+Installation de tomcat :
+
+* Sous debian :
+
+[source,bash]
+----
+apt-get install tomcat
+----
+
+* Sous redhat :
+
+[source,bash]
+----
+yum install tomcat
+----
+
+Téléchargement de l'application :
+
+[source,]
+----
+cd /var/lib/tomcat6/webapps
+wget http://mirrors.jenkins-ci.org/war/latest/jenkins.war
+----
+
+Si tomcat est en cours de fonctionnement, l'application sera automatiquement déployée, sinon lancer/relancer tomcat.
+
+Jenkins est accessible à l'adressse :
+
+* http://IPSERVEUR:8080/jenkins
+
+
+== Configuration
+
+
+
+
+

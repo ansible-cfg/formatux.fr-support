@@ -1,0 +1,303 @@
+////
+Les supports de Formatux sont publiés sous licence Creative Commons-BY-SA et sous licence Art Libre.
+Vous êtes ainsi libre de copier, de diffuser et de transformer librement les œuvres dans le respect des droits de l’auteur.
+
+    BY : Paternité. Vous devez citer le nom de l’auteur original.
+    SA : Partage des Conditions Initiales à l’Identique.
+
+Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
+Licence Art Libre : http://artlibre.org/
+
+Auteurs : Antoine Le Morvan
+////
+
+= Serveurs MySQL - Multi-Maîtres
+
+Les bases de données MySQL peuvent être configurées :
+
+* en Standalone, chaque serveur étant autonome
+* en Maître-Esclaves, un serveur dispose de la base de données en écriture, celle-ci est répliquée sur les serveurs esclaves en lecture seule
+* en Multi-Maître (limité à 64 maîtres maximum).
+
+L'accès aux données étant crucial pour les entreprises, les administrateurs chercheront des solutions de répartitions de charge (répartition des requêtes en écriture sur le serveur maître et celles en lecture sur les serveurs esclaves) ou de hautes disponibilités (serveurs Multi-Maîtres).
+
+Pour mettre en oeuvre la réplication Multi-Maître, la plateforme de test est constituée de deux noeuds CentOS 7 :
+
+* mirroir1 : 192.168.100.173
+* mirroir2 : 192.168.100.211
+
+== Configuration des noeuds
+
+Lors de la mise en place de cluster, il est recommandé de s'assurer de la bonne résolution des noms de machines de chaque membre du cluster dès le démarrage de la machine et même en absence de service DNS.
+
+Configuration du fichier /etc/hosts sur chaque noeud :
+
+.Fichier /etc/hosts
+[source,]
+----
+...
+192.168.100.173         mirroir1.local.lan      mirroir1
+192.168.100.211         mirroir2.local.lan      mirroir2
+----
+
+Installation de mariadb-server :
+
+[source,]
+----
+yum install mariadb-server
+----
+
+Le service peut être démarré sur chacun des noeuds :
+
+[source,]
+----
+systemctl enable mariadb
+systemctl start mariadb
+----
+
+== Création de la base à répliquer
+
+La base de données à répliquer est crée sur les deux noeuds :
+
+[source,]
+----
+mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 2
+Server version: 5.5.52-MariaDB MariaDB Server
+
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB > show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+4 rows in set (0.00 sec)
+
+MariaDB > create database mabase;
+Query OK, 1 row affected (0.01 sec)
+----
+
+== Création des utilisateurs MySQL pour la réplication
+
+Sur chaque noeud doit être créé un utilisateur qui disposera des droits de réplication sur le serveur distant.
+
+* Sur le noeud 1 :
+
+[source,]
+----
+MariaDB > create user 'mirroir'@'mirroir2.local.lan' identified by 'm!rro!r';
+Query OK, 0 rows affected (0.01 sec)
+
+MariaDB > grant replication slave on *.* to 'mirroir'@'mirroir2.local.lan';
+Query OK, 0 rows affected (0.00 sec) 
+----
+
+* Sur le noeud 2 :
+
+[source,]
+----
+MariaDB > create user 'mirroir'@'mirroir1.local.lan' identified by 'm!rro!r';
+Query OK, 0 rows affected (0.01 sec)
+
+MariaDB > grant replication slave on *.* to 'mirroir'@'mirroir1.local.lan';
+Query OK, 0 rows affected (0.00 sec) 
+----
+
+== Configuration de MySQL
+
+Le fichier my.cnf peut être modifié comme suit :
+
+* Sur le noeud 1 :
+
+.Fichier /etc/my.cnf sur le noeud 1
+[source,]
+----
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+port=3306
+innodb_file_per_table=ON
+pid-file=/var/run/mariadb/mariadb.pid
+
+server-id=10
+log_bin=/var/log/mariadb/mariadb-bin.log
+binlog_do_db=mabase
+----
+
+* *server-id* : l'identifiant du serveur pour la réplication. Il doit être différent sur chaque noeud.
+* *log_bin* : Le fichier de log utilisé pour suivre l'activité de la réplication
+* *binlog_do_db* : La base de données concernée par le processus de réplication
+
+* Sur le noeud 2 :
+
+.Fichier /etc/my.cnf sur le noeud 2
+[source,]
+----
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+port=3306
+innodb_file_per_table=ON
+pid-file=/var/run/mariadb/mariadb.pid
+
+server-id=11
+log_bin=/var/log/mariadb/mariadb-bin.log
+binlog_do_db=mabase
+----
+
+Relancer les services sur les deux noeuds pour prendre en compte les modifications :
+
+[source,]
+----
+systemctl restart mariadb
+----
+
+* Vérification 
+
+Sur les différents noeuds, vérifier l'état de la réplication :
+
+[source,]
+----
+MariaDB > show master status;
++--------------------+----------+--------------+------------------+
+| File               | Position | Binlog_Do_DB | Binlog_Ignore_DB |
++--------------------+----------+--------------+------------------+
+| mariadb-bin.000001 |      245 | mabase       |                  |
++--------------------+----------+--------------+------------------+
+1 row in set (0.00 sec)
+
+MariaDB > show slave status;
+Empty set (0.00 sec)
+----
+
+Basculer les serveurs en multi-maitres :
+
+* Sur le noeud 1 :
+
+** Arrêter le processus de synchronisation
+** Ajouter le noeud 2 comme maître
+** Redémarrer le processus de synchronisation
+
+Les valeurs de MASTER_LOG_POS et MASTER_LOG_FILE sont à récupérer sur le noeud 2.
+
+[source,]
+----
+mariadb > stop slave;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mariadb > CHANGE MASTER TO MASTER_HOST = 'mirroir2.local.lan', MASTER_PORT = 3306, MASTER_USER = 'mirroir', MASTER_PASSWORD = 'm!rro!r', MASTER_LOG_FILE = 'mariadb-bin.000001', MASTER_LOG_POS = 245;
+Query OK, 0 rows affected, 2 warnings (0.25 sec)
+
+mariadb > start slave;
+Query OK, 0 rows affected (0.03 sec) 
+
+MariaDB [(none)]> show slave status;
++----------------------------------+-------------+-------------+-------------+---------------+--------------------+---------------------+--------------------------+---------------+-----------------------+------------------+-------------------+-----------------+---------------------+--------------------+------------------------+-------------------------+-----------------------------+------------+------------+--------------+---------------------+-----------------+-----------------+----------------+---------------+--------------------+--------------------+--------------------+-----------------+-------------------+----------------+-----------------------+-------------------------------+---------------+---------------+----------------+----------------+-----------------------------+------------------+
+| Slave_IO_State                   | Master_Host | Master_User | Master_Port | Connect_Retry | Master_Log_File    | Read_Master_Log_Pos | Relay_Log_File           | Relay_Log_Pos | Relay_Master_Log_File | Slave_IO_Running | Slave_SQL_Running | Replicate_Do_DB | Replicate_Ignore_DB | Replicate_Do_Table | Replicate_Ignore_Table | Replicate_Wild_Do_Table | Replicate_Wild_Ignore_Table | Last_Errno | Last_Error | Skip_Counter | Exec_Master_Log_Pos | Relay_Log_Space | Until_Condition | Until_Log_File | Until_Log_Pos | Master_SSL_Allowed | Master_SSL_CA_File | Master_SSL_CA_Path | Master_SSL_Cert | Master_SSL_Cipher | Master_SSL_Key | Seconds_Behind_Master | Master_SSL_Verify_Server_Cert | Last_IO_Errno | Last_IO_Error | Last_SQL_Errno | Last_SQL_Error | Replicate_Ignore_Server_Ids | Master_Server_Id |
++----------------------------------+-------------+-------------+-------------+---------------+--------------------+---------------------+--------------------------+---------------+-----------------------+------------------+-------------------+-----------------+---------------------+--------------------+------------------------+-------------------------+-----------------------------+------------+------------+--------------+---------------------+-----------------+-----------------+----------------+---------------+--------------------+--------------------+--------------------+-----------------+-------------------+----------------+-----------------------+-------------------------------+---------------+---------------+----------------+----------------+-----------------------------+------------------+
+| Waiting for master to send event | mirroir2    | mirroir     |        3306 |            60 | mariadb-bin.000001 |                 509 | mariadb-relay-bin.000002 |           531 | mariadb-bin.000001    | Yes              | Yes               |                 |                     |                    |                        |                         |                             |          0 |            |            0 |                 509 |             827 | None            |                |             0 | No                 |                    |                    |                 |                   |                |                     0 | No                            |             0 |               |              0 |                |                             |               11 |
++----------------------------------+-------------+-------------+-------------+---------------+--------------------+---------------------+--------------------------+---------------+-----------------------+------------------+-------------------+-----------------+---------------------+--------------------+------------------------+-------------------------+-----------------------------+------------+------------+--------------+---------------------+-----------------+-----------------+----------------+---------------+--------------------+--------------------+--------------------+-----------------+-------------------+----------------+-----------------------+-------------------------------+---------------+---------------+----------------+----------------+-----------------------------+------------------+
+1 row in set (0.00 sec)
+----
+
+La requête **CHANGE MASTER [nom_connexion] TO** créé ou modifie une connexion à un serveur maître. Elle change les paramètres que le serveur esclave utilise pour se connecter et communiquer avec le serveur maître durant les réplications. Sans spécifier de nom de connexion, la connexion par défaut est modifiée.
+
+Les valeurs **MASTER_LOG_FILE** et **MASTER_LOG_POS** sont les coordonnées à partir desquelles l'esclave doit commencer à lire depuis le maître lors de la prochaine réplication. 
+
+Sur le noeud 2 :
+
+[source,]
+----
+mariadb > stop slave;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mariadb > CHANGE MASTER TO MASTER_HOST = 'mirroir1.local.lan', MASTER_PORT = 3306, MASTER_USER = 'mirroir', MASTER_PASSWORD = 'm!rro!r', MASTER_LOG_FILE = 'mariadb-bin.000001', MASTER_LOG_POS = 245;
+Query OK, 0 rows affected, 2 warnings (0.07 sec)
+
+mariadb > start slave;
+Query OK, 0 rows affected (0.04 sec) 
+----
+
+== Tests de bon fonctionnement
+
+Pour tester le bon fonctionnement du cluster, une table va être créée sur le noeud 1. Après vérification sur le noeud 2 que la table a bien été répliquée, des données y seront rajoutées. La présence des données sur le noeud 1 permettra de valider la réplication multi-maître.
+
+* Sur le noeud 1 :
+
+[source,]
+----
+[root@mirroir1 ~]# mysql -u root -p mabase
+Enter password: 
+
+mariadb > create table table1( id int(11) primary key auto_increment, nom varchar(30));
+Query OK, 0 rows affected (0.22 sec)
+
+mariadb > show tables in mabase;
++------------------+
+| Tables_in_mabase |
++------------------+
+| table1 |
++------------------+
+1 row in set (0.01 sec) 
+----
+
+* Vérifier le noeud 2 la présence de la table et ajouter des données :
+
+[source,]
+----
+[root@mirroir2 ~]# mysql -u root -p mabase
+Enter password: 
+
+mariadb > show tables in mabase;
++--------------------+
+| Tables_in_test_rep |
++--------------------+
+| table1 |
++--------------------+
+1 row in set (0.00 sec)
+
+mariadb > insert into table1 ( nom ) values ('antoine'), ('xavier'), ('patrick') ;
+Query OK, 3 rows affected (0.05 sec)
+Records: 3 Duplicates: 0 Warnings: 0
+
+mariadb > select * from table1;
++----+----------+
+| id | fullname |
++----+----------+
+| 1 | antoine |
+| 2 | xavier |
+| 3 | patrick |
++----+----------+
+3 rows in set (0.00 sec)
+
+mariadb > commit;
+Query OK, 0 rows affected (0.00 sec) 
+----
+
+* Retour sur le noeud 1 :
+
+[source,]
+----
+[root@DB1 ~]# mysql -u root -p mabase
+Enter password:
+
+mariadb > select * from table1;
++----+----------+
+| id | fullname |
++----+----------+
+| 1 | antoine |
+| 2 | xavier |
+| 3 | patrick |
++----+----------+
+3 rows in set (0.01 sec)
+----
+
