@@ -106,9 +106,9 @@ Dans la littérature, le terme « option » est équivalent au terme « paramèt
 
 == Les commandes générales
 
-=== Les commandes indexterm2:[man] et indexterm2:[whatis]
+=== Les commandes man et whatis
 
-Il est impossible pour un administrateur, quel que soit son niveau, de connaître toutes les commandes et options dans les moindres détails. Une commande a été spécialement conçue pour accéder en ligne de commande à un ensemble d’aides, sous forme d’un manuel : la commande man (« le man est ton ami »).
+Il est impossible pour un administrateur, quel que soit son niveau, de connaître toutes les commandes et options dans les moindres détails. Une commande a été spécialement conçue pour accéder en ligne de commande à un ensemble d’aides, sous forme d’un manuel : la commande man (« le man est ton ami »). indexterm:[man]
 
 Ce manuel est divisé en 8 sections, regroupant les informations par thème, la section par défaut étant la section 1 :
 
@@ -145,7 +145,7 @@ Toutes les pages du manuel ne sont pas traduites de l'anglais. Elles sont toutef
 
 La navigation dans le manuel se fait avec les flèches « Haut » et « Bas ». Le manuel se quitte en appuyant sur la touche « q ».
 
-La commande **whatis** permet de faire une recherche par mot clef au sein des pages de manuel :
+La commande **whatis** permet de faire une recherche par mot clef au sein des pages de manuel : indexterm:[whatis]
 
 .Syntaxe de la commande whatis
 [source,bash]
@@ -1233,7 +1233,9 @@ $ find /tmp –name *.txt –exec rm –f {} \;
 
 La commande précédente recherche tous les fichiers du répertoire /tmp nommés *.log et les supprime.
 
-====== Comprendre l'option -exec
+[TIP]
+====
+**Comprendre l'option -exec**
 
 Dans l'exemple ci-dessus, la commande find va construire une chaîne de caractères représentant la commande à exécuter.
 
@@ -1247,6 +1249,7 @@ rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
 ----
 
 Le caractère “;” est un caractère spécial du Shell qui doit être protégé par un “\” pour éviter son interprétation trop tôt par la commande find (et non plus dans le exec).
+====
 
 === La commande indexterm2:[whereis]
 
@@ -1317,7 +1320,7 @@ $ grep -w "^root" /etc/passwd
 Cette commande est très puissante et il est fortement conseillé de consulter son manuel. Elle a de nombreux dérivés, 
 ====
 
-===== Recherche récursive 
+==== Recherche récursive 
 
 Il est possible de rechercher une chaîne de caractères dans une arborescence de fichiers avec l'option -R.
 

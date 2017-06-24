@@ -689,7 +689,7 @@ Choisissez un hébergement virtuel “par IP” ou “par nom”. En production,
 
 La balise VirtualHost permet de définir des hôtes virtuels.
 
-Syntaxe: 
+Syntaxe :
 
 .Syntaxe d'un fichier virtualhostXXX.conf
 [source,bash]

@@ -22,6 +22,19 @@ L'interface graphique web d'Ansible est payante.
 L'ouverture des flux SSH vers l'ensemble des clients depuis le serveur Ansible font de lui un elément critique de l'architecture qu'il faudra attentivement surveiller.
 ====
 
+[TIP]
+====
+Pourquoi scripter en Bash n'est pas considéré comme de l'automatisation ? (langage Impératif vs Déclaratif)
+
+Même si la connaissance du Bash est une exigence de base pour un administrateur système, celui-ci est un langage de programmation interprété "**impératif**". Il exécute les instrutions les unes à la suite des autres.
+
+Les langages dédiés au domaine (DSL Domain Specific Language) comme Ansible ou Puppet, quant à eux, ne spécifient pas les étapes à réaliser mais l'état à obtenir.
+
+Parce qu'Ansible est un langage déclaratif, il est très simple. Il suffit de lui dire "Fais cette action" ou "Met le serveur dans cet état". Ansible considèrera l'état désirée indépendamment de l'état initial ou du contexte. Peu importe dans quel état le serveur se situe au départ, les étapes à franchir pour arriver au résultat, le serveur est mis dans l'état désiré avec un rapport de succès (avec ou sans changement d'état) ou d'échec.
+
+La même tâche d'automatisation en bash nécessiterait de vérifier tous les états possibles, les autorisations, etc. afin de déterminer la tâche à accomplir avant de lancer l'exécution de la commande, souvent en imbriquant de nombreux "si", ce qui complique la tâche, l'écriture et la maintenance du script.
+====
+
 == Installation sur le serveur
 
 Ansible est disponible dans le dépot EPEL :
@@ -88,6 +101,72 @@ Deux fichiers de configuration :
 ## db-[99:101]-node.example.com
 ----
 
+== La commande ansible
+
+La commande ansible lance une tâche sur un ou plusieurs hôtes cibles.
+
+.Syntaxe de la commande ansible
+[source,bash]
+----
+ansible <host-pattern> [-m module_name] [-a args] [options]
+----
+
+Exemples :
+
+* Lister les hôtes appartenant à un groupe :
+
+[source,bash]
+----
+ansible {{group}} --list-hosts
+----
+
+* Pinger un groupe d'hôtes avec le module ping :
+
+[source,bash]
+----
+ansible {{group}} -m ping
+----
+
+* Afficher des facts d'un groupe d'hôtes avec le module setup :
+
+[source,bash]
+----
+ansible {{group}} -m setup
+----
+
+* Exécuter une commande sur un groupe d'hôtes en invoquant le module command avec des arguments :
+
+[source,]
+----
+ansible {{group}} -m command -a '{{commande}}'
+----
+
+* Exécuter une commande avec les privilèges d'administrateur :
+
+[source,bash]
+----
+ansible {{group}} --become --ask-become-pass -m command -a '{{commande}}'
+----
+
+* Exécuter une commande en utilisant un fichier d'inventaire personnalisé :
+
+[source,bash]
+----
+ansible {{group}} -i {{inventory_file}} -m command -a '{{commande}}'
+----
+
+.Options principales de la commande ansible
+[cols="1,4",width="100%",options="header"]
+|====================
+| Option | 	Information
+| -a 'arguments'| 	 Les arguments à passer au module.
+| -b -K| 	Demande un mot de passe et lance la commande avec des privilèges supérieurs.
+|  --user=utilisateur | Utilise cet utilisateur pour se connecter à l'hôte cible au lieu d'utiliser l'utilisateur courant.
+|  --become-user=utilisateur | Exécute l'opération en tant que cet utilisateur (defaut : root).
+| -C | Simulation. Ne fait pas de changement sur la cible mais la teste pour voir ce qui devrait être changé.
+| -m module | Exécute le module appelé
+|====================
+
 == Gestion des clients
 
 Les serveurs clients doivent être ajoutés dans le fichiers /etc/ansibles/hosts. 
@@ -150,19 +229,20 @@ Enter same passphrase again:
 Your identification has been saved in /root/.ssh/id_rsa.
 Your public key has been saved in /root/.ssh/id_rsa.pub.
 The key fingerprint is:
-d8:7b:45:bb:10:63:d9:fe:ae:71:37:3a:49:d4:fa:7f root@ansible-srv
+SHA256:RpYuJzkkaeZzve8La8Xd/8kTTE8t43DeS+L7WB26WF8 root@ansible-srv
 The key's randomart image is:
-+--[ RSA 2048]----+
++---[RSA 2048]----+
 |                 |
-|           o     |
-|          = o .  |
-|       o . = o . |
-|      . S . = .  |
-|         . o =   |
-|        . . + =..|
-|         .   *.oE|
-|            .oo +|
-+-----------------+
+|     .   .       |
+|    = . +       .|
+|   + o *    . +.o|
+|    o * S. . *o*.|
+|     o * .o ..=+=|
+|        o.  .oooE|
+|        .+  o.*o+|
+|       ...+o +o=+|
++----[SHA256]-----+
+
 ----
 
 La clef publique peut être copiée sur les serveurs :
@@ -196,6 +276,22 @@ Pour le prochain test, le module shell, permettant l'exécution de commandes à 
 
 Aucun mot de passe n'est demandé, l'authentification par clef privée/publique fonctionne !
 
+=== Exemple de connexion à une instance Cloud Amazon ECS
+
+Lors de la création d'une instance Amazon, une clef privée est créée et téléchargée sur le poste local.
+
+Ajout de la clef dans l'agent SSH :
+[source,bash]
+----
+ssh-add path/to/fichier.pem
+----
+
+Lancement des facts sur les serveurs aws :
+
+[source,]
+----
+ansible aws --user=ec2-user --become -m setup
+----
 
 == Utilisation
 
@@ -253,7 +349,35 @@ Le logiciel installé étant un service, il faut maintenant le démarrer avec le
 
 === Les playbooks
 
-Les playbooks ansible décrivent une politique à appliquer à des systèmes distants, pour forcer leur configuration. Les playbooks sont écris dans un format texte facilement compréhensible regroupant un ensemble de tâches.
+Les playbooks ansible décrivent une politique à appliquer à des systèmes distants, pour forcer leur configuration. Les playbooks sont écris dans un format texte facilement compréhensible regroupant un ensemble de tâches : le format yaml.
+
+[NOTE]
+====
+En savoir plus sur le yaml : http://docs.ansible.com/ansible/YAMLSyntax.html
+====
+
+.Syntaxe de la commande ansible-playbook
+[source,bash]
+----
+ansible-playbook <fichier.yml> ... [options]
+----
+
+Les options sont identiques à la commande ansible.
+
+La commande renvoi les codes d'erreurs suivants :
+
+.Codes de sortie de la commande ansible-playbook
+[cols="1,4",width="100%",options="header"]
+|====================
+| 0 | OK ou aucun hôte correspondant
+| 1 | Erreur
+| 2 | Un ou plusieurs hôtes sont en échecs
+| 3 | Un ou plusieurs hôtes ne sont pas joignables
+| 4 | Erreur d'analyse
+| 5 | Mauvaises options ou options incomplètes
+| 99 | Execution interrompue par l'utilisateur
+| 250 | Erreur inattendue
+|====================
 
 ==== Exemple de playbook apache et mysql
 
@@ -307,4 +431,55 @@ changed: [172.16.1.217]
 PLAY RECAP *********************************************************************
 172.16.1.192             : ok=5    changed=3    unreachable=0    failed=0
 172.16.1.217             : ok=5    changed=3    unreachable=0    failed=0
+----
+
+==== Exemple de préparation d'un noeud mysql
+
+Dans ce playbook, deux serveurs Cloud vont être préparés pour devenir des serveurs Multi-Maître MySQL (voir cours MySQL Multi-Maître).
+
+Le playbook utilise :
+
+* Des variables ;
+* Ajoute des lignes dans le fichier /etc/hosts ;
+* Installe et démarre MariaDB ;
+* Créer une base de données, un utilisateur et lui donne tous les droits sur les bases de données.
+
+[source,]
+----
+---
+
+- hosts: aws
+  remote_user: ec2-user
+  become: yes
+  vars:
+    mysqlpackage: "mariadb-server,MySQL-python"
+    mysqlservice: "mariadb"
+    mysql_port: "3306"
+    dbuser: "synchro"
+    dbname: "mabase"
+    upassword: "M!rro!r"
+
+  tasks:
+    - name: configurer le noeud 1 dans /etc/hosts
+      lineinfile:
+              dest: /etc/hosts
+              line: "13.59.197.48 mirroir1.local.lan mirroir1"
+              state: present
+    - name: configurer le noeud 2 dans /etc/hosts
+      lineinfile:
+              dest: /etc/hosts
+              line: "52.14.125.109 mirroir2.local.lan mirroir2"
+              state: present
+    - name: mariadb installe et a jour
+      yum: name="{{ mysqlpackage }}" state=latest
+    - name: mariadb est demarre
+      service: name="{{ mysqlservice }}" state=started
+    - name: creer la base de donnee
+      mysql_db: name="{{ dbname }}" state=present
+    - name: creer un utilisateur
+      mysql_user: name="{{ dbuser }}" password="{{ upassword }}" priv=*.*:ALL host='%' state=present
+    - name: restart mariadb
+      service: name="{{ mysqlservice }}" state=restarted
+...
+
 ----

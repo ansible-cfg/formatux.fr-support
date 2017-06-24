@@ -7,10 +7,21 @@
 # export PATH="$HOME/.gem/ruby/2.4.0/bin:$PATH"
 DIRNAME=$(dirname $0)
 SOURCES=$DIRNAME/../sources/
+DEST=$DIRNAME/../build/
 FILES=$(find $SOURCES -name *.adoc)
-
+DATE=$(date +%x) # La date au format Local
 # Generation des fichiers PDF
 for file in $FILES
 do
-  asciidoctor-pdf -b pdf -D ../build/ $file
+  asciidoctor-pdf \
+    -a pdf-stylesdir=${SOURCES}/theme/  \
+    -n  \
+    -a pdf-style=asciidoctor \
+    -a pdf-fontsdir=${SOURCES}/theme/fonts \
+    -a revdate=${DATE}          \
+    -a lang="fr"                \
+    -a icons="font"             \
+    -a chapter-label="Chapitre" \
+    -a part-label="Partie"      \
+    -D $DEST ${SOURCES}/${file}
 done

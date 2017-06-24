@@ -62,7 +62,7 @@ Exemple :
 |-U __paquet.rpm__ |	Met à jour un paquet déjà installé.
 |-e __paquet.rpm__ |	Désinstalle le paquet.
 |-h |	Affiche une barre de progression.
-|-v |   Informe sur l'avancement de l'opération en cours.
+|-v |   Informe sur l'avancement de l'opération.
 |--test |	Teste la commande sans l'exécuter.
 |====================
 
@@ -97,9 +97,9 @@ Exemple :
 [cols="1,4",width="100%",options="header"]
 |====================
 |Option |	Description
-|-a __paquet.rpm__ |	Liste tous les paquets installés sur le système.
-|-i __paquet.rpm__ |	Affiche les informations du paquet.
-|-l __paquet.rpm__ |	Liste les fichiers contenus dans le paquet.
+|-a |	Liste tous les paquets installés sur le système.
+|-i __paquet__ |	Affiche les informations du paquet.
+|-l __paquet__ |	Liste les fichiers contenus dans le paquet.
 |-f |	Affiche le nom du paquet contenant le fichier précisé.
 |====================
 

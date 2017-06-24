@@ -75,6 +75,35 @@ Les NOUVEAUX paquets suivants seront installés :
 ...
 ----
 
+=== Nginx sous RedHat 7
+
+Le dépôt de nginx pour RHEL/CentOS doit être ajouté aux dépôts existants. Créer le fichier /etc/yum.repos.d/nginx.repo:
+
+[source,bash]
+----
+$ sudo vi /etc/yum.repos.d/nginx.repo
+----
+
+Et ajouter le contenu suivant :
+
+
+[source,bash]
+----
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/centos/7/$basearch/
+gpgcheck=0
+enabled=1
+----
+
+L'installation peut être lancée :
+
+[source,bash]
+----
+$ sudo yum update
+$ sudo yum install nginx
+----
+
 === Configuration de Nginx
 
 La configuration de Nginx se situe sous *_/etc/nginx_* :

@@ -498,7 +498,7 @@ La mise en place d'un site TLS respecte les étapes suivantes :
 
 3. Création de la clé privée du serveur
 
-4 Création du certificat du serveur depuis sa clé privée
+4. Création du certificat du serveur depuis sa clé privée
 
 5. Création d'un Certificat Signing Request (CSR) depuis le certificat et transmission à la CA pour signature
 

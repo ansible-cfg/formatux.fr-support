@@ -39,7 +39,7 @@ Le fichier de configuration de GRUB 2 se situe sous */boot/grub2/grub.cfg* mais 
 
 Les paramètres de configuration du menu de GRUB2 se trouvent sous */etc/default/grub* et servent à la génération du fichier grub.cfg.
 
-.Exemple de fichier /etc/default/grub file
+.Exemple de fichier /etc/default/grub
 [source,]
 ----
 # cat /etc/default/grub

@@ -17,6 +17,10 @@ Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 :docinfo:
 :encoding: utf-8
 :lang: fr
+:toc-title: Table des matières
+:chapter-title: Chapitre
+:part-title: Partie
+:toclevels: 3
 :numbered:
 :sectnumlevels: 2
 :description: Support de cours Linux de Formatux
@@ -27,6 +31,8 @@ Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 :experimental:
 :source-highlighter: coderay
 :checkedbox: pass:normal[+&#10004;]+]
+:icons: font
+:showtitle:
 
 include::0000-preface.adoc[]
 
