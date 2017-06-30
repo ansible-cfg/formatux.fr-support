@@ -11,5 +11,9 @@ Licence Art Libre : http://artlibre.org/
 Auteurs : Antoine Le Morvan
 ////
 
-= Service indexterm2:[Redis]
+= Service Redis
+
+indexterm2:[Redis]
+
+
 

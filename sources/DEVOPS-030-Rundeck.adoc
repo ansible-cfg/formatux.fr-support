@@ -11,9 +11,9 @@ Licence Art Libre : http://artlibre.org/
 Auteurs : Antoine Le Morvan
 ////
 
-= Ordonnanceur centralisé indexterm2:[Rundeck]
+= Ordonnanceur centralisé Rundeck
 
-Rundeck est un ordonnanceur centralisé open source (licence Apache) écrit en Java.
+indexterm2:[Rundeck] est un ordonnanceur centralisé open source (licence Apache) écrit en Java.
 
 Depuis l'interface de Rundeck, il est possible de gérer les différents travaux à exécuter sur les serveurs distants.
 

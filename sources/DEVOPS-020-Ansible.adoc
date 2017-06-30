@@ -26,18 +26,18 @@ L'ouverture des flux SSH vers l'ensemble des clients depuis le serveur Ansible f
 ====
 Pourquoi scripter en Bash n'est pas considéré comme de l'automatisation ? (langage Impératif vs Déclaratif)
 
-Même si la connaissance du Bash est une exigence de base pour un administrateur système, celui-ci est un langage de programmation interprété "**impératif**". Il exécute les instrutions les unes à la suite des autres.
+Même si la connaissance du Bash est une exigence de base pour un administrateur système, celui-ci est un langage de programmation interprété "**impératif**". Il exécute les instructions les unes à la suite des autres.
 
 Les langages dédiés au domaine (DSL Domain Specific Language) comme Ansible ou Puppet, quant à eux, ne spécifient pas les étapes à réaliser mais l'état à obtenir.
 
-Parce qu'Ansible est un langage déclaratif, il est très simple. Il suffit de lui dire "Fais cette action" ou "Met le serveur dans cet état". Ansible considèrera l'état désirée indépendamment de l'état initial ou du contexte. Peu importe dans quel état le serveur se situe au départ, les étapes à franchir pour arriver au résultat, le serveur est mis dans l'état désiré avec un rapport de succès (avec ou sans changement d'état) ou d'échec.
+Parce qu'Ansible est un langage déclaratif, il est très simple. Il suffit de lui dire "Fais cette action" ou "Met le serveur dans cet état". Ansible considérera l'état désirée indépendamment de l'état initial ou du contexte. Peu importe dans quel état le serveur se situe au départ, les étapes à franchir pour arriver au résultat, le serveur est mis dans l'état désiré avec un rapport de succès (avec ou sans changement d'état) ou d'échec.
 
 La même tâche d'automatisation en bash nécessiterait de vérifier tous les états possibles, les autorisations, etc. afin de déterminer la tâche à accomplir avant de lancer l'exécution de la commande, souvent en imbriquant de nombreux "si", ce qui complique la tâche, l'écriture et la maintenance du script.
 ====
 
 == Installation sur le serveur
 
-Ansible est disponible dans le dépot EPEL :
+Ansible est disponible dans le dépôt EPEL :
 
 * Installation d'EPEL :
 [source,bash]
@@ -162,7 +162,7 @@ ansible {{group}} -i {{inventory_file}} -m command -a '{{commande}}'
 | -a 'arguments'| 	 Les arguments à passer au module.
 | -b -K| 	Demande un mot de passe et lance la commande avec des privilèges supérieurs.
 |  --user=utilisateur | Utilise cet utilisateur pour se connecter à l'hôte cible au lieu d'utiliser l'utilisateur courant.
-|  --become-user=utilisateur | Exécute l'opération en tant que cet utilisateur (defaut : root).
+|  --become-user=utilisateur | Exécute l'opération en tant que cet utilisateur (défaut : root).
 | -C | Simulation. Ne fait pas de changement sur la cible mais la teste pour voir ce qui devrait être changé.
 | -m module | Exécute le module appelé
 |====================
@@ -260,7 +260,7 @@ Re-commenter la ligne suivante de la section [defaults] dans le fichier de confi
 #ask_pass      = True
 ----
 
-==== Test d'authentifcation par clef privée
+==== Test d'authentification par clef privée
 
 Pour le prochain test, le module shell, permettant l'exécution de commandes à distance, est utilisé :
 
@@ -330,7 +330,7 @@ Le module yum permet d'installer des logiciels sur les clients cibles :
 }     
 ----
 
-Le logiciel installé étant un service, il faut maintenant le démarrer avec le module service (centos 6) ou systemd (centos 7) :
+Le logiciel installé étant un service, il faut maintenant le démarrer avec le module service (CentOS 6) ou systemd (CentOS 7) :
 
 [source,]
 ----
@@ -379,9 +379,9 @@ La commande renvoi les codes d'erreurs suivants :
 | 250 | Erreur inattendue
 |====================
 
-==== Exemple de playbook apache et mysql
+==== Exemple de playbook Apache et MySQL
 
-Le playbook suivant permet d'installer apache et mysql sur nos serveurs cibles :
+Le playbook suivant permet d'installer Apache et MySQL sur nos serveurs cibles :
 
 [source,yaml]
 ----
@@ -433,7 +433,7 @@ PLAY RECAP *********************************************************************
 172.16.1.217             : ok=5    changed=3    unreachable=0    failed=0
 ----
 
-==== Exemple de préparation d'un noeud mysql
+==== Exemple de préparation d'un noeud MySQL
 
 Dans ce playbook, deux serveurs Cloud vont être préparés pour devenir des serveurs Multi-Maître MySQL (voir cours MySQL Multi-Maître).
 

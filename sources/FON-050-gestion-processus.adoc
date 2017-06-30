@@ -165,8 +165,8 @@ La priorité par défaut d'un processus est 0.
 
 Les processus peuvent fonctionner de deux manières :
 
-* **indexterm2:[synchrone]** : l'utilisateur perd l'accès au shell durant l'exécution de la commande. L'invite de commande réapparait à la fin de l'exécution du processus.
-* **indexterm2:[asynchrone]** : le traitement du processus se fait en arrière-plan, l'invite de commande est réaffichée immédiatement.
+* **indexterm2:[synchrone]** : l'utilisateur perd l'accès au shell durant l'exécution de la commande. L'invite de commande réapparaît à la fin de l'exécution du processus.
+* **indexterm2:[asynchrone]** : le traitement du processus se fait en arrière-plan, l'invite de commande est ré-affichée immédiatement.
 
 Les contraintes du mode asynchrone :
 
@@ -176,9 +176,9 @@ Les contraintes du mode asynchrone :
 
 == Les commandes de gestion des processus
 
-=== La commande indexterm2:[kill]
+=== La commande kill
 
-La commande kill envoie un signal d'arrêt à un processus.
+La commande indexterm2:[kill] envoie un signal d'arrêt à un processus.
 
 .Syntaxe de la commande kill
 [source,bash]
@@ -215,9 +215,9 @@ La liste complète des signaux pris en compte par la commande kill est disponibl
 ----
 ====
 
-=== La commande indexterm2:[nohup]
+=== La commande nohup
 
-La commande **nohup** permet de lancer un processus indépendant d'une connexion.
+La commande **indexterm2:[nohup]** permet de lancer un processus indépendant d'une connexion.
 
 .Syntaxe de la commande nohup
 [source,bash]
@@ -243,8 +243,8 @@ Nohup gère les sorties et erreur standards, mais pas l'entrée standard, d'où 
 
 En appuyant simultanément sur les touches kbd:[CTRL+Z], le processus synchrone est temporairement suspendu. L'accès au prompt est rendu après affichage du numéro du processus venant d'être suspendu.
 
-=== Instruction indexterm2:[&]
-L'instruction **&** exécute la commande en mode asynchrone (la commande est alors appelée job) et affiche le numéro de job. L'accès au prompt est ensuite rendu.
+=== Instruction &
+L'instruction **indexterm2:[&]** exécute la commande en mode asynchrone (la commande est alors appelée job) et affiche le numéro de job. L'accès au prompt est ensuite rendu.
 
 Exemple :
 
@@ -257,8 +257,8 @@ Exemple :
 
 Le numéro de **indexterm2:[job]** est obtenu lors de la mise en tâche de fond et est affiché entre crochets, suivi du numéro de PID.
 
-=== Les commandes indexterm2:[fg] et indexterm2:[bg]
-La commande **fg** place le processus au premier plan : 
+=== Les commandes fg et bg
+La commande **indexterm2:[fg]** place le processus au premier plan : 
 
 [source,bash]
 ----
@@ -267,7 +267,7 @@ La commande **fg** place le processus au premier plan :
 time ls -lR / > list.ls 2/dev/null
 ----
 
-tandis que la commande **bg** le place à l'arrière plan :
+tandis que la commande **indexterm2:[bg]** le place à l'arrière plan :
 
 [source,bash]
 ----
@@ -281,9 +281,9 @@ tandis que la commande **bg** le place à l'arrière plan :
 
 Qu'il ait été mis à l'arrière plan lors de sa création grâce à l'argument **&** ou plus tard avec les touches **kbd:[CTRL+Z]**, un processus peut être ramené au premier plan grâce à la commande **fg** et à son numéro de job.
 
-=== La commande indexterm2:[jobs]
+=== La commande jobs
 
-La commande jobs affiche la liste des processus tournant en tâche de fond et précise leur numéro de job.
+La commande indexterm2:[jobs] affiche la liste des processus tournant en tâche de fond et précise leur numéro de job.
 
 Exemple : 
 
@@ -304,9 +304,9 @@ Les colonnes représentent :
 4.  la commande
 
 
-=== Les commandes indexterm2:[nice]/indexterm2:[renice]
+=== Les commandes nice/renice
 
-La commande nice permet d'exécuter une commande en précisant sa priorité.
+La commande indexterm2:[nice] permet d'exécuter une commande en précisant sa priorité.
 
 .Syntaxe de la commande nice
 [source,bash]
@@ -325,7 +325,7 @@ Contrairement à root, un utilisateur standard ne peut que réduire la
 priorité d'un processus. Seules les valeurs entre +0 et +19 seront 
 acceptées.
 
-La commande **renice** permet de modifier la priorité d'un processus en cours d'exécution.
+La commande **indexterm2:[renice]** permet de modifier la priorité d'un processus en cours d'exécution.
 
 .Syntaxe de la commande renice
 [source,bash]
@@ -350,9 +350,9 @@ Exemple :
 
 La commande **renice** agit sur des processus déjà en cours  d'exécution. Il est donc possible de modifier la priorité d'un processus précis, mais aussi de plusieurs processus appartenant à un utilisateur ou à un groupe.
 
-=== La commande indexterm2:[top]
+=== La commande top
 
-La commande top affiche les processus et leur consommation en ressources.
+La commande indexterm2:[top] affiche les processus et leur consommation en ressources.
 
 [source,bash]
 ----

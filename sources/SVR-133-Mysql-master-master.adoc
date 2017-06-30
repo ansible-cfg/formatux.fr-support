@@ -11,17 +11,41 @@ Licence Art Libre : http://artlibre.org/
 Auteurs : Antoine Le Morvan
 ////
 
-= Serveurs MySQL - Multi-Maîtres
+= Serveurs MySQL/MariaDB - Multi-Maîtres
 
-Les bases de données MySQL peuvent être configurées :
+MySQL/MariaDB fonctionne par défaut en Standalone, chaque serveur étant autonome.
 
-* en Standalone, chaque serveur étant autonome
-* en Maître-Esclaves, un serveur dispose de la base de données en écriture, celle-ci est répliquée sur les serveurs esclaves en lecture seule
-* en Multi-Maître (limité à 64 maîtres maximum).
+L'accès aux données étant crucial pour les entreprises, les administrateurs chercheront des solutions de *répartitions de charge* (répartition des requêtes en écriture sur le serveur maître et celles en lecture sur les serveurs esclaves). 
 
-L'accès aux données étant crucial pour les entreprises, les administrateurs chercheront des solutions de répartitions de charge (répartition des requêtes en écriture sur le serveur maître et celles en lecture sur les serveurs esclaves) ou de hautes disponibilités (serveurs Multi-Maîtres).
+MySQL propose un système de réplication à sens unique, basée sur  :
 
-Pour mettre en oeuvre la réplication Multi-Maître, la plateforme de test est constituée de deux noeuds CentOS 7 :
+* Un serveur *maître* contenant la base de données en **écriture**,
+* Un ou plusieurs serveurs **esclaves**, qui vont se synchroniser sur le serveur maître. 
+
+Ce mode de réplication est dit "Asynchrone". La données consultée sur un noeud peut être différente de la valeur stockée sur le noeud maître le temps de la réplication.
+
+Un serveur esclave peut devenir maître pour d'autres serveurs, cascadant ainsi la réplication d'une donnée.
+
+Une telle infrastructure permet de répartir la charge de travail (requêtes en écriture sur le maître, les autres requêtes vers les esclaves, sauvegarde sur un esclave dédié) mais :
+
+* l'application doit avoir été *développée spécifiquement* pour utiliser l'infrastructure,
+* en cas de panne sur un des serveurs (panne du maître ou d'un esclave d'esclave), une *action de l'administrateur* sera nécessaire,
+* en cas d'évolution de l'infrastructure, l'application devra être modifiée.
+
+Dans ce type de réplication, l'état de la base de données est dans un premier temps dupliqué sur le serveur esclave. Ensuite le serveur esclave entre en contact avec le serveur maître et récupère les données binaires depuis une position de référence et se met à jour.
+
+1. Le journal binaire doit être activé sur tous les serveurs. Un identifiant unique doit être attribué à chaque serveur.
+2. Un compte de réplication avec le privilège de 'REPLICATION SLAVE' doit être créé sur le serveur maître permettant à l'esclave de s'y connecter.
+3. La base de données du maître est sauvegardée puis exportée vers l'esclave (manuellement).
+4. Sur le maître, le fichier binaire en cours et la position dans le journal doivent être récupérés (avec la commande SQL 'show master status;')
+5. Sur l'esclave, le maître peut être configuré et le processus de réplication démarré.
+
+Pour des besoins de *hautes disponibilités* (**indexterm2:[HA]** : High Availability), l'administrateur pourra :
+
+* configurer ses serveurs en Multi-Maîtres : chaque esclave étant également le maître des autres serveurs. Cette technique est limitée à 64 maîtres maximum.
+* utiliser des technologies de clustering avec MySQL Cluster qui propose un système de réplication Synchrone et une répartition de la charge.
+
+Dans ce chapitre, nous allons vous présenter la mise en oeuvre d'une **réplication Multi-Maître à deux noeuds**. La plate-forme de test est constituée de deux noeuds CentOS 7 :
 
 * mirroir1 : 192.168.100.173
 * mirroir2 : 192.168.100.211
@@ -179,7 +203,7 @@ MariaDB > show slave status;
 Empty set (0.00 sec)
 ----
 
-Basculer les serveurs en multi-maitres :
+Basculer les serveurs en multi-maîtres :
 
 * Sur le noeud 1 :
 

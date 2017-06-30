@@ -80,7 +80,7 @@ La technique du **chain-loading** lui permet de démarrer une grande variété d
 Le **Chain-loading** est une technique qui permet à un chargeur de lancer un autre chargeur en l’encapsulant.
 ====
 
-GRUB reconnait nativement divers systèmes de fichiers.  
+GRUB reconnaît nativement divers systèmes de fichiers.  
 
 Il fournit un interpréteur de commandes permettant le chargement manuel d'un système d'exploitation et le changement de la configuration au boot.
 
@@ -147,7 +147,7 @@ Aucune compilation de ce fichier de configuration ne sera nécessaire.
 
 Les systèmes de fichiers n'étant pas encore montés, indiquer le disque et la partition de /boot **(hd0,0)**, le chemin jusqu'à l'image **grub/** et enfin le nom de votre image **splash.xpm.gz**. 
 | hiddenmenu | Sert à masquer le menu Grub et après le délai du timeout, le système se lancera automatiquement en fonction de l’option **default**. 
-| title | Il s'agit en fait du nom qui apparaitra dans le menu Grub (exemple “ma distrib Linux préférée”). En règle général, le nom du système est choisi : exemple Fedora, Suse, Ubuntu, Vista, Xp, Frugal, etc,… et éventuellement la version du noyau.
+| title | Il s'agit en fait du nom qui apparaîtra dans le menu Grub (exemple “ma distrib Linux préférée”). En règle général, le nom du système est choisi : exemple Fedora, Suse, Ubuntu, Vista, Xp, Frugal, etc,… et éventuellement la version du noyau.
 
 Un seul nom par rubrique **title**, il faut donc déclarer autant de lignes 'title' qu'il y a d'options de démarrage ou de systèmes installés.
 | root |  Indique le disque puis la partition (hdx,y) où se trouvent les fichiers permettant l'initialisation du système (exemple : (hd0,0), correspondant à la partition /boot) pour ce "title". 
@@ -200,12 +200,12 @@ $6$uK6Bc/$90LR/0QW.14G4473EaENd
 
 [NOTE]
 ====
-Le hash du mot de passe fourni par la commande grub-crypt commence par un $6$ car l'algorythme utilisé est le SHA-512.
+Le hash du mot de passe fourni par la commande grub-crypt commence par un $6$ car l'algorithme utilisé est le SHA-512.
 
-.Liste des algorythme de hashage des mots de passe
+.Liste des algorithme de hachage des mots de passe
 [width="100%",options="header"]
 |====================
-| Préfixe | Algorythme utilisé
+| Préfixe | Algorithme utilisé
 |  | DES 
 | $1$ | MD5 
 | $2$, $2a$, $2x$, $2y$ | bcrypt
@@ -238,7 +238,7 @@ image::./images/FON-070-003.png[scaledwidth="75%"]
 
 == Démarrage du noyau
 
-Au démarrage du système, GRUB apparait.  
+Au démarrage du système, GRUB apparaît.  
 
 **[ENTREE]** active la configuration par défaut.  
 
@@ -285,9 +285,9 @@ activés. Un shell en mode **root** est activé sur une console. Le répertoire 
 Il n'y a qu'un niveau d'exécution actif à la fois.
 
 
-=== La commande indexterm2:[init]
+=== La commande init
 
-La commande init permet de changer le niveau d'exécution courant .
+La commande indexterm2:[init] permet de changer le niveau d'exécution courant .
 
 .Syntaxe de la commande init
 [source,bash]
@@ -301,9 +301,9 @@ Exemple :
 [root]# init 5
 ----
 
-=== La commande indexterm2:[runlevel]
+=== La commande runlevel
 
-La commande runlevel permet de connaitre le niveau d'exécution courant.
+La commande indexterm2:[runlevel] permet de connaître le niveau d'exécution courant.
 
 .Syntaxe de la commande runlevel
 [source,bash]
@@ -319,7 +319,7 @@ Exemple :
 N 3
 ----
 
-Dans cet exemple, le système se trouve au niveau d'exécution 3 - Multi-users.
+Dans cet exemple, le système se trouve au niveau d'exécution 3 - Multiuser.
 
 Le N indique que le niveau d'exécution précédent était le démarrage du système. Après un init 5, le résultat de la commande serait alors :
 
@@ -411,11 +411,11 @@ tty6
 ----
 
 
-== Le processus indexterm2:[init] (démon)
+== Le processus init (démon)
 
 === Démarrage des démons
 
-**Init** lance le script  **/etc/rc.d/rc.sysinit** quelque soit le niveau.  
+**indexterm2:[init]** lance le script  **/etc/rc.d/rc.sysinit** quelque soit le niveau.  
 
 **Init** exécute ensuite le script **/etc/rc.d/rc** en lui passant en paramètre le niveau d’exécution demandé
 
@@ -429,7 +429,7 @@ Chaque script accepte au minimum en argument :
 *   stop : pour arrêter le service ;
 *   start : pour démarrer le service ;
 *   restart : pour redémarrer le service ;
-*   status : pour connaitre l'état du service.
+*   status : pour connaître l'état du service.
 
 === Répertoires d'ordonnancement
 
@@ -515,9 +515,9 @@ Exemple :
 
 Il faut alors créer tous les liens (**K** ou **S**) pour **chaque niveau de démarrage**.
 
-=== La commande indexterm2:[chkconfig]
+=== La commande chkconfig
 
-La commande chkconfig permet de gérer un service.
+La commande indexterm2:[chkconfig] permet de gérer un service.
 
 Il faut les deux lignes suivantes au début de chaque script.
 
@@ -727,7 +727,9 @@ Commandes de mise hors service :
 *   halt ;
 *   reboot.
 
-=== Commande indexterm2:[shutdown]
+=== Commande shutdown
+
+La commande indexterm2:[shutdown] éteint le système.
 
 .Syntaxe de la commande shutdown
 ----
@@ -760,9 +762,9 @@ Exemples :
 
 **message-avertissement** : Message à envoyer à tous les utilisateurs.
 
-=== Commande indexterm2:[halt]
+=== Commande halt
 
-Arrêt immédiat
+La commande indexterm2:[halt] provoque un arrêt immédiat du système.
 
 ----
 [root]# halt
@@ -772,9 +774,9 @@ Cette commande appelle le processus **init**
 
 **halt => init 0**
 
-=== Commande indexterm2:[reboot]
+=== Commande reboot
 
-Redémarrage immédiat
+La commande indexterm2:[reboot] provoque un redémarrage immédiat du système.
 
 ----
 [root]# reboot

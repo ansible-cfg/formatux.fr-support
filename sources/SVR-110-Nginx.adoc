@@ -11,9 +11,9 @@ Licence Art Libre : http://artlibre.org/
 Auteurs : Antoine Le Morvan
 ////
 
-= Serveur web indexterm2:[Nginx]
+= Serveur web Nginx
 
-*Nginx* est un serveur web **HTTP libre sous licence BSD**. Son développement commence en Russie en 2002 par Igor Sysoev. Nginx dispose, en plus des fonctionnalités standards d'un serveur web, celles de *indexterm2:[proxy inverse]* (Reverse Proxy) pour le protocole *HTTP* mais aussi de *indexterm2:[proxy]* pour les protocoles de messageries **indexterm2:[POP] et indexterm2:[IMAP]**.
+*indexterm2:[Nginx]* est un serveur web **HTTP libre sous licence BSD**. Son développement commence en Russie en 2002 par Igor Sysoev. Nginx dispose, en plus des fonctionnalités standards d'un serveur web, celles de *indexterm2:[proxy inverse]* (Reverse Proxy) pour le protocole *HTTP* mais aussi de *indexterm2:[proxy]* pour les protocoles de messageries **indexterm2:[POP] et indexterm2:[IMAP]**.
 
 Le développement du serveur nginx est une réponse au problème *indexterm2:[C10K]* : supporter 10 000 connexions concurrentes (chose courante sur le web moderne) est un vrai challenge pour des serveurs web.
 
@@ -172,15 +172,15 @@ http {
 
 Si *sendfile* est activée, nginx s’assure que tous les paquets soient bien remplis avant d’être envoyés au client (grâce à tcp_nopush), puis, quand  arrive le dernier paquet, nginx désactive tcp_nopush, et force l’envoi des données avec tcp_nodelay.
 | keepalive_timeout | *temps maximum avant fermeture* d'une connexion inactive.
-| types_hash_max_size | Nginx entretient des tables de hashage contenant des informations statiques. Permet de définir **la taille maximale de la table de hashage**.
+| types_hash_max_size | Nginx entretient des tables de hashage contenant des informations statiques. Permet de définir **la taille maximale de la table de hachage**.
 | include | Inclure un autre fichier ou d'autres fichiers qui correspondent au modèle fourni dans la configuration.
 | default_type | Type MIME par défaut d'une requête.
-| ssl_protocols | Versions du protocol TLS acceptés.
+| ssl_protocols | Versions du protocole TLS acceptés.
 | ssl_prefer_server_ciphers | Préférer l'utilisation de la cipher suite du serveur plutôt que celle du client.
 | access_log | Configurer les **journaux d'accès **(voir paragraphe "gestion des logs").
 | error_log | Configurer les *journaux d'erreurs* (voir paragraphe "gestion des logs"). 
 | gzip | Le module *ngx_http_gzip_module* est un filtre compressant les données transmises au format gzip.
-| gzip_disable | Désactiver gzip en fonction d'une expression regulière. 
+| gzip_disable | Désactiver gzip en fonction d'une expression régulière. 
 |====
 
 La configuration de nginx est articulée de la manière suivante :
@@ -286,7 +286,7 @@ Le premier paramètre définit un fichier qui va recevoir les logs.
 
 Le second paramètre détermine le niveau des logs : debug, info, notice, warn, error, crit, alert ou emerg (voir le cours syslog).
 
-L'envoi des enregistrements vers indexterm2:[syslog] peut être effectué en employant le préfix "syslog:".
+L'envoi des enregistrements vers indexterm2:[syslog] peut être effectué en employant le préfixe "syslog:".
 
 [source,]
 ----

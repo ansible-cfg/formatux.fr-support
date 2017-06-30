@@ -10,7 +10,7 @@ Licence Art Libre : http://artlibre.org/
 
 Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 ////
-= Elévation des privilèges (indexterm2:[su] et indexterm2:[sudo]) 
+= Elévation des privilèges (su et sudo) 
 
 Le compte du super-utilisateur (root) possède de nombreuses contraintes car :  
 
@@ -23,14 +23,14 @@ L'administrateur qui travaille sur le serveur, se connecte avec son compte (qui 
 Il convient donc d'effectuer les opération suivantes :  
 
 *  interdire le login root ;
-*  restreindre l’accès à la commande su ;
-*  privilégier la commande sudo ;
+*  restreindre l’accès à la commande indexterm2:[su] ;
+*  privilégier la commande indexterm2:[sudo] ;
 *   robustesse du mot de passe :
 **  il doit être complexe ;
 **  non issu du dictionnaire ;
 **  comporter des minuscules, majuscules, lettres, chiffres et caractères spéciaux ;
 *   changer régulièrement (ne pas être conservé identique indéfiniment) ;
-*   sécurisation (ne doit pas être inscrit à proximité des postes ou communiqué à des personnes qui n’ont pas à le connaitre).
+*   sécurisation (ne doit pas être inscrit à proximité des postes ou communiqué à des personnes qui n’ont pas à le connaître).
 
 [NOTE]
 ====
@@ -50,9 +50,9 @@ Pour interdire un terminal au login **root**, il faut :
 
 Pour une distribution **CentOS**, le fichier est constitué d'une ligne **tty** et d'une ligne **vc**, indispensable pour la connexion d'un utilisateur.
 
-== La commande indexterm2:[su]
+== La commande su
 
-**su** signifie **Substitute User** ou **Switch User**. Elle permet d'endosser l'identité d’un autre utilisateur sans se déconnecter. Cette commande utilisée sans login permet par défaut de prendre l'identité de **root**. 
+**indexterm2:[su]** signifie **Substitute User** ou **Switch User**. Elle permet d'endosser l'identité d’un autre utilisateur sans se déconnecter. Cette commande utilisée sans login permet par défaut de prendre l'identité de **root**. 
 
 .Syntaxe de la commande su
 ----
@@ -91,9 +91,9 @@ Le principe de restriction mis en place consiste à autoriser seulement un group
 ====
 
 
-== La commande indexterm2:[sudo]
+== La commande sudo
 
-La commande **sudo** permet d'exécuter une ou plusieurs commandes avec les privilèges de root. Il n'est pas nécessaire de connaitre son mot de passe.  
+La commande **indexterm2:[sudo]** permet d'exécuter une ou plusieurs commandes avec les privilèges de root. Il n'est pas nécessaire de connaître son mot de passe.  
 
 .Syntaxe de la commande sudo
 ----
@@ -148,9 +148,9 @@ Le fichier **/etc/sudoers** contient pour chacun des utilisateurs :
 *  sur quel ordinateur il est autorisé ;
 *  quelles commandes il peut exécuter.
 
-== Commande indexterm2:[visudo]
+== Commande visudo
 
-La commande visudo permet d'éditer le fichier /etc/sudoers (qui est en lecture seule) afin de configurer efficacement l'accès à la commande sudo pour les utilisateurs.
+La commande indexterm2:[visudo] permet d'éditer le fichier /etc/sudoers (qui est en lecture seule) afin de configurer efficacement l'accès à la commande sudo pour les utilisateurs.
 
 .Syntaxe de la commande visudo
 ----
@@ -185,9 +185,9 @@ root ALL=(ALL) ALL
 %wheel ALL=(ALL) ALL
 ----
 
-=== Le groupe indexterm2:[wheel]
+=== Le groupe wheel
 
-Le mot **wheel** fait référence à un groupe système qui dispose de privilèges lui permettant l’exécution de commandes à accès restreint.
+Le mot **indexterm2:[wheel]** fait référence à un groupe système qui dispose de privilèges lui permettant l’exécution de commandes à accès restreint.
 
 Le groupe **wheel** est présent par défaut sur les distributions RHEL/CentOS.
 

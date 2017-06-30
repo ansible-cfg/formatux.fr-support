@@ -10,9 +10,9 @@ Licence Art Libre : http://artlibre.org/
 
 Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 ////
-= IPtables, le parefeu Linux
+= IPtables, le pare-feu Linux
 
-Gérer le trafic réseau est certainement la partie la plus difficile du métier d'administrateur système. Il faut impérativement configurer les firewalls sur l'ensemble des éléments actifs du réseau, serveurs inclus, en prenant en compte les besoins des utilisateurs et des systèmes à la fois pour le trafic entrant et sortant, sans laisser des systèmes vulnérables à des attaques.
+Gérer le trafic réseau est certainement la partie la plus difficile du métier d'administrateur système. Il faut impérativement configurer les pare-feu sur l'ensemble des éléments actifs du réseau, serveurs inclus, en prenant en compte les besoins des utilisateurs et des systèmes à la fois pour le trafic entrant et sortant, sans laisser des systèmes vulnérables à des attaques.
 
 C'est le rôle du pare-feu **IPTables**, entièrement administrable en ligne de commandes.
 
@@ -21,12 +21,12 @@ IPtables utilise un jeu de tables qui contiennent des chaînes comprenant les r�
 Il existe 3 types de tables :
 
 * La table **FILTER**, qui est la table par défaut.
-Elle est composée de 3 chaines :
+Elle est composée de 3 chaînes :
 ** La chaîne **INPUT** : les paquets sont destinés à une socket locale.
 ** La chaîne **FORWARD** : les paquets sont routés par le système.
 ** La chaîne **OUTPUT** : les paquets sont générés en local.
 * La table **NAT**, qui est consultée lorsque un paquet tente de créer une nouvelle connexion. Elle est composée de 3 chaînes :
-** **PREROUTING** : utilisée pour modifier des paquets dès leur reception par le système.
+** **PREROUTING** : utilisée pour modifier des paquets dès leur réception par le système.
 ** **OUTPUT** : utilisée pour modifier des paquets générés en local.
 ** **POSTROUTING** : utilisée pour modifier des paquets au moment de leur sortie du système.
 * La table **MANGLE** : cette table est utilisée pour modifier des paquets. Il y a 5 chaînes :
@@ -199,7 +199,7 @@ iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED -j ACCEPT
 ----
 
 === Supprimer les paquets invalides
-Certains paquets sont marqués invalides à l'arrivée (duplication, déséquencement, etc.). Il est possible de les loggers pour pouvoir éventuellement mener des actions correctrices, puis de les supprimer :
+Certains paquets sont marqués invalides à l'arrivée (duplication, dé-séquencement, etc.). Il est possible de les journaliser pour pouvoir éventuellement mener des actions correctrices, puis de les supprimer :
 [source,bash]
 ----
 iptables -A INPUT -m conntrack --ctstate INVALID -J LOG --log-prefix "REFUS IPTABLES : 
@@ -216,6 +216,6 @@ iptables -A OUTPUT -p tcp --dports 25,465,587 -j REJECT
 
 == Conclusion
 
-Ces exemples permettent de faire le tour des fonctionnalités offertes par le parefeu iptables. Quelques règles permettent d'offrir un niveau de sécurité plus important. 
+Ces exemples permettent de faire le tour des fonctionnalités offertes par le pare-feu iptables. Quelques règles permettent d'offrir un niveau de sécurité plus important. 
 
-La mise en place du parefeu n'est donc pas un élément à négliger.
+La mise en place du pare-feu n'est donc pas un élément à négliger.

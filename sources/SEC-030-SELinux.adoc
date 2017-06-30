@@ -10,7 +10,7 @@ Licence Art Libre : http://artlibre.org/
 
 Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 ////
-= Securisation SELinux
+= Sécurisation SELinux
 
 Avec l’arrivée du noyau en version 2.6, un nouveau système de sécurité a été introduit pour fournir un mécanisme de sécurité supportant les stratégies de sécurité de contrôle d’accès.
 
@@ -192,7 +192,7 @@ SELinux propose trois modes de fonctionnement :
 
 * indexterm2:[Enforcing] (Appliqué)
 
-Mode par défaut pour les Linux Redhat. Les accès seront restreints en fonction des règles en vigueur.
+Mode par défaut pour les Linux RedHat. Les accès seront restreints en fonction des règles en vigueur.
 
 * indexterm2:[Permissive] (Permissif)
 

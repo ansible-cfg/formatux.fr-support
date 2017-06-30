@@ -11,21 +11,355 @@ Licence Art Libre : http://artlibre.org/
 Auteurs : Antoine Le Morvan
 ////
 
-= Serveur de base de données indexterm2:[MySQL]
+= Serveur de base de données MySQL - MariaDB
 
-== Généralités
+*indexterm2:[MySQL]* et *indexterm2:[MariaDB]* sont des systèmes de gestion de base de données relationnelles (**indexterm2:[SGBD-R]**) open source. 
 
-MySQL est un système de gestion de base de données relationnelles (SGBDR - en anglais is Relational DataBase Managed System(RDBMS) open source.
+[TIP]
+====
+La littérature anglophone utilise le terme indexterm2:[RDBMS] (Relational DataBase Managed System).
+====
+
+*MySQL* a été développé par **Michael "Monty" Widenius** (informaticien Finlandais), qui fonde MySQL AB en 1995.
+MySQL AB est rachetée par la société *SUN* en 2008, elle-même rachetée par *Oracle* en en 2009 qui est toujours propriétaire du logiciel MySQL et qui le distribue sous double licence GPL et propriétaire.
+
+En 2009, Michael Widenius quitte SUN, fonde la société Monty Program AB et lance le développement de son fork communautaire de MySQL : **MariaDB** sous licence GPL. La gouvernance du projet est confiée à la fondation MariaDB, ce qui assure au projet de rester libre.
+
+Rapidement, la majorité des distributions Linux proposent par défaut les paquets MariaDB à la place de ceux de MySQL et des grands comptes, comme Wikipedia ou Google, adoptent eux aussi le fork communautaire.
+
+MySQL et MariaDB font parti des SGBR-R les plus utilisés au monde (professionnellement et par le grand public), notamment pour des applications web (**indexterm2:[LAMP]** : Linux+Apache+Mysql-MariaDB+Php).
+
+Les concurrents principaux de Mysql-MariaDB sont :
+
+* Oracle DB,
+* Microsoft SQL Server.
+
+Les services applicatifs sont multi-threads et multi-utilisateurs, ils fonctionnent sur la majorité des systèmes d'exploitations (Linux, Unix, BSD, Mac OSx, Windows) et sont accessibles depuis de nombreux langages de programmation (Php, Java, Python, C, C++, Perl, ...).
+
+Plusieurs moteurs sont supportés, ce qui permet, au sein d'une même base, d'attribuer un moteur différent aux différentes tables en fonction du besoin :
+
+* *MyISAM* : le plus simple mais ne supporte pas les transactions ni les clefs étrangères. Il s'agit d'un moteur séquentiel indexé.
+* *InnoDB* : gestion de l'intégrité des tables (clé étrangères et transactions) mais occupe plus d'espace sur le disque. C'est le moteur *par défaut* depuis la version 5.6 de MySQL. Il s'agit d'un moteur transactionnel.
+* *Memory* : les tables sont stockées en mémoire.
+* *Archive* : compression des données à l'insertion ce qui fait gagner de l'espace disque mais ralenti les requêtes de recherche (données froides).
+* ...
+
+Il s'agira d'adopter un moteur selon le besoin : Archive pour le stockage de log, Memory pour des données temporaires, etc.
+
+MySQL utilise la port *3306/tcp* pour sa communication sur le réseau.
 
 == Installation
 
-=== Sous Debian
-
 === Sous CentOS
 
-== Securisation
+Le serveur MySQL est installé par le paquet **mysql-community-server**, mais le paquet distribué dans les dépôts de base de la distribution est le paquet mariadb-server :
+
+[source,]
+----
+$ yum search mysql-community-server mariadb-server
+
+mariadb-server.x86_64 : The MariaDB server and related files
+
+  Name and summary matches mostly, use "search all" for everything.
+Warning: No matches found for: mysql-community-server
+----
+
+L'installation de mariadb-server peut donc se faire directement :
+
+[source,]
+----
+$ sudo yum install mariadb-server
+$ sudo systemctl enable mariadb
+Created symlink from /etc/systemd/system/multi-user.target.wants/mariadb.service to /usr/lib/systemd/system/mariadb.service.
+$ sudo systemctl start mariadb
+----
+
+L'installation ajoute au système un utilisateur :
+
+[source,]
+----
+$ cat /etc/passwd
+...
+mysql:x:27:27:MariaDB Server:/var/lib/mysql:/sbin/nologin
+...
+----
+
+Pour installer le paquet mysql-server, il faudra passer par l'ajout du dépôt MySQL. Ce dépôt fourni les dernières versions des paquets logiciels pour les applications :
+
+* Serveur MySQL,
+* MySQL Cluster
+* MySQL Workbench
+* MySQL Fabric
+* MySQL Router
+* MySQL Utilities
+* MySQL Connector / ODBC
+* MySQL Connector / Python
+* MySQL Shell
+
+Les dépôts MySQL se situent sous : http://repo.mysql.com/.
+
+* Pour RHEL 7
+
+Installer le rpm contenant la définition du dépôt :
+[source,]
+----
+$ sudo yum install http://repo.mysql.com/mysql-community-release-el7.rpm
+----
+
+L'installation de ce RPM a pour effet de créer le fichier _/etc/yum.repos.d/mysql-community.repo_ :
+
+.Le fichier de dépôts /etc/yum.repos.d/mysql-community.repo
+[source,]
+----
+[mysql-connectors-community]
+name=MySQL Connectors Community
+baseurl=http://repo.mysql.com/yum/mysql-connectors-community/el/7/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+[mysql-tools-community]
+name=MySQL Tools Community
+baseurl=http://repo.mysql.com/yum/mysql-tools-community/el/7/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+# Enable to use MySQL 5.5
+[mysql55-community]
+name=MySQL 5.5 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-5.5-community/el/7/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+# Enable to use MySQL 5.6
+[mysql56-community]
+name=MySQL 5.6 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-5.6-community/el/7/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+[mysql57-community]
+name=MySQL 5.7 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+----
+
+Comme vous pouvez le constater, le dépôt activé par défaut et le dépôt contenant la version 5.6 du paquet. Pour installer la version 5.7 du serveur, il faudra activer le dépôt correspondant et désactiver les dépôts des autres versions.
+
+[source,]
+----
+$ sudo yum install mysql-community-server
+$ sudo systemctl enable mysqld
+$ sudo systemctl start mysqld
+----
+
+L'utilisateur sera cette fois-ci quelque peu différent (uniquement au niveau du commentaire et du shell) :
+
+[source,]
+----
+$ cat /etc/passwd
+...
+mysql:x:27:27:MySQL Server:/var/lib/mysql:/bin/false
+...
+----
+
+[NOTE]
+====
+Si le serveur Mariadb est déjà installé, celui-ci sera remplacé par le serveur MySQL !
+====
+
+=== Sous Debian
+
+Sous Debian, les 2 paquets mariadb-server et mysql-server sont disponibles dans les dépôts de base. Il n'est donc pas nécessaire d'ajouter le dépôt officiel.
+
+[source,bash]
+----
+$ sudo apt-cache search mysql-server
+mysql-server - MySQL database server (metapackage depending on the latest version)
+----
+
+[source,bash]
+----
+$ sudo apt-cache search mariadb-server
+mariadb-server - MariaDB database server (metapackage depending on the latest version)
+mariadb-server-10.0 - MariaDB database server binaries
+----
+
+Installer au choix un des deux paquets (selon vos préférences) :
+
+[source,]
+----
+$ sudo apt-get install mariadb-server
+----
+
+Un utilisateur est également créé :
+
+[source,]
+----
+cat /etc/passwd
+...
+mysql:x:112:116:MySQL Server,,,:/nonexistent:/bin/false
+...
+----
+
+[NOTE]
+====
+A l'installation du paquet mysql-server, l'installateur demande la saisie d'un mot de passe pour l'utilisateur root@localhost.
+====
+
+== Gestion du service
+
+Le nom de l'unité cible systemd est différente selon la distribution et le paquet :
+
+* sous RedHat :
+** mysqld pour mysql
+** mariadb
+
+* sous debian :
+** mysql
+** mariadb
+
+== Sécurisation
+
+* Depuis la version 5.7 :
+
+Au démarrage du serveur, une bi-clef ssl est générée dans le dossier de données, le plugin validate_password est installé puis activé. Un compte utilisateur '*root*' est créé et son mot de passe est stocké dans le fichier journal de log. 
+
+.Extrait du fichier /var/log/mysqld.log
+[source,bash]
+----
+[Note] A temporary password is generated for root@localhost: akTjtLSPq6/5
+----
+
+[NOTE]
+====
+Le plugin validate_password nécessite que le mot de passe soit long d'au moins 8 caractères et qu'il soit composé d'au moins une majuscule, une minuscule, un entier et un caractère spécial.
+====
+
+Ce mot de passe peut immédiatement être changé avec les commandes suivantes :
+
+[source,]
+----
+$ mysql -uroot -p
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'M1nNouve@uMDP';
+----
+
+[WARNING]
+====
+Ne pas lancer la commande mysql_secure_installation pour un serveur en version 5.7 (la procédure est effectuée automatiquement au moment de l'installation).
+====
+
+* Avec la version 5.6 et précédente :
+
+Le programme mysql_secure_installation effectue des opérations importantes comme attribuer un mot de passe à l'utilisateur root, supprimer les utilisateurs anonymes, etc.
+
+Pour des raisons évidentes de sécurité, la commande mysql_secure_installation devrait toujours être lancée après l'installation :
+
+[source,]
+----
+$ mysql_secure_installation
+----
 
 == Configuration
+
+Le fichier *_/etc/my.cnf_* (redhat) ou *_/etc/mysql/my.cnf_* (debian) contient la configuration à la fois du client et du serveur.
+
+.Le fichier /etc/my.cf par défaut
+[source,]
+----
+cat /etc/my.cnf
+
+[mysqld]
+#
+# Remove leading # and set to the amount of RAM for the most important data
+# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+# innodb_buffer_pool_size = 128M
+#
+# Remove leading # to turn on a very important data integrity option: logging
+# changes to the binary log between backups.
+# log_bin
+#
+# Remove leading # to set options mainly useful for reporting servers.
+# The server defaults are faster for transactions and fast SELECTs.
+# Adjust sizes as needed, experiment to find the optimal values.
+# join_buffer_size = 128M
+# sort_buffer_size = 2M
+# read_rnd_buffer_size = 2M
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+----
+
+.Le fichier /etc/mysql/my.cnf
+[source,]
+----
+# The MariaDB configuration file
+#
+# The MariaDB/MySQL tools read configuration files in the following order:
+# 1. "/etc/mysql/mariadb.cnf" (this file) to set global defaults,
+# 2. "/etc/mysql/conf.d/*.cnf" to set global options.
+# 3. "/etc/mysql/mariadb.conf.d/*.cnf" to set MariaDB-only options.
+# 4. "~/.my.cnf" to set user-specific options.
+#
+# If the same option is defined multiple times, the last one will apply.
+#
+# One can use all long options that the program supports.
+# Run program with --help to get a list of available options and with
+# --print-defaults to see which it would actually understand and use.
+
+#
+# This group is read both both by the client and the server
+# use it for options that affect everything
+#
+[client-server]
+
+# Import all .cnf files from configuration directory
+!includedir /etc/mysql/conf.d/
+!includedir /etc/mysql/mariadb.conf.d/
+
+----
+
+Alors que le serveur mysqld est en cours de fonctionnement, la commande _ps_ nous renseigne sur les paramètres en cours :
+
+[source,]
+----
+ps -ef | grep mysql
+root      3324     1  0 08:27 ?        00:00:00 /bin/bash /usr/bin/mysqld_safe
+mysql     3468  3324  0 08:27 ?        00:00:01 /usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib/mysql/plugin --user=mysql --skip-log-error --pid-file=/var/run/mysqld/mysqld.pid --socket=/var/run/mysqld/mysqld.sock --port=3306
+root      3469  3324  0 08:27 ?        00:00:00 logger -t mysqld -p daemon error
+----
+
+Le processus *mysqld_safe* est le responsable du démarrage du serveur. La majorité des options de mysqld_safe sont les mêmes que celles de mysqld.
+
+La démon *mysqld* est démarré avec les options suivantes :
+
+* **--basedir=/usr** : chemin vers l'installation de MySQL.
+* **--datadir=/var/lib/mysql** : chemin vers le dossier contenant les bases de données.
+* **--plugin-dir=/usr/lib/mysql/plugin** : chemin vers le dossier contenant les plugins.
+* **--user=mysql** : compte utilisateur sous lequel le serveur est lancé.
+* **--skip-log-error** : n'enregistre pas dans le journal d'erreur mais utilise syslog à la place.
+* **--pid-file=/var/run/mysqld/mysqld.pid** : fichier contenant le PID du service.
+* **--socket=/var/run/mysqld/mysqld.sock** : chemin vers la socket Unix utilisée par les clients locaux.
+* **--port=3306** : port TCP utilisé. Le port 3306 est le port par défaut.
+
+[NOTE]
+====
+La commande **mysqld --help --verbose** donne la liste complète des options disponibles et leurs valeurs actuelles.
+====
+
+Autres options utiles :
+
+* **--bind-address** : par défaut, le serveur écoute sur le réseau et sur l'adresse 0.0.0.0 (toutes les adresses). IL est possible de restreindre l'écoute sur une ou plusieurs interface, comme Debian le fait en n'écoutant que sur l'adresse de loopback localhost.
 
 == Utilisation
 
@@ -150,3 +484,123 @@ Il existe différents types de permissions à offrir aux utilisateurs :
 ====
 Définition de *tuple* : Collection ordonnée des valeurs d'un nombre indéfini d'attributs relatifs à un même objet.
 ====
+
+== La gestion des journaux
+
+MySQL renseigne différents journaux :
+
+* Le journal des erreurs
+
+Il contient les messages générés au démarrage et à l'arrêt du service ainsi que les événements importants (warning et error).
+
+* Le journal binaire
+
+Ce journal (au format binaire) conserve toutes les actions qui modifient la structure des bases ou les données. En cas de restauration d'une base de données, il faudra restaurer la sauvegarde ET rejouer le journal binaire pour retrouver l'état de la base de données avant le crash.
+
+* Le journal des requêtes
+
+Toutes les requêtes émises par les clients sont consignées dans ce journal.
+
+* Le journal des requêtes lentes
+
+Les requêtes lentes, c'est à dire qui mettent plus qu'un certain temps (ce temps est paramétrable) à s'exécuter sont consignées à part dans ce journal. Une analyse de ce fichier permettra éventuellement de prendre des mesures afin de réduire leur temps d'éxécution (mettre en place des index par exemple ou modifier l'application cliente).
+
+[NOTE]
+====
+Hormis le journal binaire, ces journaux sont au format texte, ce qui permet de les exploiter directement !
+====
+
+Les paramètres du démon *mysqld* concernant les journaux sont :
+
+.Paramètres de gestion des journaux d'enregistrements
+[cols="1,2",width="100%",options="header"]
+|====
+| Paramètres  |  Observations
+| --log-error=pathtofile    | le journal des erreurs
+| --log-bin=path            | le journal binaire
+| --log                     | le journal des requêtes
+| --slow-queries=pathtofile | le journal des requêtes lentes
+| --long_query_time=secondes | durée à partir de laquelle une requête est considérée comme longue et donc consignée dans le journal des requêtes lentes.
+|====
+
+== La chasse aux requêtes longues
+
+Afin d'activer le journal d'enregistrement des requêtes longues, éditez le fichier de configuration my.cnf pour ajouter les lignes suivantes :
+
+[source,bash]
+----
+slow_query_log      = 1
+slow_query_log_file = /var/log/mysql/mysql-slow.log
+long_query_time     = 2
+----
+
+La valeur minimale pour la variable long_query_time est de 0 et la valeur par défaut est fixée à 10 secondes.
+
+Relancez le service pour que les modifications soient prises en compte.
+
+Une fois que le fichier de log se rempli, il est possible de l'analyser avec la commande **indexterm2:[mysqldumpslow].
+
+.Syntaxe de la commande mysqldumpslow
+[source,]
+----
+mysqldumpslow [options] [log_file ...]
+----
+
+.Options de la commande mysqldumpslow
+[cols="1,4",width="100%",options="header"]
+|====================
+| Option |	Observation
+| -t n |	N'affiche que les n premières requêtes
+| -s sort_type | 	Trie en fonction du nombre de requête (c), .
+| -r |	Inverse l'affichage des résultats
+|====================
+
+Les types de tri peuvent être :
+
+* c : en fonction du nombre de requête
+* t ou at : en fonction du temps d'exécution ou de la moyenne du temps d'exécution (a pour average)
+* l ou al : en fonction du temps de verrou ou de sa moyenne
+* r ou ar : en fonction du nombre de lignes renvoyées ou de sa moyenne
+
+== La sauvegarde
+
+Comme pour tout SGBD-R, la sauvegarde d'une base de données doit se faire alors que les données ne sont pas en cours de modification. Cela est possible :
+
+* alors que le service est à l'arrêt : il s'agit d'une **sauvegarde offline** ;
+* alors que le service fonctionne mais un verrou est posé (pour momentanément suspendre toutes modifications) : il s'agit d'une **sauvegarde online**
+* en utilisant un instantané du système de fichiers type LVM, permettant de sauvegarder les données avec un système de fichiers à froid.
+
+Le format de la sauvegarde peut être un fichier au format ASCII (texte), représentant l'état de la base et de ses données sous forme d'ordres SQL, ou un fichier binaire, correspondant aux fichiers de stockage de MySQL.
+
+Tandis que la sauvegarde d'un fichier binaire peut se faire à l'aide des utilitaires courants comme tar ou cpio, la sauvegarde au format ASCII nécessite l'utilisation d'un utilitaire comme *mysqldump*.
+
+[IMPORTANT]
+====
+N'oubliez pas qu'après la restauration d'une sauvegarde complète, la restauration des fichiers binaires permettent de compléter la reconstitution des données.
+====
+
+Exemple de sauvegarde d'une base de données mabase :
+
+[source,]
+----
+$ mysqldump -u root -p --opt mabase > /tmp/sauvegarde-mabase.sql
+----
+
+[NOTE]
+====
+Lors de la sauvegarde, l'utilitaire mysqldump pose un verrou sur la base.
+====
+
+Le fichier obtenu permet de restaurer les données de la base (la base doit toujours exister ou être recréée au préalable !) :
+
+[source,]
+----
+$ mysql -u root -p mabase < /tmp/sauvegarde-mabase.sql
+----
+
+
+== Outils de gestions
+
+* PhpMyAdmin
+* MySQL Workbench 
+* MySQL administrator

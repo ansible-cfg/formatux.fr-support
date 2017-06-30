@@ -56,7 +56,7 @@ Par sa structure de langage, il fait le lien entre les bonnes pratiques, le cahi
 * *Classe* : moyen dans Puppet de séparer des morceaux de code ;
 * *Module* : unité de code Puppet qui est réutilisable et pouvant être partagé ;
 * *Catalogue* : ensemble des classes de configuration à appliquer à un nœud ;
-* *Facter* : librairie multiplateforme qui fournit à Puppet sous forme de variables les informations propres au système (nom, adresse ip, système d’exploitation, etc.) ;
+* *Facter* : librairie multi-plateforme qui fournit à Puppet sous forme de variables les informations propres au système (nom, adresse ip, système d’exploitation, etc.) ;
 * *Ressource* (Resource): objet que Puppet peut manipuler (fichier, utilisateur, service, package, etc.) ;
 * *Manifeste* (Manifest) : regroupe un ensemble de ressource.
 

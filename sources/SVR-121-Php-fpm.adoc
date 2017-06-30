@@ -17,9 +17,9 @@ Auteurs : Antoine Le Morvan
 
 == Généralités
 
-*indexterm2:[CGI]* (**Common Gateway Interface**) et *indexterm2:[FastCGI]* permettent la communication entre le serveur Web (Apache, Nginx) et un language de développement (Php, Python, Java) :
+*indexterm2:[CGI]* (**Common Gateway Interface**) et *indexterm2:[FastCGI]* permettent la communication entre le serveur Web (Apache, Nginx) et un langage de développement (Php, Python, Java) :
 
-* Dans le cas du **CGI**, chaque requête entraine la création d'un **nouveau processus**, ce qui n'est pas efficace en terme de performance.
+* Dans le cas du **CGI**, chaque requête entraîne la création d'un **nouveau processus**, ce qui n'est pas efficace en terme de performance.
 * *FastCGI* s'appuie, quant à lui, sur un *certain nombre de processus* pour le traitement de ses requêtes clientes.
 
 PHP-FPM, apporte *en plus des meilleurs performances* : 
@@ -145,7 +145,7 @@ pm.max_children = 10
 
 Cette configuration lancera 10 processus.
 
-* En mode *dynamic* : php-fpm lancera au maximum le nombre de processus spécifié par la valeur de pm.max_children, en commencant par lancer un nombre de processus correspondant à pm.start_servers, et en gardant au minimum la valeur de pm.min_spare_servers de processus inactifs et au maximum pm.max_spare_servers processus inactifs.
+* En mode *dynamic* : php-fpm lancera au maximum le nombre de processus spécifié par la valeur de pm.max_children, en commençant par lancer un nombre de processus correspondant à pm.start_servers, et en gardant au minimum la valeur de pm.min_spare_servers de processus inactifs et au maximum pm.max_spare_servers processus inactifs.
 
 Exemple : 
 

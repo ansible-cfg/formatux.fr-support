@@ -40,7 +40,7 @@ L’utilisateur du système Linux est défini (dans le fichier /etc/passwd) par 
 *   un identifiant de groupe : **indexterm2:[GID]** (Group Identifier) ;
 *   un **mot de passe**, qui sera chiffré avant d’être stocké ;
 *   un **interpréteur de commandes**, un Shell, qui peut être différent d’un utilisateur à l’autre ;
-*   un **répertoire de connexion**, le « indexterm2:[home directory] » ;
+*   un **répertoire de connexion**, le « **indexterm2:[home directory]** » ;
 *   un **indexterm2:[prompt] de connexion,** qui sera symbolisé par un # pour les administrateurs et un $ pour les autres utilisateurs.
 
 En fonction de la politique de sécurité mise en œuvre sur le système, le mot de passe devra comporter un certain nombre de caractères et respecter des exigences de complexité.
@@ -108,7 +108,7 @@ Dans la littérature, le terme « option » est équivalent au terme « paramèt
 
 === Les commandes man et whatis
 
-Il est impossible pour un administrateur, quel que soit son niveau, de connaître toutes les commandes et options dans les moindres détails. Une commande a été spécialement conçue pour accéder en ligne de commande à un ensemble d’aides, sous forme d’un manuel : la commande man (« le man est ton ami »). indexterm:[man]
+Il est impossible pour un administrateur, quel que soit son niveau, de connaître toutes les commandes et options dans les moindres détails. Une commande a été spécialement conçue pour accéder en ligne de commande à un ensemble d’aides, sous forme d’un manuel : la commande **indexterm2:[man]** (« le man est ton ami »).
 
 Ce manuel est divisé en 8 sections, regroupant les informations par thème, la section par défaut étant la section 1 :
 
@@ -145,7 +145,7 @@ Toutes les pages du manuel ne sont pas traduites de l'anglais. Elles sont toutef
 
 La navigation dans le manuel se fait avec les flèches « Haut » et « Bas ». Le manuel se quitte en appuyant sur la touche « q ».
 
-La commande **whatis** permet de faire une recherche par mot clef au sein des pages de manuel : indexterm:[whatis]
+La commande **indexterm2:[whatis]** permet de faire une recherche par mot clef au sein des pages de manuel : 
 
 .Syntaxe de la commande whatis
 [source,bash]
@@ -153,8 +153,8 @@ La commande **whatis** permet de faire une recherche par mot clef au sein des pa
 $ whatis clear
 ----
 
-=== La commande indexterm2:[shutdown]
-La commande **shutdown** permet de **stopper électriquement**, immédiatement ou après un certain laps de temps, un serveur Linux.
+=== La commande shutdown
+La commande **indexterm2:[shutdown]** permet de **stopper électriquement**, immédiatement ou après un certain laps de temps, un serveur Linux.
 
 .Syntaxe de la commande shutdown
 [source,bash]
@@ -185,9 +185,9 @@ Pour forcer un arrêt immédiat, le mot « **now** » remplacera l’heure. Dans
 | -r    |  Redémarre le système 
 |====
 
-=== La commande indexterm2:[history]
+=== La commande history
 
-La commande **history** permet d’afficher l’historique des commandes qui ont été saisies par l’utilisateur.
+La commande **indexterm2:[history]** permet d’afficher l’historique des commandes qui ont été saisies par l’utilisateur.
 
 Les commandes sont mémorisées dans le fichier **.bash_history** du répertoire de connexion de l’utilisateur. 
 
@@ -234,15 +234,15 @@ Si un double appui sur la touche [TAB] ne provoque aucune réaction de la part d
 
 == Affichage et identification
 
-=== La commande indexterm2:[clear]
+=== La commande clear
 
-La commande clear permet d’effacer le contenu de l’écran du terminal. En réalité, pour être plus précis, elle permet de décaler l’affichage de sorte que le prompt se retrouve en haut de l’écran sur la première ligne.
+La commande **indexterm2:[clear]** permet d’effacer le contenu de l’écran du terminal. En réalité, pour être plus précis, elle permet de décaler l’affichage de sorte que le prompt se retrouve en haut de l’écran sur la première ligne.
 
 Dans un terminal, l’affichage sera définitivement masqué tandis que dans une interface graphique, un ascenseur permettra de remonter dans l’historique du terminal virtuel.
 
-=== La commande indexterm2:[echo]
+=== La commande echo
 
-La commande echo permet d’afficher une chaîne de caractères.
+La commande **indexterm2:[echo]** permet d’afficher une chaîne de caractères.
 
 Cette commande est plus particulièrement utilisée dans les scripts d’administration pour informer l’utilisateur pendant l’exécution.
 
@@ -263,9 +263,9 @@ Parmi les séquences fréquemment utilisées, nous citerons :
 | \v | Ajoute une tabulation verticale
 |====================
 
-=== La commande indexterm2:[date]
+=== La commande date
 
-La commande date permet d’afficher la date et l’heure. La commande respecte la syntaxe suivante :
+La commande **indexterm2:[date]** permet d’afficher la date et l’heure. La commande respecte la syntaxe suivante :
 
 .Syntaxe de la commande date
 [source,bash]
@@ -325,9 +325,9 @@ Le format à respecter pour l’argument suivant l’option –s est celui-ci :
 date -s "[AA]AA-MM-JJ hh:mm:[ss]"
 ----
 
-=== Les commandes indexterm2:[id], indexterm2:[who] et indexterm2:[whoami]
+=== Les commandes id, who et whoami
 
-La commande id affiche le nom de l’utilisateur courant et ses groupes ou ceux d’un utilisateur, si le login de celui-ci est fourni comme argument.
+La commande **indexterm2:[id]** affiche le nom de l’utilisateur courant et ses groupes ou ceux d’un utilisateur, si le login de celui-ci est fourni comme argument.
 
 [source,bash]
 ----
@@ -337,9 +337,9 @@ uid=501(util1) gid=501(group1) groups=501(group1),502(group2)
 
 Les options –g, -G, -n et –u affiche respectivement le GID du groupe principal, les GID des groupes secondaires, les noms au lieu des identifiants numériques et l’UID de l’utilisateur.
 
-La commande whoami affiche le login de l’utilisateur courant.
+La commande **indexterm2:[whoami]** affiche le login de l’utilisateur courant.
 
-La commande who seule affiche le nom des utilisateurs connectés :
+La commande **indexterm2:[who]** seule affiche le nom des utilisateurs connectés :
 
 [source,bash]
 ----
@@ -422,9 +422,9 @@ descendre successivement dans les répertoires “home”, “groupeA”, “ali
 descendons dans le répertoire “alice”, et enfin le fichier “monfichier” :
  __../alice/monfichier__.
 
-=== La commande indexterm2:[pwd]
+=== La commande pwd
 
-La commande pwd (Print Working Directory) affiche le chemin absolu du répertoire courant.
+La commande **indexterm2:[pwd]** (Print Working Directory) affiche le chemin absolu du répertoire courant.
 
 [source,bash]
 ----
@@ -436,9 +436,9 @@ Pour se déplacer à l’aide d’un chemin relatif, il faut impérativement con
 
 Selon le shell, le prompt peut également afficher le nom du répertoire courant.
 
-=== La commande indexterm2:[cd]
+=== La commande cd
 
-La commande cd (Change Directory) permet de changer le répertoire courant, autrement dit, de se déplacer dans l’arborescence.
+La commande **indexterm2:[cd]** (Change Directory) permet de changer le répertoire courant, autrement dit, de se déplacer dans l’arborescence.
 
 [source,bash]
 ----
@@ -455,9 +455,9 @@ $ pwd
 
 Comme vous pouvez le constater dans le dernier exemple ci-dessus, la commande cd sans argument permet de repositionner le répertoire courant sur le répertoire de connexion (home directory).
 
-=== La commande indexterm2:[ls]
+=== La commande ls
 
-La commande ls affiche le contenu d’un répertoire.
+La commande **indexterm2:[ls]** affiche le contenu d’un répertoire.
 
 .Syntaxe de la commande ls
 [source,bash]
@@ -527,7 +527,7 @@ Pour un fichier de type lien physique : nombre de liens physiques.
 
 ==== Alias
 
-Des indexterm2:[alias] sont fréquemment positionnés au sein des distributions courantes.
+Des **indexterm2:[alias]** sont fréquemment positionnés au sein des distributions courantes.
 
 C'est le cas de l'alias ll :
 
@@ -554,7 +554,7 @@ total 1332
 -rw-r--r--.  1 root root    283 18 nov.  17:05 mtab
 ----
 
-* Lister les fichiers de */var* plus gros qu'un mega-octet mais moins qu'un giga-octets :
+* Lister les fichiers de */var* plus gros qu'un méga-octet mais moins qu'un giga-octets :
 
 [source,bash]
 ----
@@ -627,9 +627,9 @@ $ ls -dF /etc
 $ ls /etc --hide=*.conf
 ----
 
-=== La commande indexterm2:[mkdir]
+=== La commande mkdir
 
-La commande mkdir crée un répertoire ou une arborescence de répertoire.
+La commande **indexterm2:[mkdir]** crée un répertoire ou une arborescence de répertoire.
 
 .Syntaxe de la commande mkdir
 [source,bash]
@@ -653,9 +653,9 @@ Sinon, l’option « –p » devra être utilisée. L’option « –p » crée 
 Il est vivement déconseillé de donner des noms de commandes UNIX comme noms de répertoires ou fichiers. 
 ====
 
-=== La commande indexterm2:[touch]
+=== La commande touch
 
-La commande touch modifie l’horodatage d’un fichier ou crée un fichier vide si le fichier n’existe pas.
+La commande **indexterm2:[touch]** modifie l’horodatage d’un fichier ou crée un fichier vide si le fichier n’existe pas.
 
 .Syntaxe de la commande touch
 [source,bash]
@@ -684,9 +684,9 @@ Date au format : [AAAA]MMJJhhmm[ss]
 La commande touch est utilisée en priorité pour créer un fichier vide, mais elle peut avoir un intérêt dans le cadre de sauvegarde incrémentale ou différentielle. En effet, le fait d'exécuter un touch sur un fichier aura pour seul effet de forcer sa sauvegarde lors de la sauvegarde suivante. 
 ====
 
-=== La commande indexterm2:[rmdir]
+=== La commande rmdir
 
-La commande rmdir supprime un répertoire vide.
+La commande **indexterm2:[rmdir]** supprime un répertoire vide.
 
 Exemple :
 
@@ -706,9 +706,9 @@ $ rmdir /home/stagiaire/travail
 Pour supprimer à la fois un répertoire non-vide et son contenu, il faudra utiliser la commande rm.
 ====
 
-=== La commande indexterm2:[rm]
+=== La commande rm
 
-La commande rm supprime un fichier ou un répertoire.
+La commande **indexterm2:[rm]** supprime un fichier ou un répertoire.
 
 .Syntaxe de la commande rm
 [source,bash]
@@ -751,9 +751,9 @@ $ rm -f -- -dur-dur
 
 Le nom du fichier -dur-dur commence par un “-”. Sans l'usage du “--” le shell aurait interprété le “-d” de “-dur-dur” comme une option.
 
-=== La commande indexterm2:[mv]
+=== La commande mv
 
-La commande mv déplace et renomme un fichier.
+La commande **indexterm2:[mv]** déplace et renomme un fichier.
 
 .Syntaxe de la commande mv
 [source,bash]
@@ -819,9 +819,9 @@ $ mv fic1 /repexistepas
 Si le répertoire de destination n’existe pas, « fic1 » est renommé « repexistepas » à la racine.
 
 
-=== La commande indexterm2:[cp]
+=== La commande cp
 
-La commande cp copie un fichier.
+La commande **indexterm2:[cp]** copie un fichier.
 
 .Syntaxe de la commande cp
 [source,bash]
@@ -874,9 +874,9 @@ Si le répertoire de destination n’existe pas, « fic1 » est copié sous le n
 
 == Visualisation
 
-=== La commande indexterm2:[file]
+=== La commande file
 
-La commande file affiche le type d’un fichier.
+La commande **indexterm2:[file]** affiche le type d’un fichier.
 
 .Syntaxe de la commande file
 [source,bash]
@@ -893,9 +893,9 @@ $ file /etc/passwd /etc
 /etc:		directory
 ----
 
-=== La commande indexterm2:[more]
+=== La commande more
 
-La commande more affiche le contenu d’un ou de plusieurs fichiers écran par écran.
+La commande **indexterm2:[more]** affiche le contenu d’un ou de plusieurs fichiers écran par écran.
 
 .Syntaxe de la commande more
 [source,bash]
@@ -915,9 +915,9 @@ root:x:0:0:root:/root:/bin/bash
 En utilisant la touche [ENTREE], le déplacement se fait ligne par ligne. En utilisant la touche [ESPACE], le déplacement se fait page par page.
 
 
-=== La commande indexterm2:[less]
+=== La commande less
 
-La commande less affiche le contenu d’un ou de plusieurs fichiers. La commande less est interactive et possède des commandes d’utilisation qui lui sont propres.
+La commande **indexterm2:[less]** affiche le contenu d’un ou de plusieurs fichiers. La commande less est interactive et possède des commandes d’utilisation qui lui sont propres.
 
 .Syntaxe de la commande less
 [source,bash]
@@ -941,11 +941,11 @@ Les commandes propres à less sont :
 | q |  Quitter la commande less.
 |====================
 
-=== Les commandes indexterm2:[cat] et indexterm2:[tac]
+=== Les commandes cat et tac
 
 ==== La commande cat
 
-La commande cat concatène (mettre bout à bout) le contenu de plusieurs fichiers et affiche le résultat sur la sortie standard.
+La commande **indexterm2:[cat]** concatène (mettre bout à bout) le contenu de plusieurs fichiers et affiche le résultat sur la sortie standard.
 
 .Syntaxe de la commande cat
 [source,bash]
@@ -999,7 +999,7 @@ $ cat -b /etc/openldap/ldap.conf
 
 ==== La commande tac
 
-La commande tac fait quasiment l'inverse de la commande cat. Elle affiche le contenu d'un fichier en commencant par la fin (ce qui est particulièrement intéressant pour la lecture des logs !).
+La commande **indexterm2:[tac]** fait quasiment l'inverse de la commande cat. Elle affiche le contenu d'un fichier en commençant par la fin (ce qui est particulièrement intéressant pour la lecture des logs !).
 
 Exemple : Afficher un fichier de logs en affichant en premier la dernière ligne :
 
@@ -1008,9 +1008,9 @@ Exemple : Afficher un fichier de logs en affichant en premier la dernière ligne
 [root]# tac /var/log/messages | less
 ----
 
-=== La commande indexterm2:[head]
+=== La commande head
 
-La commande head affiche le début d’un fichier.
+La commande **indexterm2:[head]** affiche le début d’un fichier.
 
 .Syntaxe de la commande head
 [source,bash]
@@ -1027,9 +1027,9 @@ head [-n x] fichier
 
 Par défaut (sans l’option –n), la commande head affichera les 10 premières lignes du fichier.
 
-=== La commande indexterm2:[tail]
+=== La commande tail
 
-La commande tail affiche la fin d’un fichier.
+La commande **indexterm2:[tail]** affiche la fin d’un fichier.
 
 .Syntaxe de la commande tail
 [source,bash]
@@ -1059,9 +1059,9 @@ Avec l'option -f, la commande tail ne rend pas la main et s'exécute tant que l'
 
 Sans l'option -n, la commande tail affiche les 10 dernières lignes du fichier.
 
-=== La commande indexterm2:[sort]
+=== La commande sort
 
-La commande sort trie les lignes d’un fichier.
+La commande **indexterm2:[sort]** trie les lignes d’un fichier.
 
 Elle permet d'ordonner, ranger dans un ordre donné, le résultat d'une commande ou le contenu d'un fichier, selon un ordre numérique, alphabétique, par ordre de grandeur (Ko, Mo, Go) ou dans l'ordre inverse.
 
@@ -1178,9 +1178,9 @@ Voici un exemple avec le fichier taille.txt :
 69K
 ----
 
-=== La commande indexterm2:[wc]
+=== La commande wc
 
-La commande wc compte le nombre de lignes, mots ou octets d’un fichier.
+La commande **indexterm2:[wc]** compte le nombre de lignes, mots ou octets d’un fichier.
 
 .Syntaxe de la commande wc
 [source,bash]
@@ -1200,9 +1200,9 @@ wc [-l] [-m] [-w] fichier [fichiers]
 
 == Recherche
 
-=== La commande indexterm2:[find]
+=== La commande find
 
-La commande find recherche l’emplacement d’un fichier.
+La commande **indexterm2:[find]** recherche l’emplacement d’un fichier.
 
 .Syntaxe de la commande find
 [source,bash]
@@ -1251,9 +1251,9 @@ rm -f /tmp/log1.txt ; rm -f /tmp/log2.txt ; rm -f /tmp/log3.txt ;
 Le caractère “;” est un caractère spécial du Shell qui doit être protégé par un “\” pour éviter son interprétation trop tôt par la commande find (et non plus dans le exec).
 ====
 
-=== La commande indexterm2:[whereis]
+=== La commande whereis
 
-La commande whereis recherche des fichiers liés à une commande.
+La commande **indexterm2:[whereis]** recherche des fichiers liés à une commande.
 
 .Syntaxe de la commande whereis
 [source,bash]
@@ -1278,9 +1278,9 @@ ls: /bin/ls
 | -s |	Ne recherche que les fichiers sources.
 |====================
 
-=== La commande indexterm2:[grep]
+=== La commande grep
 
-La commande grep recherche une chaîne de caractères dans un fichier.
+La commande **indexterm2:[grep]** recherche une chaîne de caractères dans un fichier.
 
 .Syntaxe de la commande grep
 [source,bash]
@@ -1383,8 +1383,8 @@ Ces flux sont appelés canal X ou descripteur X de fichier.
 
 Par défaut :
 
-* le clavier est le périphérique d'entrée pour le canal 0, appelé indexterm2:[stdin] ;
-* l'écran est le périphérique de sortie pour les canaux 1 et 2, appelés indexterm2:[stdout] et indexterm2:[stderr].
+* le clavier est le périphérique d'entrée pour le canal 0, appelé **indexterm2:[stdin]** ;
+* l'écran est le périphérique de sortie pour les canaux 1 et 2, appelés **indexterm2:[stdout]** et **indexterm2:[stderr]**.
 
 image::./images/0102-commandes-redirections.png[scaledwidth="100%"]
 
@@ -1490,7 +1490,7 @@ Redirection des 2 sorties vers un fichier unique :
 $ ls -R / >> fic_log 2>&1
 ----
 
-Redirection de *stderr* vers un "puit sans fond" (/dev/null) :
+Redirection de *stderr* vers un "puits sans fond" (/dev/null) :
 
 [source,bash]
 ----
@@ -1499,11 +1499,11 @@ $ ls -R / 2>> /dev/null
 
 Lorsque les 2 flux de sortie sont redirigés, aucune information n'est affichée à l'écran. Pour utiliser à la fois la redirection de sortie et conserver l'affichage, il faudra utiliser la commande tee.
 
-=== Les indexterm2:[tubes] (indexterm2:[pipe])
+=== Les tubes (pipe)
 
-Un tube (pipe en anglais) est un mécanisme permettant de relier la sortie standard d'une première commande vers l'entrée standard d'une seconde.
+Un **indexterm2:[tube]** (**indexterm2:[pipe]** en anglais) est un mécanisme permettant de relier la sortie standard d'une première commande vers l'entrée standard d'une seconde.
 
-Cette communication est monodirectionnelle et se fait grâce au symbole |. Le symbole pipe "|" est obtenu en appuyant simultanément sur les touches kbd:[AltGR + 6].
+Cette communication est monodirectionnelle et se fait grâce au symbole **indexterm2:[|]**. Le symbole pipe "|" est obtenu en appuyant simultanément sur les touches kbd:[AltGR + 6].
 
 image::./images/0102-commandes-tubes.png[scaledwidth="100%"]
 
@@ -1533,9 +1533,9 @@ $ ls -lia / | grep fichier
 
 == Points particuliers
 
-=== La commande indexterm2:[tee]
+=== La commande tee
 
-La commande tee permet de rediriger la sortie standard d'une commande vers un fichier tout en maintenant l'affichage à l'écran.
+La commande **indexterm2:[tee]** permet de rediriger la sortie standard d'une commande vers un fichier tout en maintenant l'affichage à l'écran.
 
 Elle est combinée avec le pipe “|” pour recevoir en entrée la sortie de la commande à rediriger.
 
@@ -1547,9 +1547,9 @@ $ cat fic
 
 L'option -a permet d'ajouter au fichier au lieu de l'écraser.
 
-=== Les commandes indexterm2:[alias] et indexterm2:[unalias]
+=== Les commandes alias et unalias
 
-Utiliser les alias est un moyen pour demander au shell de se souvenir d'une commande particulière avec ses options et lui donner un nom.
+Utiliser les **indexterm2:[alias]** est un moyen pour demander au shell de se souvenir d'une commande particulière avec ses options et lui donner un nom.
 
 Par exemple :
 
@@ -1565,7 +1565,7 @@ remplacera la commande :
 $ ls -l
 ----
 
-La commande alias liste les alias de la session en cours. Des alias sont positionnés par défaut sur les distributions linux. Ici, les alias d'un serveur centos :
+La commande alias liste les alias de la session en cours. Des alias sont positionnés par défaut sur les distributions Linux. Ici, les alias d'un serveur CentOS :
 
 [source,bash]
 ----
@@ -1591,7 +1591,7 @@ Une attention particulière doit être portée lors de l'usage d'alias qui peuve
 alias cd='rm -Rf'
 ====
 
-La commande unalias permet de supprimer les alias.
+La commande **indexterm2:[unalias]** permet de supprimer les alias.
 
 [source,bash]
 ----

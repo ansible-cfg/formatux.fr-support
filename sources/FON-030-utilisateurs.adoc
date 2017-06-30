@@ -45,9 +45,9 @@ Fichiers modifiés, ajout de lignes :
 * /etc/group
 * /etc/gshadow
 
-=== Commande indexterm2:[groupadd]
+=== Commande groupadd
 
-La commande groupadd permet d'ajouter un groupe au système.
+La commande indexterm2:[groupadd] permet d'ajouter un groupe au système.
 
 [source,bash]
 .Syntaxe de la commande groupadd
@@ -89,9 +89,9 @@ DESCRIPTION
 ====
 
 
-=== Commande indexterm2:[groupmod]
+=== Commande groupmod
 
-La commande groupmod permet de modifier un groupe existant sur le système.
+La commande indexterm2:[groupmod] permet de modifier un groupe existant sur le système.
 
 [source,bash]
 .Syntaxe de la commande groupmod
@@ -124,9 +124,9 @@ Après modification, les fichiers appartenant au groupe ont un GID inconnu. Il f
 [root]# find / -gid 502 -exec chgrp 516 {} \;
 ----
 
-=== Commande indexterm2:[groupdel]
+=== Commande groupdel
 
-La commande groupdel permet de supprimer un groupe existant sur le système.
+La commande indexterm2:[groupdel] permet de supprimer un groupe existant sur le système.
 
 [source,bash]
 .Syntaxe de la commande groupdel
@@ -146,7 +146,7 @@ Exemple :
 Pour être supprimé, un groupe ne doit plus contenir d'utilisateurs.
 ====
 
-La suppression du dernier utilisateur d'un groupe éponyme entrainera la suppression de ce groupe par le système.
+La suppression du dernier utilisateur d'un groupe éponyme entraînera la suppression de ce groupe par le système.
 
 [TIP]
 ====
@@ -230,9 +230,9 @@ Fichiers modifiés, ajout de lignes :
 * /etc/passwd
 * /etc/shadow
 
-=== Commande indexterm2:[useradd]
+=== Commande useradd
 
-La commande useradd permet d'ajouter un utilisateur.
+La commande indexterm2:[useradd] permet d'ajouter un utilisateur.
 
 [source,bash]
 .Syntaxe de la commande useradd
@@ -326,9 +326,9 @@ Exemple :
 | -e | 	Date à laquelle le compte sera désactivé.
 |====================
 
-=== Commande indexterm2:[usermod]
+=== Commande usermod
 
-La commande usermod permet de modifier un utilisateur.
+La commande indexterm2:[usermod] permet de modifier un utilisateur.
 
 [source,bash]
 .Syntaxe de la commande usermod
@@ -415,9 +415,9 @@ Exemples :
 [root]# usermod -aG GroupeG albert
 ----
 
-=== Commande indexterm2:[userdel]
+=== Commande userdel
 
-La commande userdel permet de supprimer le compte d'un utilisateur.
+La commande indexterm2:[userdel] permet de supprimer le compte d'un utilisateur.
 
 [source,bash]
 .Syntaxe de la commande userdel
@@ -506,9 +506,9 @@ Le groupe principal de l'utilisateur qui crée le fichier est, par défaut, le g
 
 === Commandes de modifications :
 
-==== Commande indexterm2:[chown]
+==== Commande chown
 
-La commande chown permet de modifier les propriétaires d'un fichier.
+La commande indexterm2:[chown] permet de modifier les propriétaires d'un fichier.
 
 [source,bash]
 .Syntaxe de la commande chown
@@ -559,9 +559,9 @@ Dans l'exemple suivant le groupe attribué sera le groupe principal de l'utilisa
 [root]# chown albert: fichier
 ----
 
-=== Commande indexterm2:[chgrp]
+=== Commande chgrp
 
-La commande chgrp permet de modifier le groupe propriétaire d'un fichier.
+La commande indexterm2:[chgrp] permet de modifier le groupe propriétaire d'un fichier.
 
 [source,bash]
 .Syntaxe de la commande chgrp
@@ -604,9 +604,9 @@ chown --reference=/etc/groups /etc/passwd
 
 == Gestion des invités
 
-=== Commande indexterm2:[gpasswd]
+=== Commande gpasswd
 
-La commande gpasswd permet de gérer un groupe.
+La commande indexterm2:[gpasswd] permet de gérer un groupe.
 
 [source,bash]
 .Syntaxe de la commande gpasswd
@@ -641,9 +641,9 @@ New Password :
 Re-enter new password :
 ----
 
-=== Commande indexterm2:[id]
+=== Commande id
 
-La commande id affiche les noms des groupes d'un utilisateur.
+La commande indexterm2:[id] affiche les noms des groupes d'un utilisateur.
 
 [source,bash]
 .Syntaxe de la commande id
@@ -659,9 +659,9 @@ Exemple :
 uid=500(alain) gid=500(GroupeA) groupes=500(GroupeA),516(GroupeP)
 ----
 
-=== Commande indexterm2:[newgrp]
+=== Commande newgrp
 
-La commande newgrp permet d'utiliser temporairement un groupe secondaire pour la création de fichiers.
+La commande indexterm2:[newgrp] permet d'utiliser temporairement un groupe secondaire pour la création de fichiers.
 
 [source,bash]
 .Syntaxe de la commande newgrp
@@ -685,9 +685,9 @@ La commande newgrp sans paramètre réaffecte le groupe principal.
 
 == Sécurisation
 
-=== Commande indexterm2:[passwd]
+=== Commande passwd
 
-La commande passwd permet de gérer un mot de passe.
+La commande indexterm2:[passwd] permet de gérer un mot de passe.
 
 [source,bash]
 .Syntaxe de la commande passwd
@@ -768,9 +768,9 @@ Le mot de passe est saisi en clair, passwd se charge de le chiffrer.
 ====
 
 
-== Commande indexterm2:[chage]
+== Commande chage
 
-La commande chage permet de gérer la stratégie de compte.
+La commande indexterm2:[chage] permet de gérer la stratégie de compte.
 
 [source,bash]
 .Syntaxe de la commande chage
@@ -793,8 +793,8 @@ Exemple :
 | -l | 	Affiche le détail de la stratégie (l minuscule).
 | -m jours | 	Durée de vie minimale du mot de passe.
 | -M jours | 	Durée de vie maximale du mot de passe.
-| -d AAA-MM-JJ | 	Dernière modification du mot de passe.
-| -E AAA-MM-JJ | 	Date d'expiration du compte.
+| -d AAAA-MM-JJ | 	Dernière modification du mot de passe.
+| -E AAAA-MM-JJ | 	Date d'expiration du compte.
 | -W jours | 	Délai d'avertissement avant expiration.
 |====================
 
@@ -898,12 +898,12 @@ Tous les fichiers et répertoires placés dans ce répertoire seront copiés dan
 
 == Changement d'identité
 
-=== Commande indexterm2:[su]
+=== Commande su
 
-La commande su permet de modifier l'identité de l'utilisateur connecté.
+La commande *indexterm2:[su]* permet de modifier l'identité de l'utilisateur connecté.
 
 [source,bash]
-.Syntaxe de la commade su
+.Syntaxe de la commande su
 ----
 su [-] [-c commande] [login]
 ----
@@ -960,6 +960,6 @@ Un utilisateur peut endosser temporairement (pour une autre commande ou une sess
 
 Si aucun utilisateur n'est précisé, la commande concernera root su -.
 
-Il est nécessaire de connaitre le mot de passe de l'utilisateur dont l'identité est endossé sauf si c'est root qui exécute la commande.
+Il est nécessaire de connaître le mot de passe de l'utilisateur dont l'identité est endossé sauf si c'est root qui exécute la commande.
 
 Un administrateur peut ainsi travailler sur un compte utilisateur standard et n'utiliser les droits du compte root que ponctuellement. 

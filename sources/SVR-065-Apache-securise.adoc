@@ -240,7 +240,7 @@ AuthType Basic
 
 AuthType indique à Apache d’utiliser le protocole Basic ou Digest pour authentifier l’utilisateur :
 
-* Authenfication Basic : Transmission du mot de passe client en clair
+* Authentification Basic : Transmission du mot de passe client en clair
 
 Pour mettre en place cette méthode, il faut utiliser la commande htpasswd qui permet de créer un fichier qui va contenir les logins (ou les groupes) et les mots de passe des utilisateurs (ou les groupes) habilités à accéder au dossier Web sécurisé (la commande étudiée plus loin).
 
@@ -472,7 +472,7 @@ Le protocole SSL/TLS existe en 5 versions :
 
 image::images/SVR-065-003-Apache-securise.png[]
 
-Lors du ClientHello, le client se présente au serveur. Il lui soumet les méthodes de cryptologie, de compression, et les standards SSL qu'il connait.
+Lors du ClientHello, le client se présente au serveur. Il lui soumet les méthodes de cryptologie, de compression, et les standards SSL qu'il connaît.
 
 Le serveur répond au client avec un message ServerHello. Les 2 parties se sont mises en accord sur le CypherSuite qu'ils allaient utiliser, par exemple avec un CypherSuite TLS_RSA_WITH_AES_128_MD5.
 
@@ -515,19 +515,19 @@ Le logiciel OpenSSL, utilitaire cryptographique, implémente les protocoles rés
 
 OpenSSL permet :
 
-* Création de paramètres des clefs RSA, DH et DSA
-* Création de certificats X.509, CSRs et CRLs
-* Calcul de signature de messages
-* Chiffrement et Déchiffrement
-* Tests SSL/TLS client et server
-* Gestion de mail S/MIME signé ou chiffrés
+* La création de paramètres des clefs RSA, DH et DSA ;
+* La création de certificats X.509, CSRs et CRLs ;
+* Le calcul de signature de messages ;
+* Le chiffrement et déchiffrement ;
+* Les tests SSL/TLS client et serveur ;
+* La gestion de mail S/MIME signé ou chiffrés.
 
 ==== Création des clés et certificats
 
 Les clés et certificats sont stockés dans le répertoire /etc/pki/tls/.
 
-Un dossier private accueille les clés privées.
-Un dossier certs accueille les certificats publiques.
+* Un dossier private accueille les clés privées.
+* Un dossier certs accueille les certificats publiques.
 
 [IMPORTANT]
 ====

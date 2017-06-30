@@ -119,7 +119,7 @@ Se déplacer dans le dossier shinken et lancer l'installation:
 [shinken@srv-shinken shinken]$ sudo python setup.py install
 ----
 
-Installation du package shinken. Ce package installe seulement un outil d'administation et d'installation de modules supplémentaires pour shinken.
+Installation du package shinken. Ce package installe seulement un outil d'administration et d'installation de modules supplémentaires pour shinken.
 [source,bash]
 ----
 [shinken@localhost shinken]$ sudo yum install -y shinken

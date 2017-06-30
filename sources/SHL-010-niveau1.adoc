@@ -12,7 +12,7 @@ Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 ////
 = Les scripts SHELL - Niveau 1
 
-Le shell est l'interpréteur de commandes de Linux. Il ne fait pas partie du noyau, mais forme une couche supplémantaire, d'où son nom de "coquille".
+Le shell est l'interpréteur de commandes de Linux. Il ne fait pas partie du noyau, mais forme une couche supplémentaire, d'où son nom de "coquille".
 
 Il a un rôle d'analyse des commandes saisies puis les fait exécuter par le système.
 
@@ -23,7 +23,7 @@ Il existe plusieurs shells, tous partageant des points communs :
 * c shell (csh),
 * etc.
 
-Le bash est présent par défaut sur les distributions Linux, il se caractèrise par ses fonctionnalités pratiques et conviviales.
+Le bash est présent par défaut sur les distributions Linux, il se caractérise par ses fonctionnalités pratiques et conviviales.
 
 Le shell est aussi un langage de programmation basique qui grâce à quelques commandes dédiées permet :
 
@@ -371,7 +371,7 @@ La sauvegarde est renseignée dans syslog :
 Le lancement de la commande peut être visualisée dans le journal syslog :
 
 [source,bash]
-.Evènement dans syslog
+.Événement dans syslog
 ----
 root # tail -f /var/log/messages
 sept. 18 19:35:35 formateur1 antoine[9712]: Sauvegarde des fichiers systèmes par antoine sur la machine formateur1 dans le dossier /root/b...
@@ -607,7 +607,7 @@ La différence se fait au niveau du format de stockage des arguments :
 
 ==== La commande shift
 
-La commande *shift* permet de décaler les variables postionnelles.
+La commande *shift* permet de décaler les variables positionnelles.
 
 Exemples :
 
@@ -649,7 +649,7 @@ un deux trois 3
 un deux trois 3
 ----
 
-Ci-dessous, la version de notre script de sauvegarde mettant en oeuvre les variables positionelles :
+Ci-dessous, la version de notre script de sauvegarde mettant en oeuvre les variables positionnelles :
 
 [source,bash]
 ----

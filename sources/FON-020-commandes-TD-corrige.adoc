@@ -113,7 +113,7 @@ jeu. mars 14 15:15:25 CET 2015
 
 '''
 
-CREATION DE REPERTOIRES
+CRÉATION DE RÉPERTOIRES
 
 * Afficher le répertoire courant.
 [source,bash]
@@ -212,7 +212,7 @@ puis le déplacer :
 [stagiaire]$ mv tickets/listing_en_cours /STAGE/commandes/archive_listing
 ----
 
-GESTION DES REPERTOIRES
+GESTION DES RÉPERTOIRES
 
 * Copier le répertoire « /home/stagiaire/tickets/pierre/ » et son contenu en le renommant « /home/stagiaire/tickets/sauvegarde ».
 
@@ -233,7 +233,7 @@ GESTION DES REPERTOIRES
 ----
 [stagiaire]$ cp –r tickets/ /STAGE/commandes/
 ----
-SUPPRESSION DE FICHIERS ET REPERTOIRES
+SUPPRESSION DE FICHIERS ET RÉPERTOIRES
 
 * Afficher le contenu des répertoires « /home/stagiaire/tickets/jacques/ » et « /home/stagiaire/tickets/pierre/ ».
 

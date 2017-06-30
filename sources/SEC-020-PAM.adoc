@@ -45,7 +45,7 @@ PAM est un système d’authentification (gestion des mots de passe). Si PAM est
 
 === Syntaxe d’une directive
 
-Une directive permet de paramètrer une application pour PAM.
+Une directive permet de paramétrer une application pour PAM.
 
 .Syntaxe d'une directive
 [source,bash]
@@ -178,9 +178,9 @@ Il existe de nombreux *modules* pour PAM. Voici les plus fréquents :
 * pam_time
 * pam_access
 
-=== Le module indexterm2:[pam_unix]
+=== Le module pam_unix
 
-Le module *pam_unix* permet de gérer la politique globale d’authentification.
+Le module *indexterm2:[pam_unix]* permet de gérer la politique globale d’authentification.
 
 .Fichier /etc/pam.d/system-auth
 [source,bash]
@@ -195,9 +195,9 @@ Des arguments sont possibles pour ce module :
 - *debug* : pour transmettre les informations à "syslog".
 - *remember=n* : pour se souvenir des n derniers mots de passe utilisés (fonctionne conjointement avec le fichier "/etc/security/opasswd", qui est à créer par l’administrateur). 
 
-=== Le module indexterm2:[pam_cracklib]
+=== Le module pam_cracklib
 
-Le module *pam_cracklib* permet de tester les mots de passe.
+Le module *indexterm2:[pam_cracklib]* permet de tester les mots de passe.
 
 .Fichier /etc/pam.d/password-auth
 [source,bash]
@@ -226,9 +226,9 @@ Autres arguments possibles :
 * *credit=-n* : impose un mot de passe contenant au moins n minuscules,
 * *ocredit=-n* : impose un mot de passe contenant au moins n caractères spéciaux.
 
-=== Le module indexterm2:[pam_tally]
+=== Le module pam_tally
 
-Le module *pam_tally* permet de verrouiller un compte en fonction d’un nombre de tentatives infructueuses de connexion.
+Le module *indexterm2:[pam_tally]* permet de verrouiller un compte en fonction d’un nombre de tentatives infructueuses de connexion.
 
 .Fichier /etc/pam.d/system-auth
 [source,bash]
@@ -262,8 +262,8 @@ Options :
 * u : pour spécifier un utilisateur,
 * r : déverrouiller un utilisateur.
 
-=== Le module indexterm2:[pam_time]
-Le module *pam_time* permet de limiter les horaires d’accès à des services gérés par PAM.
+=== Le module pam_time
+Le module *indexterm2:[pam_time]* permet de limiter les horaires d’accès à des services gérés par PAM.
 
 .Fichier /etc/pam.d/system-auth
 [source,bash]
@@ -321,9 +321,9 @@ login ; tty* ; bob ; alth0700-0900
 login ; tty* | pts/* ; !root ; !wk1730-0745
 ----
 
-=== Le module indexterm2:[pam_nologin]
+=== Le module pam_nologin
 
-Le module *pam_nologin* permet de désactiver tous les comptes sauf root :
+Le module *indexterm2:[pam_nologin]* permet de désactiver tous les comptes sauf root :
 
 .Fichier /etc/pam.d/login :
 [source,bash]
@@ -333,8 +333,8 @@ auth required	pam_nologin.so
 
 Si le fichier /etc/nologin existe alors seul root pourra se connecter.
 
-=== Le module indexterm2:[pam_wheel]
-Le module *pam_wheel* permet de limiter l’accès à la commande su aux membres du groupes wheel.
+=== Le module pam_wheel
+Le module *indexterm2:[pam_wheel]* permet de limiter l’accès à la commande su aux membres du groupes wheel.
 
 .Fichier /etc/pam.d/su
 [source,bash]
@@ -349,8 +349,8 @@ L'argument *group=mon_group* limite l’usage de la commande su aux membres du g
 Si le groupe mon_groupe est vide, alors la commande su n'est plus disponible sur le système, ce qui force l'utilisation de la commande sudo.
 ====
 
-=== Le module indexterm2:[pam_mount]
-Le module *pam_mount* permet de monter un volume pour une session utilisateur.
+=== Le module pam_mount
+Le module *indexterm2:[pam_mount]* permet de monter un volume pour une session utilisateur.
 
 .Fichier /etc/pam.d/system-auth
 [source,bash]

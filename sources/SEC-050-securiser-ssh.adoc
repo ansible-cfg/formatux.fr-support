@@ -80,8 +80,8 @@ La mesure essentielle à prendre est d'interdire l'accès direct à root au serv
 PermitRootLogin no
 ----
 
-et d'utiliser les sudoers pour permettre aux utilisateurs administrateurs de lancer des commandes admins.
+et d'utiliser les possibilités offertes par le fichier sudoers pour permettre aux utilisateurs administrateurs de lancer des commandes d'administration.
 
 == Sécurité par le parefeu
 
-Il est également important de limiter les accès aux services grâce au parefeu et de bannir les adresses IP tentant des attaques par dictionnaire.
+Il est également important de limiter les accès aux services grâce au pare-feu et de bannir les adresses IP tentant des attaques par dictionnaire.

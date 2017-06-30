@@ -19,7 +19,7 @@ Sous Linux, c'est le rôle du protocole Syslog.
 
 == Généralités
 
-Syslog est le protocole de journalisation standard sous Linux. Syslog gère le journal d’évènement Linux, que ce soit pour le noyau Linux ou pour les services hébergés sur la station.
+Syslog est le protocole de journalisation standard sous Linux. Syslog gère le journal d’événement Linux, que ce soit pour le noyau Linux ou pour les services hébergés sur la station.
 
 * Les logs peuvent être archivés localement (dans ce cas il faut prévoir une rotation des logs). 
 * Syslog peut également fonctionner en local en mode client/serveur. Syslog utilise le port 514 en UDP ou TCP pour sa communication réseau.
@@ -389,7 +389,7 @@ Il est particulièrement intéressant de stocker les enregistrements syslog en b
 .Interface du logiciel LogAnalyzer
 image::images/SVR-105-003-loganalyzer.png[scaledwidth="100%"]
 
-Installer le module Mysql :
+Installer le module MySQL :
 
 [source,bash]
 ----
@@ -406,7 +406,7 @@ $ModLoad MySQL
 
 [NOTE]
 ====
-La création de la base Mysql sort du cadre de ce support.
+La création de la base MySQL sort du cadre de ce support.
 ====
 
 [source,]

@@ -81,7 +81,7 @@ Mettre en place l'authentification bloque une grande partie des effets malveilla
 Le service proxy devient un service critique nécessitant une haute disponibilité.
 ====
 
-Durant l’exploitation d’un serveur Proxy Squid, l’administrateur est amené à exploiter les logs. Il est donc primordiale de connaitre les principaux codes réponses HTTP.
+Durant l’exploitation d’un serveur Proxy Squid, l’administrateur est amené à exploiter les logs. Il est donc primordiale de connaître les principaux codes réponses HTTP.
 
 .Les codes réponses HTTP
 [width="100%",options="header"]

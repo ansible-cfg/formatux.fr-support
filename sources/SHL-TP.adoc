@@ -15,7 +15,7 @@ Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 
 Votre entreprise a besoin d'une solution sécurisée permettant aux personnels de la supervision d'intervenir dans un cadre maîtrisé sur les serveurs.
 
-== Etude du besoin
+== Étude du besoin
 
 Votre responsable vous demande de développer un outil destiné aux superviseurs. Ils pourront effectuer quelques actions d'administration ainsi que les premiers diagnostics avant de faire intervenir le personnel d'astreinte.
 
@@ -170,7 +170,7 @@ banner
 
 echo "Bienvenue sur votre console d'administration"
 echo ""
-echo "Vous pouvez effectuer quelques diagnostics avantd'appeler le personnel d'astreinte"
+echo "Vous pouvez effectuer quelques diagnostics avant d'appeler le personnel d'astreinte"
 echo ""
 warning
 

@@ -11,5 +11,7 @@ Licence Art Libre : http://artlibre.org/
 Auteurs : Antoine Le Morvan
 ////
 
-= Service indexterm2:[Varnish]
+= Service Varnish
+
+indexterm2:[Varnish]
 

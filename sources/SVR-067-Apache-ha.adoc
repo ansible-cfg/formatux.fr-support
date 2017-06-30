@@ -50,9 +50,9 @@ et de la répartition de charge et/ou tolérance de panne.
 
 image::images/SVR-067-apache-ha-002.png[scaledwidth="100%"]
 
-=== Le module indexterm2:[mod_proxy]
+=== Le module mod_proxy
 
-Le module *mod_proxy* est une extension d'apache pour faire office de serveur mandataire / Passerelle HTTP.
+Le module *indexterm2:[mod_proxy]* est une extension d'apache pour faire office de serveur mandataire / Passerelle HTTP.
 
 
 * La directive **ProxyPreserveHost On** utilise l’en-tête de requête entrante Host pour la requête du mandataire
@@ -74,7 +74,7 @@ Apache peut être configuré comme mandataire directe (proxy) ou comme mandatair
 
 Pour la configuration d’un mandataire direct, reportez vous à la documentation du serveur SQUID.
 
-Un mandataire inverse apparait au client comme un serveur web standard. Aucune configuration du client n’est nécessaire. Le client adresse ses demandes de contenus ordinaires dans l’espace de nommage du mandataire inverse. Ce dernier décide alors où envoyer ces requêtes et renvoie le contenu au client comme s’il l’hébergeait lui-même.
+Un mandataire inverse apparaît au client comme un serveur web standard. Aucune configuration du client n’est nécessaire. Le client adresse ses demandes de contenus ordinaires dans l’espace de nommage du mandataire inverse. Ce dernier décide alors où envoyer ces requêtes et renvoie le contenu au client comme s’il l’hébergeait lui-même.
 
 L’accès des utilisateurs à un serveur situé derrière un pare-feu est une utilisation
 typique du mandataire inverse.
@@ -105,7 +105,7 @@ Des solutions spécialisées, comme *HaProxy* ou des équipements physiques comm
 [width="100%",options="header"]
 |====================
 |  | Points positifs |  Points négatifs
-| HaProxy | Plus rapide |  Spécifique au reverse proxy (pas de cache, nécessite varnish ou memcached)
+| HaProxy | Plus rapide |  Spécifique au reverse proxy (pas de cache, nécessite Varnish ou Memcached)
 |  | Développement actif |  La syntaxe est différente des autres logiciels utilisés (NginX, Varnish, etc.)
 | Apache  | Grand nombre de fonctionnalités, il peut tout faire |  Performances moindres
 |   | Solution unique pour tout le SI |  
@@ -114,7 +114,7 @@ Des solutions spécialisées, comme *HaProxy* ou des équipements physiques comm
 
 == Simuler la charge
 
-La commande *ab* (apache Benchmark) permet d'envoyer des requêtes http à un client
+La commande *ab* (Apache Benchmark) permet d'envoyer des requêtes http à un client
 
 .Syntaxe de la commande ab
 [source,bash]
@@ -156,9 +156,9 @@ Pour répartir la charge, Apache utilise un proxy-balancer.
 
 image::images/SVR-067-apache-ha-003.png[scaledwidth="100%"]
 
-=== Le module indexterm2:[mod_proxy_balancer]
+=== Le module mod_proxy_balancer
 
-Le module **mod_proxy_balancer** est une extension pour la répartition de charge.
+Le module **indexterm2:[mod_proxy_balancer]** est une extension pour la répartition de charge.
 
 * La directive **BalancerMember url [clé=valeur]** ajoute un membre à un groupe de répartition de charge
 

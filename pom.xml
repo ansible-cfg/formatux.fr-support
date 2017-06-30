@@ -44,8 +44,7 @@
                 </dependencies>
                 <configuration>
                     <sourceDirectory>sources</sourceDirectory>
-<sourceDirectory>sources</sourceDirectory>
-		    <sourceDocumentName>SupportLinux.adoc</sourceDocumentName>
+		    <!-- <sourceDocumentName>SupportLinux.adoc</sourceDocumentName> -->
                     <!-- Attributes common to all output formats -->
                     <attributes>
                         <sourcedir>${project.build.sourceDirectory}</sourcedir>

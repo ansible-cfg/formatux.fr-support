@@ -30,9 +30,9 @@ Ses fonctionnalités sont :
 * Copie de mots, lignes ou blocs de texte ;
 * Recherche et remplacement de caractères.
 
-== La commande indexterm2:[vi]
+== La commande vi
 
-La commande *vi* ouvre l'éditeur de texte VI.
+La commande *indexterm2:[vi]* ouvre l'éditeur de texte VI.
 
 .Syntaxe de la commande vi
 [source,bash]
@@ -475,9 +475,9 @@ $ vi -c "set nu" /home/stagiaire/fichier
 
 Il est aussi possible de saisir les commandes Ex dans un fichier nommé ".exrc" mis dans le répertoire de connexion de l'utilisateur. À chaque démarrage de VI ou de VIM les commandes seront lues et appliquées.
 
-=== La commande indexterm2:[vimtutor]
+=== La commande vimtutor
 
-Il existe un tutoriel pour apprendre à utiliser VI. Il est accessible avec la commande **vimtutor**.
+Il existe un tutoriel pour apprendre à utiliser VI. Il est accessible avec la commande **indexterm2:[vimtutor]**.
 
 [source,bash]
 ----

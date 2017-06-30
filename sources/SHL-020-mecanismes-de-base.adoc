@@ -48,7 +48,7 @@ Il est également possible de créer des codes de retour dans un script. Il suff
 
 Outre la bonne exécution d'une commande, le shell offre la possibilité d'exécuter des tests sur de nombreux motifs :
 
-* Fichiers (existance, type, droits, comparaison) ;
+* Fichiers (existence, type, droits, comparaison) ;
 * Chaînes de caractères (longueur, comparaison) ;
 * Numériques entiers (valeur, comparaison).
 
@@ -143,10 +143,10 @@ Exemple :
 .Options de la commande test pour les variables
 |====================
 | Option | Observation
-| = | Teste si la première chaine de caractères est égale à la seconde
-| != | Teste si la première chaine de caractères est différente de la seconde
-| < | Teste si la première chaine de caractères est avant la seconde dans l'ordre ASCII
-| > | Teste si la première chaine de caractères est après la seconde dans l'ordre ASCII
+| = | Teste si la première chaîne de caractères est égale à la seconde
+| != | Teste si la première chaîne de caractères est différente de la seconde
+| < | Teste si la première chaîne de caractères est avant la seconde dans l'ordre ASCII
+| > | Teste si la première chaîne de caractères est après la seconde dans l'ordre ASCII
 |====================
 
 === Comparaison de numériques entiers
@@ -439,7 +439,7 @@ linux
 
 === Structure alternative conditionnelle case
 
-Une succession de structures **if** peut vite devenir lourde et complexe. Lorsquelle concerne l'évaluation d'une même variable, il est possible d'utiliser une structure conditionnelle à plusieurs branches. Les valeurs de la variable peuvent être précisées ou appartenir à une liste de possibilités.
+Une succession de structures **if** peut vite devenir lourde et complexe. Lorsqu'elle concerne l'évaluation d'une même variable, il est possible d'utiliser une structure conditionnelle à plusieurs branches. Les valeurs de la variable peuvent être précisées ou appartenir à une liste de possibilités.
 
 Les caractères jokers sont utilisables.
 
@@ -496,7 +496,7 @@ Le shell bash permet l'utilisation de boucles. Ces structures permettent l'exéc
 * *for*
 * *select*
 
-Quelle que soit la boucle utilisée, les commandes à repéter se placent entre les mots *do* et **done**.
+Quelle que soit la boucle utilisée, les commandes à répéter se placent entre les mots *do* et **done**.
 
 === La structure boucle conditionnelle while
 
@@ -638,7 +638,7 @@ done
 
 La structure *select* / *do* / *done* permet d'afficher rapidement un menu avec plusieurs choix et une demande de saisie.
 
-À chaque elément de la liste correspond un choix numéroté. À la saisie, la valeur choisie est affectée à la variable placée après *select* (__créée à cette occasion__).
+À chaque élément de la liste correspond un choix numéroté. À la saisie, la valeur choisie est affectée à la variable placée après *select* (__créée à cette occasion__).
 
 Elle exécute ensuite les commandes placées entre *do* et *done* avec cette valeur.
 
@@ -712,7 +712,7 @@ do
 done
 ----
 
-Toute commande produisant une liste de valeurs peut être placée à la suite du *in* à l'aide d'une sous-exécution. La boucle *for* prendra le résultat de cette commande comme liste d'eléments sur laquelle boucler.
+Toute commande produisant une liste de valeurs peut être placée à la suite du *in* à l'aide d'une sous-exécution. La boucle *for* prendra le résultat de cette commande comme liste d'éléments sur laquelle boucler.
 
 Cela peut être les fichiers d'un répertoire. Dans ce cas, la variable prendra comme valeur chacun des noms des fichiers présents :
 

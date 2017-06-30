@@ -38,7 +38,7 @@ Exemple :
 *   192.168.1.10 ;
 *   255.255.255.0.
 
-La notation appelée CIDR est de plus en plus fréquente : 192.168.1.10/24
+La notation appelée indexterm2:[CIDR] est de plus en plus fréquente : 192.168.1.10/24
 
 Les adresses IP servent au bon acheminement des messages. Elles sont fractionnées en deux parties :
 
@@ -69,23 +69,19 @@ Cette dernière affirmation est aujourd'hui un peu moins vraie avec la virtualis
 Une **adresse IP** (Internet Protocol) est un numéro d'identification attribuée de façon permanente ou provisoire à chaque appareil connecté à un réseau informatique utilisant l'Internet Protocol.
 Une partie définit l'adresse du réseau (NetID ou SubnetID suivant le cas), l'autre partie définit l'adresse de l'hôte dans le réseau (HostID). La taille relative de chaque partie varie suivant le masque de (sous) réseau. 
  
- Une adresse IPv4  définit une adresse sur 4 octets. Le nombre d'adresse disponible étant proche de la saturation un nouveau standard a été créé, l'IPv6 définie sur 16 octets.
+Une adresse IPv4  définit une adresse sur 4 octets. Le nombre d'adresse disponible étant proche de la saturation un nouveau standard a été créé, l'IPv6 définie sur 16 octets.
  L'IPv6 est souvent représenté par 8 groupes de 2 octets séparés par un signe deux-points. Les zéro non significatifs peuvent être omis, un ou plusieurs groupes de 4 zéros consécutifs peuvent être remplacés par un double deux-points. 
 Les masques de sous-réseaux ont de 0 à 128 bits.
 (par exemple 21ac:0000:0000:0611:21e0:00ba:321b:54da/64 ou 21ac::611:21e0:ba:321b:54da/64)
 
- Dans une adresse web ou URL (Uniform Resource Locator), une adresse ip peut être suivi de deux-points, l'adresse de port (qui indique l'application à laquelle  les données sont destinées). Aussi pour éviter toute confusion dans une URL, l'adresse IPv6 s'écrit entre crochets [ ], deux-points, adresse de port.
+Dans une adresse web ou URL (Uniform Resource Locator), une adresse ip peut être suivi de deux-points, l'adresse de port (qui indique l'application à laquelle  les données sont destinées). Aussi pour éviter toute confusion dans une URL, l'adresse IPv6 s'écrit entre crochets [ ], deux-points, adresse de port.
 
-    
 Les adresses IP et MAC doivent être uniques sur un réseau !
 
 [NOTE]
 ====
 Sous VMWare, choisir l’option « I copied it » au lancement d’une VM génère une nouvelle adresse MAC.
 ====
-
-
-
 
 === Domaine DNS
 
@@ -123,7 +119,7 @@ Unité : le bit.
 
 *La couche 2* (Liaison) prend en charge la topologie du réseau 
 (Token-ring, étoile, bus, etc.), le fractionnement des données et les 
-erreurs de transmissions. Unité : la tramme.
+erreurs de transmissions. Unité : la trame.
 
 *La couche 3* (Réseau) prend en charge la transmission de bout en bout des données (routage IP = Passerelle). Unité : le paquet.
 
@@ -251,7 +247,7 @@ hosts: files dns
 
 Dans le cas présent, Linux cherchera en premier une correspondance de noms d'hôtes (ligne hosts:) dans le fichier /etc/hosts (valeur files) avant d’interroger le DNS (valeur dns)! Ce comportement peut simplement être changé en éditant le fichier /etc/nsswitch.conf.
 
-Bien évidemment, il est possible d’imaginer interroger un serveur LDAP, Mysql ou autre en configurant le service de noms pour répondre aux requêtes du systèmes sur les hosts, les utilisateurs, les groupes, etc.
+Bien évidemment, il est possible d’imaginer interroger un serveur LDAP, MySQL ou autre en configurant le service de noms pour répondre aux requêtes du systèmes sur les hosts, les utilisateurs, les groupes, etc.
 
 La résolution du service de noms peut être testée avec la commande getent que nous verrons plus loin dans ce cours.
 
@@ -277,9 +273,9 @@ Les nouvelles générations de distributions ont généralement intégré le ser
 
 Il permet notamment de configurer les serveurs DNS depuis le fichier de configuration d’une interface réseau. Il se charge alors de renseigner dynamiquement le fichier /etc/resolv.conf qui ne devrait jamais être édité directement, sous peine de perdre les changements de configuration au prochain démarrage du service réseau.
 
-== La commande indexterm2:[IP]
+== La commande ip
 
-La commande ip du paquet iproute2 permet de configurer une interface et sa table routage.
+La commande indexterm2:[ip] du paquet iproute2 permet de configurer une interface et sa table routage.
 
 Afficher les interfaces :
 
@@ -311,10 +307,9 @@ Afficher la table ARP:
 
 Toutes les commandes historiques de gestion du réseau ont été regroupées sous la commande IP, bien connue des administrateurs réseaux.
 
-== Configuration indexterm2:[DHCP]
+== Configuration DHCP
 
-
-Le protocole DHCP (Dynamic Host Control Protocol) permet d’obtenir via le réseau une configuration IP complète. C’est le mode de configuration par défaut d’une interface réseau sous Redhat, ce qui explique qu’un système branché sur le réseau d’une box internet puisse fonctionner sans configuration supplémentaire.
+Le protocole indexterm2:[DHCP] (Dynamic Host Control Protocol) permet d’obtenir via le réseau une configuration IP complète. C’est le mode de configuration par défaut d’une interface réseau sous RedHat, ce qui explique qu’un système branché sur le réseau d’une box internet puisse fonctionner sans configuration supplémentaire.
 
 La configuration des interfaces sous RHEL 6 se fait dans le dossier **/etc/sysconfig/network-scripts/**.
 
@@ -531,7 +526,7 @@ C'est la commande de base pour tester le réseau car elle vérifie la connectivi
 ping [-c numérique] destination  
 ----
 
-L'option -c (count) permet de stoper la commande au bout du décompte exprimé en seconde.
+L'option -c (count) permet de stopper la commande au bout du décompte exprimé en seconde.
 
 Exemple :
 
@@ -588,9 +583,9 @@ Si le ping ne fonctionne pas, vérifier dans un premier temps le câble réseau 
 [root]# ping www.free.fr
 ----
 
-=== La commande indexterm2:[dig]
+=== La commande dig
 
-La commande dig (dig : en francer miner, chercher en profondeur) permet d'interroger le serveur DNS.
+La commande indexterm2:[dig] (dig : en français 'miner', chercher en profondeur) permet d'interroger le serveur DNS.
 
 .Syntaxe de la commande dig
 [source,bash]
@@ -614,9 +609,9 @@ Il est également possible de spécifier un **type d’enregistrement** DNS à r
 
 Pour plus d’informations à ce sujet, voir le cours « DNS avec Bind9 »
 
-=== La commande indexterm2:[getent]
+=== La commande getent
 
-La commande **getent** (get entry) permet d'obtenir une entrée de NSSwitch (hosts + dns)
+La commande **indexterm2:[getent]** (get entry) permet d'obtenir une entrée de NSSwitch (hosts + dns)
 
 .Syntaxe de la commande getent
 [source,bash]
@@ -636,9 +631,9 @@ Interroger uniquement un serveur DNS peut renvoyer un résultat erroné qui ne p
 
 Pour prendre en compte également le fichier **/etc/hosts**, il faut interroger le service de noms NSSwitch, qui se chargera d’une éventuelle résolution DNS.
 
-=== La commande indexterm2:[ipcalc]
+=== La commande ipcalc
 
-La commande ipcalc (ip calcul) permet de calculer l’adresse d'un réseau ou d’un broadcast depuis une adresse IP et un masque.
+La commande indexterm2:[ipcalc] (ip calcul) permet de calculer l’adresse d'un réseau ou d’un broadcast depuis une adresse IP et un masque.
 
 .Syntaxe de la commande ipcalc
 [source,bash]
@@ -687,9 +682,9 @@ valeur incorrecte sera retournée.
 | -s |--silent     |  N'affiche jamais aucun message d'erreur.  
 |====
 
-=== La commande indexterm2:[ss]
+=== La commande ss
 
-La commande ss (socket statistics) affiche les ports en écoute sur le réseau
+La commande indexterm2:[ss] (socket statistics) affiche les ports en écoute sur le réseau
 
 .Syntaxe de la commande ss
 [source,bash]
@@ -705,13 +700,13 @@ Exemple :
 tcp   LISTEN   0   128   *:22   *:*
 ----
 
-Les commande *SS* et *NETSTAT* (à suivre) vont se révéler très importantes pour la suite de votre cursus Linux.
+Les commande *ss* et *netstat* (à suivre) vont se révéler très importantes pour la suite de votre cursus Linux.
 
 Lors de la mise en œuvre des services réseaux, il est très fréquent de vérifier avec l’une de ces deux commandes que le service est bien en écoute sur les ports attendus.
 
-=== La commande indexterm2:[netstat]
+=== La commande netstat
 
-La commande netstat (network statistics) affiche les ports en écoute sur le réseau
+La commande indexterm2:[netstat] (network statistics) affiche les ports en écoute sur le réseau
 
 .Syntaxe de la commande netstat
 [source,bash]
@@ -731,7 +726,7 @@ tcp  0  0  0.0.0.0:22  0.0.0.0:*  LISTEN 2161/sshd
 
 Un défaut de configuration peut amener plusieurs interfaces à utiliser la même adresse IP. Cette situation peut se produire lorsqu'un réseau dispose de plusieurs serveurs DHCP ou lorsque la même adresse IP est manuellement assignée plusieurs fois.
 
-Lorsque le réseau fonctionne mal, que des dysfonctionnements ont lieu, et qu'un conflit d'adresses IP pourrait en être à l'origine, il est possible d'utiliser le logiciel indexterm2:[arp-scan] (nécessite le dépot EPEL) :
+Lorsque le réseau fonctionne mal, que des dysfonctionnements ont lieu, et qu'un conflit d'adresses IP pourrait en être à l'origine, il est possible d'utiliser le logiciel indexterm2:[arp-scan] (nécessite le dépôt EPEL) :
 
 [source,bash]
 ----
@@ -834,7 +829,7 @@ La méthode de dépannage doit aller du plus proche au plus lointain :
 
 1.  ping localhost (test logiciel)
 
-2.  ping adresseIP (test matériel)
+2.  ping adresse-IP (test matériel)
 
 3.  ping passerelle (test connectivité)
 

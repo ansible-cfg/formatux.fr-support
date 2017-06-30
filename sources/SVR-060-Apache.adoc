@@ -10,9 +10,9 @@ Licence Art Libre : http://artlibre.org/
 
 Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 ////
-= Serveur web indexterm2:[Apache]
+= Serveur web Apache
 
-Le serveur **HTTP Apache** est le fruit du travail d’un groupe de volontaires : The Apache Group. Ce groupe a voulu réaliser un serveur Web du même niveau que les produits commerciaux mais sous forme de **logiciel libre** (son code source est disponible).
+Le serveur **HTTP indexterm2:[Apache]** est le fruit du travail d’un groupe de volontaires : The Apache Group. Ce groupe a voulu réaliser un serveur Web du même niveau que les produits commerciaux mais sous forme de **logiciel libre** (son code source est disponible).
 
 L’équipe d’origine a été rejointe par des centaines d’utilisateurs qui, par leurs idées, leurs tests et leurs lignes de code, ont contribué à faire d’Apache le plus utilisé des serveurs Web du monde.
 
@@ -74,9 +74,9 @@ Last-Modified : Fri, 14 Jan 2016 08:25:13 GMT
 
 Le rôle du serveur web consiste à traduire une URL en ressource locale. Consulter la page http://www.free.fr/[http://www.free.fr/], revient à envoyez une requête HTTP à cette machine. Le service DNS joue donc un rôle essentiel.
 
-=== Les indexterm2:[URL]
+=== Les URL
 
-Une URL (**Uniform Ressource Locator** - littéralement “identifiant uniforme de ressources”) est une chaîne de caractères ASCII utilisée pour désigner les ressources sur Internet. Elle est informellement appelée adresse web. 
+Une indexterm2:[URL] (**Uniform Ressource Locator** - littéralement “identifiant uniforme de ressources”) est une chaîne de caractères ASCII utilisée pour désigner les ressources sur Internet. Elle est informellement appelée adresse web. 
 
 Une URL est divisée en trois parties : 
 
@@ -85,7 +85,7 @@ Une URL est divisée en trois parties :
 <protocole>://<hôte>:<port>/<chemin>
 ----
 
-* **Le nom du protocole** : il s'agit du langage utilisé pour communiquer sur le réseau. Le protocole le plus utilisé est le protocole HTTP (HyperText TransferProtocol), le protocole permettant d'échanger des pages Web au format HTML. De nombreux autres protocoles sont toutefois utilisables.
+* **Le nom du protocole** : il s'agit du langage utilisé pour communiquer sur le réseau. Le protocole le plus utilisé est le protocole HTTP (HyperText Transfer Protocol), le protocole permettant d'échanger des pages Web au format HTML. De nombreux autres protocoles sont toutefois utilisables.
 
 * **Identifiant et mot de passe** : permet de spécifier les paramètres d'accès à un serveur sécurisé. Cette option est déconseillée car le mot de passe est visible dans l'URL (dans le cadre de la sécurité).
 
@@ -93,7 +93,7 @@ Une URL est divisée en trois parties :
 
 * **Le numéro de port** : il s'agit d'un numéro associé à un service permettant au serveur de savoir quel type de ressource est demandé. Le port associé par défaut au protocole est le port numéro 80. Ainsi, lorsque le service Web du serveur est associé au numéro de port 80, le numéro de port est facultatif.
 
-* **Le chemin d'accès à la ressource** : Cette dernière partie permet au serveur de connaître l'emplacement auquel la ressource est située, c'est-à-dire de manière généralel'emplacement (répertoire) et le nom du fichier demandé. Si non renseignée, indique la première page de l'hôte. Sinon indique le chemin de la page à afficher.
+* **Le chemin d'accès à la ressource** : Cette dernière partie permet au serveur de connaître l'emplacement auquel la ressource est située, c'est-à-dire de manière générale l'emplacement (répertoire) et le nom du fichier demandé. Si non renseignée, indique la première page de l'hôte. Sinon indique le chemin de la page à afficher.
 
 === Les ports
 
@@ -113,7 +113,7 @@ L'administrateur devra choisir entre deux méthodes d'installation :
 
 * **Installation depuis les sources** : le logiciel apache est compilé, l'administrateur peut spécifier les options qui l'intéressent ce qui permet l'optimisation du service. Apache fournissant une architecture modulaire, la re-compilation du logiciel apache n'est généralement pas nécessaire pour ajouter ou supprimer des fonctionnalités complémentaires (ajout/suppression de modules).
 
-Le choix de la méthode d'installation par paquets est fortement **conseillé**. Des dépots complémentaires permettent d'installer des versions plus récentes d'apache sur des versions de distributions anciennes mais, en cas de problème, RedHat n'apportera pas son soutien.
+Le choix de la méthode d'installation par paquets est fortement **conseillé**. Des dépôts complémentaires permettent d'installer des versions plus récentes d'apache sur des versions de distributions anciennes mais, en cas de problème, RedHat n'apportera pas son soutien.
 
 Exemples de modules et de leurs rôles respectifs :
 
@@ -230,7 +230,7 @@ Il est indispensable de lancer/relancer le serveur :
 
 === Parefeu
 
-Le pare-feu “iptables” interdit l'accès aux ports 80 et 443. Pensez à le configurer (ou à désactiver ce service sur plateforme de test) !
+Le pare-feu “iptables” interdit l'accès aux ports 80 et 443. Pensez à le configurer (ou à désactiver ce service sur plate-forme de test) !
 
 [source,bash]
 ----
@@ -314,9 +314,9 @@ Les différentes directives rencontrées en section 1 sont :
 | User et Group        | Permet de lancer les processus apache avec différents utilisateurs. Apache se lance toujours en tant que root puis change son propriétaire et son groupe. 
 |====
 
-Le serveur Apache a été conçu comme un serveur puissant et flexible, pouvant fonctionner sur une grande variété de plateformes.
+Le serveur Apache a été conçu comme un serveur puissant et flexible, pouvant fonctionner sur une grande variété de plate-formes.
 
-Plateformes différentes et environnements différents signifient souvent fonctionnalités différentes, ou utilisation des méthodes méthodes pour implémenter la même fonctionnalité le plus efficacement possible.
+Plate-formes différentes et environnements différents signifient souvent fonctionnalités différentes, ou utilisation des méthodes méthodes pour implémenter la même fonctionnalité le plus efficacement possible.
 
 La conception modulaire d’apache autorise l’administrateur à choisir quelles fonctionnalités seront incluses dans le serveur en choisissant les modules à charger soit à la compilation, soit à l’exécution.
 
@@ -376,9 +376,9 @@ User apache
 Group apache
 ----
 
-==== indexterm2:[SELinux]
+==== SELinux
 
-Attention par défaut la sécurité via SELinux est active. Elle empêche la lecture d’un site sur un autre répertoire que “/var/www/”. 
+Attention par défaut la sécurité via indexterm2:[SELinux] est active. Elle empêche la lecture d’un site sur un autre répertoire que “/var/www/”. 
 
 Le répertoire contenant le site doit posséder le contexte de sécurité httpd_sys_content_t.
 
@@ -450,7 +450,7 @@ L’affichage de cette page prouve que le serveur est fonctionnel. Mais le serve
 
 === Section 2
 
-La section 2 paramètre les valeurs utilisées par le serveur principal. Le serveur principal répond à toutes les requêtes qui ne sont pas prises en charge par un des Virtualhosts de la sections 3.
+La section 2 paramètre les valeurs utilisées par le serveur principal. Le serveur principal répond à toutes les requêtes qui ne sont pas prises en charge par un des VirtualHosts de la sections 3.
 
 Les valeurs sont également utilisées comme valeur par défaut pour les sites virtuels.
 
@@ -563,7 +563,7 @@ Allow from all   # nous autorisons tout le monde
 La section Directory sert à définir un bloc de consignes s’appliquant à une partie du système de fichiers du serveur. Les directives contenues dans la section ne s’appliqueront qu’au répertoire spécifié (et ses 
 sous-répertoires).
 
-La syntaxe de ce bloc accepte les caractères génériques mais il faudra préfèrer alors utiliser le bloc DirectoryMatch.
+La syntaxe de ce bloc accepte les caractères génériques mais il faudra préférer alors utiliser le bloc DirectoryMatch.
 
 Dans l’exemple suivant, nous allons refuser l’accès au disque dur local du serveur quelque soit le client. Le répertoire « / » représente la racine du disque dur.
 
@@ -691,7 +691,7 @@ La balise VirtualHost permet de définir des hôtes virtuels.
 
 Syntaxe :
 
-.Syntaxe d'un fichier virtualhostXXX.conf
+.Syntaxe d'un fichier VirtualHostXXX.conf
 [source,bash]
 ----
 <VirtualHost adresse-IP[:port]>
@@ -706,7 +706,7 @@ Si nous configurons le serveur Apache avec les directives de base vues précéde
 
 L’usage des sites virtuels va nous permettre de publier plusieurs sites web sur un même serveur Apache. Nous allons définir des blocs qui décriront chacun un site web. Ainsi chaque site aura sa propre configuration.
 
-Pour des facilités de compréhension, nous associons souvent un site web à une machine unique. Les sites virtuels ou hôtes virtuels (virtual hosts) sont appelés ainsi parce qu’ils dématérialisent le lien entre 
+Pour des facilités de compréhension, nous associons souvent un site web à une machine unique. Les sites virtuels ou hôtes virtuels (VirtualHosts) sont appelés ainsi parce qu’ils dématérialisent le lien entre 
 machine et site web.
 
 Exemple 1 :

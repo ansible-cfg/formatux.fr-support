@@ -51,7 +51,7 @@ GRUB_CMDLINE_LINUX="rd.lvm.lv=rhel/swap crashkernel=auto rd.lvm.lv=rhel/root rhg
 GRUB_DISABLE_RECOVERY="true"
 ----
 
-Si des changements sont effectués à un ou plusieurs de ces paramètres, il faut lancer la commande indexterm2:[*grub2-mkconfig*] pour regénérer le fichier /boot/grub2/grub.cfg.
+Si des changements sont effectués à un ou plusieurs de ces paramètres, il faut lancer la commande indexterm2:[*grub2-mkconfig*] pour régénérer le fichier /boot/grub2/grub.cfg.
 
 [source,]
 ----
@@ -76,7 +76,7 @@ Systemd est le père de tous les processus du système. Il lit la cible du lien 
 
 Systemd positionne ensuite le système dans l'état défini par la cible en effectuant les tâches d'initialisations suivantes :
 
-1. Paramètrer le nom de machine
+1. Paramétrer le nom de machine
 2. Initialiser le réseau
 3. Initialiser SELinux
 4. Afficher la bannière de bienvenue
@@ -183,7 +183,7 @@ Il existe de nombreux types d'unités : Device unit, Mount unit, Path unit, Scop
 
 * Les services systèmes n'héritent d'aucun contexte (comme les variables d'environnements HOME et PATH). Chaque service fonctionne dans son propre contexte d'exécution.
 
-Toutes les opérations des unités de service sont soumises à un timeout par défaut de 5 minutes pour empêcher un service malfonctionnant de geler le système.
+Toutes les opérations des unités de service sont soumises à un timeout par défaut de 5 minutes pour empêcher un service mal-fonctionnant de geler le système.
 
 === Gérer les services systèmes
 
@@ -214,7 +214,7 @@ Les commandes service et chkconfig sont toujours disponibles dans le système et
 | chkconfig | systemctl | Description 
 | chkconfig _name_ on | systemctl enable name.service | Active un service
 | chkconfig _name_ off | systemctl disable name.service | Désactive un service
-| chkconfig --list _name_ | systemctl status name.service | Vérifie si un service fonctione
+| chkconfig --list _name_ | systemctl status name.service | Vérifie si un service fonctionne
 | chkconfig --list | systemctl list-unit-files --type service | Liste tous les services et vérifie s'ils fonctionnent
 | chkconfig --list | systemctl list-dependencies --after | Liste les services qui démarrent avant l'unité spécifiée
 | chkconfig --list  | systemctl list-dependencies --before | Liste les services qui démarrent après l'unité spécifiée
@@ -254,7 +254,7 @@ systemctl disable bluetooth.service
 [source,]
 ----
 postfix.service Unit File
-What follows is the content of the /usr/lib/systemd/system/postifix.service unit file as currently provided by the postfix package:
+What follows is the content of the /usr/lib/systemd/system/postfix.service unit file as currently provided by the postfix package:
 
 [Unit]
 Description=Postfix Mail Transport Agent
@@ -387,12 +387,12 @@ Pour modifier la cible actuelle et entrer en mode d'urgence dans la session actu
 systemctl emergency
 ----
 
-==== Arrêt, suspension et hybernation
+==== Arrêt, suspension et hibernation
 
 La commande systemctl remplace un certain nombre de commandes de gestion de l'alimentation utilisées dans des versions précédentes :
 ⁠
 
-.Comparison entre les commandes de gestion de l'alimentation et systemctl
+.Comparaison entre les commandes de gestion de l'alimentation et systemctl
 [width="100%",options="header"]
 |====================
 | Ancienne commande | Nouvelle commande | Description

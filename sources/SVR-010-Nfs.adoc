@@ -47,7 +47,7 @@ yum install nfs-utils
 
 Le paquet nfs-utils nécessite plusieurs dépendances dont nfs-utils-lib et rpcbind pour s'installer.
 
-Le service nfs peut être démarré :
+Le service NFS peut être démarré :
 
 [source,bash]
 ----
@@ -69,7 +69,7 @@ Les droits du répertoire et les droits NFS doivent être cohérents.
 
 === Le fichier /etc/exports
 
-Le paramètrage des partages de ressources s'effectue dans le fichier /etc/exports. A une ligne de ce fichier correspond un partage nfs.
+Le paramétrage des partages de ressources s'effectue dans le fichier /etc/exports. A une ligne de ce fichier correspond un partage NFS.
 
 .Syntaxe du fichier /etc/exports
 [source,]
@@ -77,18 +77,18 @@ Le paramètrage des partages de ressources s'effectue dans le fichier /etc/expor
 /partage	client1(permissions) client2(permissions)
 ----
 
-* **/partage** : Chemin *absolu* du repertoire partagé ;
-* **clients** : Machines autorisées à acceder aux ressources ;
+* **/partage** : Chemin *absolu* du répertoire partagé ;
+* **clients** : Machines autorisées à accéder aux ressources ;
 * **(permissions)** : Permissions sur les ressources.
 
 Les machines autorisées à accéder aux ressources peuvent être déclarées par :
 
 * Adresse IP : 192.168.1.2
 * Adresse réseau : 192.168.1.0/255.255.255.0 ou au format CIDR 192.168.1.0/24
-* FQDN : client_*.formatux.lan : autorise les fqdn commençant par client_ du domaine formatux.lan ;
+* FQDN : client_*.formatux.lan : autorise les FQDN commençant par client_ du domaine formatux.lan ;
 * ** * ** pour tout le monde.
 
-Plusieurs clients peuvent être spécifiés sur la même ligne en les séparants par un espace.
+Plusieurs clients peuvent être spécifiés sur la même ligne en les séparant par un espace.
 
 === Permissions sur les ressources
 
@@ -110,7 +110,7 @@ Il existe un paramètre, no_root_squash, qui permet d'identifier l'utilisateur r
 
 Par défaut, c'est le paramètre root_squash qui est activé (même si non précisé), identifiant root comme utilisateur anonyme.
 
-=== Cas concrêts
+=== Cas concrets
 
 * /partage client(ro,all_squash)
 

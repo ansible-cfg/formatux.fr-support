@@ -28,7 +28,7 @@ La version actuelle de ce protocole est la version 3.
 
 Le protocole LDAP s'inspire de la spécification **X.500** mais de manière moins complexe. La norme X.500 désigne l'ensemble des normes informatiques sur les services d'annuaires définies par l'IUT (International Union Telecommunication). Il s'agit donc d'un annuaire version électronique dont l'organisation est hiérarchique, à la manière du DNS, qui correspond généralement à l'organisation de l'entreprise. Le terme Lightweight ne doit pas être compris comme "allégé", ce qui signifierait qu'il serait amputé de certaines fonctionnalités, mais bien dans ce cas de "simplifié", car la spécification X.500 est très lourde.
 
-Le système LDAP est né en 1993 à l'université du Michigan. Le dérivé libre indexterm2:[OpenLDAP] est lui apparu en 1998.
+Le système LDAP est né en 1993 à l'université du Michigan. Le dérivé libre **indexterm2:[OpenLDAP]** est lui apparu en 1998.
 
 Une base de données LDAP, de part sa nature, est optimisée pour la lecture d'informations :
 
@@ -51,12 +51,12 @@ Sous Linux, les choix sont nombreux :
 
 [NOTE]
 ====
-À noter que la suite OpenLDAP au sein de RedHat 6 (et versions supérieures) n'utilise plus OpenSSL. Elle utilise à la place l'implémentation de Mozilla de indexterm2:[NSS] (Network Security Services).
+À noter que la suite OpenLDAP au sein de RedHat 6 (et versions supérieures) n'utilise plus OpenSSL. Elle utilise à la place l'implémentation de Mozilla de **indexterm2:[NSS]** (Network Security Services).
 ====
 
-=== La indexterm2:[DIT]
+=== La DIT
 
-Un annuaire LDAP est **un arbre de données**. Cette **structure hiérarchique** est appelée **DIT** (**Directory Information Tree**).
+Un annuaire LDAP est **un arbre de données**. Cette **structure hiérarchique** est appelée **indexterm2:[DIT]** (**Directory Information Tree**).
 
 Une entrée de l'arbre est un ensemble d'**attributs**.
 
@@ -87,9 +87,9 @@ Le contenu des entrées d'un annuaire est régi par des schémas. Les schémas d
 **   mail: john.doe@formatux.lan ;
 **   preferredLanguage: french.
         
-=== indexterm2:[SASL]
+=== Couche d'Authentification et de Sécurité Simple SASL
 
-**SASL** (**Couche d'Authenfication et de Sécurité Simple**) est une méthode pour ajouter le support d'**authentification** aux **protocoles basés sur la connexion** (LDAP, SMTP, IMAP, XMPP, IRC, etc.). Pour utiliser SASL, un protocole inclut une **commande d'identification et d'authentification** d'un utilisateur sur un serveur et la **négociation éventuelle de la protection** des interactions consécutives du protocole.
+**indexterm2:[SASL]** (**Couche d'Authentification et de Sécurité Simple**) est une méthode pour ajouter le support d'**authentification** aux **protocoles basés sur la connexion** (LDAP, SMTP, IMAP, XMPP, IRC, etc.). Pour utiliser SASL, un protocole inclut une **commande d'identification et d'authentification** d'un utilisateur sur un serveur et la **négociation éventuelle de la protection** des interactions consécutives du protocole.
 
 Si son utilisation est négociée, **une couche de sécurité est insérée entre le protocole et la connexion**.
 
@@ -110,9 +110,9 @@ Les mécanismes principaux SASL sont :
 
 image::./images/SVR-080-001.jpg["OpenLDAP sur SASL",scaledwidth="100%"]
 
-=== Le format indexterm2:[LDIF]
+=== Le format LDIF
 
-Le format LDIF (LDAP Data Interchange Format) est un format de fichier texte utilisé lors des échanges d'informations en client/serveur ou entre serveurs.
+Le format **indexterm2:[LDIF]** (LDAP Data Interchange Format) est un format de fichier texte utilisé lors des échanges d'informations en client/serveur ou entre serveurs.
 
 .Exemple de fichiers LDIF :
 [source,ldif]
@@ -156,21 +156,19 @@ Le format LDIF a des caractéristiques très importantes :
 
 Des outils en ligne de commande permettent l'administration du serveur en utilisant en entrée des fichiers LDIF ou la console.
 
-*   indexterm2:[ldapadd] : ajouter des entrées ;
-*   indexterm2:[ldapdelete] : supprimer des entrées ;
-*   indexterm2:[ldapmodify] : modifier des entrées ;
-*   indexterm2:[ldappasswd] : modifier un mot de passe ;
-*   indexterm2:[ldapsearch] : rechercher dans l'annuaire.
+*   **indexterm2:[ldapadd]** : ajouter des entrées ;
+*   **indexterm2:[ldapdelete]** : supprimer des entrées ;
+*   **indexterm2:[ldapmodify]** : modifier des entrées ;
+*   **indexterm2:[ldappasswd]** : modifier un mot de passe ;
+*   **indexterm2:[ldapsearch]** : rechercher dans l'annuaire.
 
 == Installation du serveur
 
 Prérequis à l'installation :
 
-*    disposer des droits root ou sudo ;
-
-*   disposer d'un dépot yum configuré ;
-
-*   avoir ouvert les ports 389 et 636 sur le parefeu local et sur les éléments actifs
+* disposer des droits root ou sudo ;
+* disposer d'un dépôt yum configuré ;
+* avoir ouvert les ports 389 et 636 sur le pare-feu local et sur les éléments actifs
 
 Installation :
 
@@ -187,7 +185,7 @@ LDAP a besoin d'un fichier de configuration (/var/lib/ldap/DB_CONFIG)
 pour sa base de données. Le fichier fourni en exemple lors de 
 l'installation convient parfaitement.
 
-Le fichier /etc/openldap/ldap.conf contient la configuration pour les clients openldap comme ldapsearch, ldapadd, etc. Toutes les informations inscrites dans ce fichier allègeront d'autant les lignes de commande interactives, puisqu'il ne sera plus nécessaire de préciser les options positionnées ici.
+Le fichier /etc/openldap/ldap.conf contient la configuration pour les clients openldap comme ldapsearch, ldapadd, etc. Toutes les informations inscrites dans ce fichier allégeront d'autant les lignes de commande interactives, puisqu'il ne sera plus nécessaire de préciser les options positionnées ici.
 
 
 .Le fichier /etc/openldap/ldap.conf
@@ -295,11 +293,11 @@ olcSuffix: dc=formatux,dc=lan
 Le suffixe étant défini à l'installation, il faut le modifier !
 ====
 
-=== Le indexterm2:[RootDN] et son mot de passe
+=== Le RootDN et son mot de passe
 
-L'entrée RootDN contient le DN de l'utilisateur autorisé à faire des modifications de l'annuaire.
+L'entrée **indexterm2:[RootDN]** contient le DN de l'utilisateur autorisé à faire des modifications de l'annuaire.
 
-Son mot de passe est défini par indexterm2:[RootPW].
+Son mot de passe est défini par **indexterm2:[RootPW]**.
 
 Nous allons le configurer avec la commande ldapmodify :
 
@@ -371,9 +369,9 @@ Il n'est pas nécessaire de préciser ici le serveur à contacter (options
 /etc/openldap/ldap.conf qui a été renseigné précédemment.
 ====
 
-=== La commande indexterm2:[slapcat]
+=== La commande slapcat
 
-Exporter le contenu de l'annuaire au format LDIF.
+Exporter le contenu de l'annuaire au format LDIF avec la commande **indexterm2:[slapcat]**.
 
 .Syntaxe de la commande slapcat
 ----
@@ -400,9 +398,9 @@ olcRootDN: cn=Manager,dc=my-domain,dc=com
 |====
 
 
-=== La commande indexterm2:[ldapmodify]
+=== La commande ldapmodify
 
-La commande ldapmodify permet de modifier le contenu de l'annuaire.
+La commande **indexterm2:[ldapmodify]** permet de modifier le contenu de l'annuaire.
 
 ==== Authentification (binding) par SASL
 
@@ -519,7 +517,7 @@ nomdelattribut: nouvellevaleur
 
 === La structure de la DIT
 
-Les données de l'arbre de l'annuaire doivent être rangées dans des unités d'organisation (indexterm2:[OU]).
+Les données de l'arbre de l'annuaire doivent être rangées dans des unités d'organisation (**indexterm2:[OU]**).
 
 Les OU **users** et **groups** sont généralement utilisées.
 
@@ -600,13 +598,13 @@ sans oublier de redémarrer le démon syslog :
 Le logLevel 4 permet de journaliser les requêtes effectuées sur la base.
 ====
 
-=== Activation du indexterm2:[TLS]
+=== Activation du TLS
 
-Avant de pouvoir configurer le TLS sous OpenLDAP, il convient de disposer du certificat et de la clef pour le serveur ainsi que le certificat de l'autorité de certification, qui est indispensable au bon fonctionnement d'OpenLDAP.
+Avant de pouvoir configurer le **indexterm2:[TLS]** sous OpenLDAP, il convient de disposer du certificat et de la clef pour le serveur ainsi que le certificat de l'autorité de certification, qui est indispensable au bon fonctionnement d'OpenLDAP.
 
 Pour créer ces certificats, il est possible d'utiliser easy-rsa, qui sera abordé dans la quatrième partie du document.
 
-Une autre méthode est d'utiliser l'outil indexterm2:[certtool] du paquet indexterm2:[gnutls-utils].
+Une autre méthode est d'utiliser l'outil **indexterm2:[certtool]** du paquet **indexterm2:[gnutls-utils]**.
 
 [IMPORTANT]
 ====
@@ -722,9 +720,9 @@ La commande openssl permet de tester la connexion uniquement sur le port 636 :
 [root]# openssl s_client -connect ldap.formatux.lan:636 -showcerts
 ----
 
-==== Le certificat de la indexterm2:[CA]
+==== Le certificat de la CA
 
-De nombreuses applications auront besoin du certificat de la CA.
+De nombreuses applications auront besoin du certificat de la **indexterm2:[CA]**.
 
 Il est recommandé de le mettre à disposition des utilisateurs sur le serveur web du serveur LDAP :
 

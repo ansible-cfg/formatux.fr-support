@@ -80,7 +80,7 @@ Exemple :
 Cette commande interroge tous les paquets installés sur le système.
 
 [source,bash]
-.Syntaxe de la commande rpm pour requêter
+.Syntaxe de la commande rpm pour interrogation
 ----
 rpm -q [-a][-i][-l] paquet [-f] fichier
 ----
@@ -93,7 +93,7 @@ Exemple :
 [root]# rpm -qf /chemin/fichier
 ----
 
-.Options de la commande rpm  pour requêter
+.Options de la commande rpm  pour interrogation
 [cols="1,4",width="100%",options="header"]
 |====================
 |Option |	Description
@@ -101,6 +101,7 @@ Exemple :
 |-i __paquet__ |	Affiche les informations du paquet.
 |-l __paquet__ |	Liste les fichiers contenus dans le paquet.
 |-f |	Affiche le nom du paquet contenant le fichier précisé.
+| --last | La liste des paquets est donnée par date d'installation (les derniers paquetages installés  apparaissent  en  premier).
 |====================
 
 [CAUTION]
@@ -112,6 +113,35 @@ Après l'option *-q*, le nom du paquet doit être exact. Les métacaractères ne
 ====
 Il est cependant possible de lister tous les paquets installés et de filtrer avec la commande *grep*.
 ====
+
+Exemple : lister les derniers paquets installés :
+
+[source,bash]
+----
+sudo rpm -qa --last | head
+kernel-devel-3.10.0-514.21.2.el7.x86_64       mar. 27 juin 2017 14:52:21 CEST
+webmin-1.850-1.noarch                         mar. 27 juin 2017 14:51:59 CEST
+kernel-3.10.0-514.21.2.el7.x86_64             mar. 27 juin 2017 14:51:32 CEST
+sudo-1.8.6p7-23.el7_3.x86_64                  mar. 27 juin 2017 14:51:23 CEST
+python-perf-3.10.0-514.21.2.el7.x86_64        mar. 27 juin 2017 14:51:22 CEST
+kernel-tools-3.10.0-514.21.2.el7.x86_64       mar. 27 juin 2017 14:51:22 CEST
+glibc-headers-2.17-157.el7_3.4.x86_64         mar. 27 juin 2017 14:51:22 CEST
+glibc-devel-2.17-157.el7_3.4.x86_64           mar. 27 juin 2017 14:51:22 CEST
+kernel-headers-3.10.0-514.21.2.el7.x86_64     mar. 27 juin 2017 14:51:21 CEST
+kernel-tools-libs-3.10.0-514.21.2.el7.x86_64  mar. 27 juin 2017 14:51:20 CEST
+----
+
+Exemple : lister l'historique d'installation du kernel :
+
+[source,bash]
+----
+sudo rpm -qa --last kernel 
+kernel-3.10.0-514.21.2.el7.x86_64             mar. 27 juin 2017 14:51:32 CEST
+kernel-3.10.0-514.21.1.el7.x86_64             mar. 20 juin 2017 10:31:38 CEST
+kernel-3.10.0-514.16.1.el7.x86_64             lun. 17 avril 2017 09:41:52 CEST
+kernel-3.10.0-514.10.2.el7.x86_64             lun. 27 mars 2017 07:07:10 CEST
+kernel-3.10.0-514.6.1.el7.x86_64              dim. 05 févr. 2017 18:40:50 CET
+----
 
 == YUM : Yellow dog Updater Modified
 
@@ -164,7 +194,7 @@ La commande *yum list* liste tous les paquets installés sur le système et pré
 | __recent__|	Liste les derniers paquets ajoutés au dépôt.
 |====================
 
-Exemple de recherche de la commande semanage:
+Exemple de recherche de la commande semanage :
 
 [source,bash]
 ----
@@ -189,8 +219,8 @@ Exemple:
 
 [source,bash]
 ----
-[DepotLocal]    #Nom court du dépot
-name=Mon dépot local    #Nom détaillé
+[DepotLocal]    #Nom court du dépôt
+name=Mon dépôt local    #Nom détaillé
 baseurl=http://....... ou file:///......    #Adresse http ou local
 enabled=1   #Activation =1, ou non activé =0"
 gpgcheck=1  #Dépôt demandant une signature
@@ -229,13 +259,13 @@ Les étapes de la création d'un dépôt sur un serveur sont les suivantes :
 
 * Configurer les fichiers *.repo* des clients afin qu'ils puissent installer les paquets depuis ce serveur (réinitialiser le cache des clients si besoin avec *yum clean all*).
   
-== Le dépot EPEL
+== Le dépôt EPEL
 
-Le dépot indexterm:[epel] *EPEL* (**E**xtra **P**ackages for **E**nterprise **L**inux) est un dépot contenant des paquets logiciels supplémentaires pour Entreprise Linux, ce qui inclut Red Hat Entreprise Linux (RHEL), CentOS, etc.
+Le dépôt indexterm:[epel] *EPEL* (**E**xtra **P**ackages for **E**nterprise **L**inux) est un dépôt contenant des paquets logiciels supplémentaires pour Entreprise Linux, ce qui inclut RedHat Entreprise Linux (RHEL), CentOS, etc.
 
 === Installation
 
-Télécharger et installer le rpm du dépot :
+Télécharger et installer le rpm du dépôt :
 
 Si vous êtes derrière le proxy internet de l'école
 
@@ -251,7 +281,7 @@ Si vous êtes derrière le proxy internet de l'école
 [root]# rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 ----
 
-Après avoir installé le paquet RPM du dépot :
+Après avoir installé le paquet RPM du dépôt :
 
 [source,bash]
 ----

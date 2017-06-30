@@ -10,15 +10,15 @@ Licence Art Libre : http://artlibre.org/
 
 Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 ////
-= indexterm2:[Fail2ban]
+= Fail2ban
 
-Fail2ban permet le blocage des adresses IP tentant une intrusion sur votre serveur. Pour cela, il s'appuie sur le parefeu Netfilter ou sur TCP Wrapper.
+indexterm2:[Fail2ban] permet le blocage des adresses IP tentant une intrusion sur votre serveur. Pour cela, il s'appuie sur le pare-feu Netfilter ou sur TCP Wrapper.
 
 Il détecte les tentatives d'intrusion en parcourant les journaux du système.
 
 == Installation
 
-Fail2ban est disponible dans le dépôt EPEL.
+Fail2ban est disponible dans le dépôt EPEL.p
 
 [source,bash]
 ----
@@ -69,7 +69,7 @@ maxretry = 5
 ** enabled : active la règle
 ** filter : fichier de log à analyser. Un chemin complet ou un raccourci (comme c'est le cas ici)
 ** action : que dois faire fail2ban en cas d'échec de connexion ? 
-*** iptables : activer une règle dans le parefeu,
+*** iptables : activer une règle dans le pare-feu,
 *** sendmail-whois : envoyer un mail de rapport.
 
 == Lancement du service
@@ -82,7 +82,7 @@ service iptables status
 service ip6tables status
 ----
 
-* Si le parefeu n'est pas actif sur le système :
+* Si le pare-feu n'est pas actif sur le système :
 
 [source,bash]
 ----

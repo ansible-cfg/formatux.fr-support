@@ -149,9 +149,9 @@ Deux modes de stockage se distinguent :
 
 <<<
 
-== Tape ArchiveR - indexterm2:[tar]
+== Tape ArchiveR - tar
 
-La commande tar permet la sauvegarde sur plusieurs supports successifs (options multi-volumes).
+La commande indexterm2:[tar] permet la sauvegarde sur plusieurs supports successifs (options multi-volumes).
 
 Il est possible d'extraire tout ou partie d'une sauvegarde.
 
@@ -235,9 +235,9 @@ Exemple :
 Avec la clef **P**, le chemin des fichiers à sauvegarder doit être renseigné en **absolu**. Si les deux conditions (clef *P* et chemin **absolu**) ne sont pas indiquées, la sauvegarde est en mode relatif.
 ====
 
-===== Créer une archive compressée avec indexterm2:[gzip]
+===== Créer une archive compressée avec gzip
 
-Créer une archive compressée en gzip s'effectue avec les clefs cvzf :
+Créer une archive compressée en indexterm2:[gzip] s'effectue avec les clefs cvzf :
 
 [source,bash]
 ----
@@ -260,9 +260,9 @@ L'extension .tgz est une extension équivalente à .tar.gz
 Conserver les clefs 'cvf' ('tvf' ou 'xvf') inchangée pour toutes les manipulations d'archives et simplement ajouter à la fin des clefs celle de compression simplifie la compréhension de la commande (par exemple 'cvfz' ou 'cvfj', etc.).
 ====
 
-===== Créer une archive compressée avec indexterm2:[bzip]
+===== Créer une archive compressée avec bzip
 
-Créer une archive compressée en bzip s'effectue avec les clefs cvfj :
+Créer une archive compressée en indexterm2:[bzip] s'effectue avec les clefs cvfj :
 [source,bash]
 ----
 [root]# tar cvfj archive.tar.bz2 dirname/
@@ -283,9 +283,9 @@ Les extensions .tbz et .tb2 sont des extensions équivalentes à .tar.bz2
 
 bzip2 nécessite plus de temps pour compresser ou décompresser que gzip mais offre des ratios de compression supérieurs.
 
-==== Extraire (indexterm2:[untar]) une archive
+==== Extraire (untar) une archive
 
-Extraire une archive *.tar s'effectue avec les clefs xvf :
+Extraire (indexterm2:[untar]) une archive *.tar avec s'effectue avec les clefs xvf :
 
 [source,bash]
 ----
@@ -530,9 +530,9 @@ Toujours vérifier le contenu d'une sauvegarde.
 
 <<<
 
-== CoPy Input Output - indexterm2:[cpio]
+== CoPy Input Output - cpio
 
-La commande cpio permet la sauvegarde sur plusieurs supports successifs sans indiquer d'options.
+La commande indexterm2:[cpio] permet la sauvegarde sur plusieurs supports successifs sans indiquer d'options.
 
 Il est possible d'extraire tout ou partie d'une sauvegarde.
 
@@ -574,7 +574,7 @@ Exemple :
 [root]# find /etc | cpio -ov > /sauvegardes/etc.cpio
 ----
 
-Le résultat de la commande *find* est envoyé en entrée de la commande *cpio* par l'intermédiare du signe “|” (kbd:[AltGr +6]).
+Le résultat de la commande *find* est envoyé en entrée de la commande *cpio* par l'intermédiaire du signe “|” (kbd:[AltGr +6]).
 Ici, la commande find /etc renvoie une liste de fichiers correspondant au contenu du répertoire /etc (en récursif) à la commande cpio qui en effectue la sauvegarde.
 Ne surtout pas oublier le signe > lors de la sauvegarde.
 
@@ -785,10 +785,12 @@ Le fait d’utiliser la compression au moment d’une sauvegarde peut présenter
 Il vaut donc mieux effectuer une sauvegarde et la compresser qu'effectuer la compression lors de la sauvegarde.
 ====
 
-=== Compresser avec indexterm2:[gzip]
+=== Compresser avec gzip
+
+La commande indexterm2:[gzip] compresse les données.
 
 [source,bash]
-.Syntaxte de la commande gzip
+.Syntaxe de la commande gzip
 ----
 gzip [options] [fichier ...]
 ----
@@ -806,7 +808,9 @@ Le fichier reçoit l'extension  .gz.
 
 Il conserve les mêmes droits et les mêmes dates de dernier accès et de modification. 
 
-=== Compresser avec indexterm2:[bunzip2]
+=== Compresser avec bunzip2
+
+La commande indexterm2:[bunzip2] compresse également les données.
 
 [source,bash]
 .Syntaxe de la commande bzip2
@@ -827,7 +831,9 @@ Le nom du fichier reçoit l'extension  .bz2.
 
 La compression par “bzip2” est meilleure que celle par “gzip” mais dure plus longtemps.
 
-=== Décompresser avec indexterm2:[gunzip]
+=== Décompresser avec gunzip
+
+La commande indexterm2:[gunzip] décompresse les données compressées.
 
 [source,bash]
 .Syntaxe de la commande gunzip
@@ -852,7 +858,9 @@ Gunzip décompresse également les fichiers portant les extensions suivantes :
 * -z ;
 * _z.
 
-=== Décompresser avec indexterm2:[bunzip2]
+=== Décompresser avec bunzip2
+
+La commande indexterm2:[bunzip2] décompresse les données compressées.
 
 [source,bash]
 .Syntaxe de la commande bzip2

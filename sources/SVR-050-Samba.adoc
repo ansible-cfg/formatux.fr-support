@@ -19,7 +19,7 @@ Le projet Samba a été initié dès 1992 sous licence GPL (et donc gratuit).
 
 image::images/SVR-050-001-Samba-interoperabilite.png[scaledwidth="100%"]
 
-Un même dossier partagé par NFS et par Samba est ainsi accessible depuis toutes les plateformes clientes.
+Un même dossier partagé par NFS et par Samba est ainsi accessible depuis toutes les plate-formes clientes.
 
 == Le protocole SMB
 
@@ -38,9 +38,9 @@ NetBIOS était le système de noms des réseaux SMB comme l'est aujourd'hui le s
 
 Les diffusions NetBIOS ne passant pas les routeurs, la notion de voisinage réseau désigne l'ensemble des stations de travail utilisant le protocole NetBIOS sur un même segment de réseau IP. Le *maître explorateur* (master browser) est le poste client ou serveur tenant à jour la liste des ordinateurs utilisés par le service de voisinage réseau.
 
-== Le protocole indexterm2:[CIFS]
+== Le protocole CIFS
 
-Les améliorations apportées au protocole SMB ont permis de faire aboutir la suite de protocoles clients/serveurs CIFS (Common Internet File System) que le service Samba implémente.
+Les améliorations apportées au protocole SMB ont permis de faire aboutir la suite de protocoles clients/serveurs indexterm2:[CIFS] (Common Internet File System) que le service Samba implémente.
 
 == Installation de Samba
 
@@ -69,15 +69,15 @@ Le paquet **samba-client** fournit les binaires :
 
 *   **smbcacls** : manipuler les ACL NT sur les partages de fichiers
 
-*   **smbclient** : offrir une interface FTP Like pour accèder à des partages de fichiers
+*   **smbclient** : offrir une interface FTP Like pour accéder à des partages de fichiers
 
-*   **smbget** : télécharger des fichiers depuis un partage windows
+*   **smbget** : télécharger des fichiers depuis un partage Windows
 
 *   **smbspool** : envoyer une impression à un serveur d'impression
 
 *   **smbtree** : fournir un
  explorateur de fichier en mode texte similaire au “Voisinage réseau”
-des ordinateurs Windows. Il affiche un arbre des domaines connus, desserveurs et des partages accessibles depuis les serveurs.
+des ordinateurs Windows. Il affiche un arbre des domaines connus, des serveurs et des partages accessibles depuis les serveurs.
 
 *   …
 
@@ -119,7 +119,7 @@ Le contexte de sécurité _samba_share_t_ doit être positionné sur les dossier
 [root]# chcon -R -t samba_share_t /export/
 ----
 
-Plus d'information sur la sécurité SELinux et Samba https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Confined_Services/sect-Managing_Confined_Services-Samba-Booleans.html[sur le site de RedHat]. Pensez à stopper le parefeu ou à le configurer dans le fichier */etc/sysconfig/iptables* :
+Plus d'information sur la sécurité SELinux et Samba https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Confined_Services/sect-Managing_Confined_Services-Samba-Booleans.html[sur le site de RedHat]. Pensez à stopper le pare-feu ou à le configurer dans le fichier */etc/sysconfig/iptables* :
 
 [source,bash]
 ----
@@ -256,7 +256,7 @@ Maximum 15 caractères +
 Pas de rapport direct avec le nom de la machine Linux
 | server string | server string = Samba version %v | Description du serveur apparaissant dans l'explorateur Windows
 | hosts allow | hosts allow = 127. 172.16.1. | Permet de restreindre les clients du serveur aux seuls réseaux mentionnés. Notez la présence d'un point à la fin de l'adresse et l'absence du 0. 
-| log file | 	log file = /var/log/samba/log.%m | 	Enregistrer les évènements dans un fichier +
+| log file | 	log file = /var/log/samba/log.%m | 	Enregistrer les événements dans un fichier +
 %m représente le nom NetBIOS du client
 | security | 	security = user | Modèle de sécurité du serveur
 | passdb backend | 	passdb backend = tdbsam | Stockage des utilisateurs et des mots de passe. Le format tdbsam (Trivial Database) est le format par défaut, limité en 
@@ -361,7 +361,7 @@ utilisateur, celui-ci sera autorisé à accéder à un fichier sur le
 partage s'il fait parti, en tant qu'invité, du groupe spécifié dans la 
 directive.
 
-Les deux exemples ci-desous mettent en avant ce mécanisme :
+Les deux exemples ci-dessous mettent en avant ce mécanisme :
 
 Utilisation sans le mécanisme **force group** :
 

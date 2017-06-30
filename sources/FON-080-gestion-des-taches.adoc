@@ -122,17 +122,18 @@ user2
 
 **cron.allow** ne doit pas être présent.
 
+== La planification des tâches
 
-== La indexterm2:[planification] des tâches
 Lorsqu’un utilisateur planifie une tâche, un fichier portant son nom est créé sous **/var/spool/cron/**.
 
-Ce fichier contient toutes les informations permettant au démon **crond** de savoir quelle commande ou quel programme lancer et à quel moment le faire (heure, minute, jour …).
+Ce fichier contient toutes les informations permettant au démon **indexterm2:[crond]** de savoir quelle commande ou quel programme lancer et à quel moment le faire (heure, minute, jour …).
 
 .Arborescence de cron
 image::./images/FON-080-001.png[scaledwidth="100%"]
 
-=== Commande indexterm2:[crontab]
-La commande *crontab* permet de gérer le fichier de planification.
+=== Commande crontab
+
+La commande *indexterm2:[crontab]* permet de gérer le fichier de planification.
 [source,bash]
 ----
 crontab [-u utilisateur] [-e | -l | -r]

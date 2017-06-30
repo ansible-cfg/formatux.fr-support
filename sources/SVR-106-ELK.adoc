@@ -11,6 +11,8 @@ Licence Art Libre : http://artlibre.org/
 Auteurs : Antoine Le Morvan
 ////
 
-= indexterm2:[Elasticsearch] / indexterm2:[LogStash] / indexterm2:[Kibana] (indexterm2:[ELK])
+= Elasticsearch / LogStash / Kibana (ELK)
+
+indexterm2:[Elasticsearch] / indexterm2:[LogStash] / indexterm2:[Kibana] (indexterm2:[ELK])
 
 

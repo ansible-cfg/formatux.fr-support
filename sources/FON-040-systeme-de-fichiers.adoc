@@ -21,8 +21,8 @@ Le découpage du disque physique en volumes partitionnés est inscrit dans la ta
 
 Un même disque physique peut être découpé en 4 partitions maximum :
 
-* indexterm2:[*Primaire*] (ou principale)
-* indexterm2:[*Étendue*]
+* *Primaire* (ou principale)
+* *Étendue*
 
 [WARNING]
 ====
@@ -62,9 +62,9 @@ La seule raison d'utiliser *fdisk* est lorsqu'on souhaite lister tous les périp
 [root]# fdisk -l /dev/sdc2
 ----
 
-=== Commande indexterm2:[cfdisk]
+=== Commande cfdisk
 
-La commande cfdisk permet de gérer les partitions
+La commande *indexterm2:[cfdisk]* permet de gérer les partitions
 
 [source,bash]
 .Syntaxe de la commande cfdisk
@@ -96,9 +96,9 @@ La préparation, sans LVM, du support physique passe par cinq étapes :
 * Montage des systèmes de fichiers (inscription du système de fichiers dans l'arborescence) ;
 * Gérer l'accès aux utilisateurs.
 
-== indexterm2:[LVM]
+== Logical Volume Manager (LVM)
 
-**L**ogical **V**olume **M**anager  
+**L**ogical **V**olume **M**anager (**indexterm2:[LVM]**)
 
 La gestion de volume crée une couche abstraite sur un stockage physique offrant des avantages par rapport à l'utilisation directe du stockage physique :
 
@@ -114,7 +114,7 @@ La gestion de volume crée une couche abstraite sur un stockage physique offrant
 
 L'inconvénient est que si un des volumes physiques devient HS, alors c'est l'ensemble des volumes logiques qui utilisent ce volume physique qui sont perdus. Il faudra utiliser LVM sur des disques raid.
 
-Le LVM est disponible sous linux à partir de la version 2.4 du noyau.
+Le LVM est disponible sous Linux à partir de la version 2.4 du noyau.
 
 [NOTE]
 ====
@@ -149,13 +149,14 @@ image::./images/FON-040-006.png[scaledwidth="100%"]
 Le “striping” améliore les performances en écrivant des données sur un nombre prédéterminé de volumes physiques avec une technique de round-robin.
 ====
 
-.Volumes en mirroirs
+.Volumes en miroirs
 image::./images/FON-040-007.png[scaledwidth="100%"]
 
 === Commandes LVM pour la gestion des volumes
-==== Commande indexterm2:[pvcreate]
 
-La commande *pvcreate* permet de créer des volumes physiques. Elle transforme des partition Linux en volumes physiques.
+==== Commande pvcreate
+
+La commande *indexterm2:[pvcreate]* permet de créer des volumes physiques. Elle transforme des partition Linux en volumes physiques.
 
 [source,bash]
 .Syntaxe de la commande pvcreate
@@ -178,9 +179,9 @@ pvcreate -- physical volume « /dev/hdb1 » successfuly created
 |-f |  Force la création du volume (disque déjà transformé en volume physique).
 |====================
 
-==== Commande indexterm2:[vgcreate]
+==== Commande vgcreate
 
-La commande *vgcreate* permet de créer des groupes de volumes. Elle regroupe un ou plusieurs volumes physiques dans un groupe de volumes.
+La commande *indexterm2:[vgcreate]* permet de créer des groupes de volumes. Elle regroupe un ou plusieurs volumes physiques dans un groupe de volumes.
 
 [source,bash]
 .Syntaxe de la commande vgcreate
@@ -197,9 +198,9 @@ Exemple :
 vgcreate – volume group « volume1 » successfuly created and activated
 ----
 
-==== Commande indexterm2:[lvcreate]
+==== Commande lvcreate
 
-La commande *lvcreate* permet de créer des volumes logiques. Le système de fichiers est ensuite créé sur ces volumes logiques.
+La commande *indexterm2:[lvcreate]* permet de créer des volumes logiques. Le système de fichiers est ensuite créé sur ces volumes logiques.
 
 [source,bash]
 .Syntaxe de la commande lvcreate
@@ -224,9 +225,10 @@ lvcreate -- logical volume « /dev/volume1/VolLog1 » successfuly created
 |====================
 
 === Commandes LVM pour visualiser les informations concernant les volumes
-==== Commande indexterm2:[pvdisplay]
 
-La commande *pvdisplay* permet de visualiser les informations concernant les volumes physiques.
+==== Commande pvdisplay
+
+La commande *indexterm2:[pvdisplay]* permet de visualiser les informations concernant les volumes physiques.
 
 [source,bash]
 .Syntaxe de la commande pvdisplay
@@ -241,9 +243,9 @@ Exemple :
 [root]# pvdisplay /dev/nom_PV
 ----
 
-==== Commande indexterm2:[vgdisplay]
+==== Commande vgdisplay
 
-La commande *vgdisplay* permet de visualiser les informations concernant les groupes de volumes.
+La commande *indexterm2:[vgdisplay]* permet de visualiser les informations concernant les groupes de volumes.
 
 [source,bash]
 .Syntaxe de la commande vgdisplay
@@ -258,9 +260,9 @@ Exemple :
 [root]# vgdisplay volume1
 ----
 
-==== Commande indexterm2:[lvdisplay]
+==== Commande lvdisplay
 
-La commande *lvdisplay* permet de visualiser les informations concernant les volumes logiques.
+La commande *indexterm2:[lvdisplay]* permet de visualiser les informations concernant les volumes logiques.
 
 [source,bash]
 .Syntaxe de la commande lvdisplay
@@ -301,9 +303,9 @@ Un système de fichiers est en charge des actions suivantes :
 
 Le système d'exploitation Linux est capable d'exploiter différents systèmes de fichiers (ext2, ext3, ext4, FAT16, FAT32, NTFS, HFS, BtrFS, JFS, XFS, …).
 
-=== Commande indexterm2:[mkfs]
+=== Commande mkfs
 
-La commande mkfs permet de créer un système de fichiers Linux.
+La commande indexterm2:[mkfs] permet de créer un système de fichiers Linux.
 
 [source,bash]
 .Syntaxe de la commande mkfs
@@ -337,11 +339,13 @@ Chaque système de fichiers possède une structure qui est identique sur chaque 
 La seule exception est concernant la partition *swap*.
 ====
 
-=== indexterm2:[Bloc de boot]
-Il occupe le premier bloc sur le disque et est présent sur toutes les partitions. Il contient le programme assurant le démarrage et l'initialisation du système et n'est donc renseigné que pour la partition de démarrage.
+=== Bloc de boot
 
-=== indexterm2:[Super bloc]
-La taille de sa table est définie à la création. Il est présent sur chaque partition et contient les éléments nécessaires à l'exploitation de celle-ci.  
+Le indexterm2:[bloc de boot] occupe le premier bloc sur le disque et est présent sur toutes les partitions. Il contient le programme assurant le démarrage et l'initialisation du système et n'est donc renseigné que pour la partition de démarrage.
+
+=== Super bloc
+
+La taille de la table du *indexterm2:[super bloc]* est définie à la création. Il est présent sur chaque partition et contient les éléments nécessaires à l'exploitation de celle-ci.  
 
 Il décrit le Système de Fichiers :
 
@@ -358,8 +362,8 @@ Il décrit le Système de Fichiers :
 Une copie est chargée en mémoire centrale dès l'initialisation du système. Cette copie est mise à jour dès modification et le système la sauvegarde périodiquement (commande sync).
 Lorsque le système s'arrête, il recopie également cette table en mémoire vers son bloc.
 
-=== indexterm2:[Table des inodes]
-La taille de la table des inodes est définie à sa création et est stockée sur la partition. Elle se compose d'enregistrements, appelés inodes, correspondant aux fichiers créés. Chaque enregistrement contient les adresses des blocs de données constituant le fichier.
+=== Table des inodes
+La taille de la indexterm2:[table des inodes] est définie à sa création et est stockée sur la partition. Elle se compose d'enregistrements, appelés inodes, correspondant aux fichiers créés. Chaque enregistrement contient les adresses des blocs de données constituant le fichier.
 
 [NOTE]
 ====
@@ -404,9 +408,9 @@ Il est possible de vérifier la cohérence d'un système de fichiers à l'aide d
 
 En cas d'erreurs, des solutions sont proposées afin de réparer les incohérences. Après réparation, les fichiers restant sans entrées dans la table des inodes sont rattachés au dossier */lost+found* du lecteur logique.
 
-==== Commande indexterm2:[fsck]
+==== Commande fsck
 
-*fsck* est un outil en mode console de contrôle d'intégrité et réparation pour les systèmes de fichiers Linux.
+La commande *indexterm2:[fsck]* est un outil en mode console de contrôle d'intégrité et de réparation pour les systèmes de fichiers Linux.
 
 [source,bash]
 .Syntaxe de la commande fsck
@@ -448,7 +452,7 @@ image::./images/FON-040-008.png[scaledwidth="100%"]
 ====
 Sous Linux, tout est fichier.
 ====
-Document texte, répertoire, binaire, partition, resssource réseau, écran, clavier, noyau Unix, programme utilisateur, …
+Document texte, répertoire, binaire, partition, ressource réseau, écran, clavier, noyau Unix, programme utilisateur, …
 
 Linux répond à la norme indexterm2:[FHS] (Filesystems Hierarchy Standard) qui définit le nom des dossiers et leurs rôles.
 
@@ -483,7 +487,7 @@ Montage, démontage…quelques affirmations :
 * Les points de montage devant être montés automatiquement au démarrage doivent être inscrit dans */etc/fstab*.
 
 === Le fichier /etc/fstab
-Ce fichier est lu au démarrage du système et contient les montages à effectuer. Chaque système de fichiers à monter est décrit sur une seule ligne, les champs étant séparés pas des espaces ou des tabultations.
+Ce fichier est lu au démarrage du système et contient les montages à effectuer. Chaque système de fichiers à monter est décrit sur une seule ligne, les champs étant séparés pas des espaces ou des tabulations.
 
 [NOTE]
 ====
@@ -526,9 +530,10 @@ Seuls les points de montages inscrits dans */etc/fstab* seront montés au redém
 Il est possible de faire une copie du fichier **/etc/mtab** ou de copier son contenu vers */etc/fstab*.
 
 === Commandes de gestion des montages
-==== Commande indexterm2:[mount]
 
-La commande *mount* permet de monter et de visualiser les lecteurs logiques dans l'arborescence.
+==== Commande mount
+
+La commande *indexterm2:[mount]* permet de monter et de visualiser les lecteurs logiques dans l'arborescence.
 
 [source,bash]
 .Syntaxe de la commande mount
@@ -560,9 +565,9 @@ Exemple :
 La commande *mount* seule permet de visualiser tous les systèmes de fichiers montés.
 ====
 
-==== Commande indexterm2:[umount]
+==== Commande umount
 
-La commande *umount* permet de démonter les lecteurs logiques.
+La commande *indexterm2:[umount]* permet de démonter les lecteurs logiques.
 
 [source,bash]
 .Syntaxe de la commande umount
@@ -593,15 +598,16 @@ Exemple :
 Pour le démontage, il ne faut pas rester en dessous du point de montage. Sinon, le message d'erreur suivant s'affiche : *“device is busy”*.
 ====
 
-== indexterm2:[Types de fichiers]
+== Types de fichiers
+
 Comme dans tout système, afin de pouvoir se retrouver dans l'arborescence et la gestion des fichiers, il est important de respecter des règles de nommage des fichiers.
 
 * Les fichiers sont codés sur 255 caractères ;
-* Tous les caractères ASCII sont utilisatbles ;
+* Tous les caractères ASCII sont utilisables ;
 * Les majuscules et minuscules sont différenciées ;
 * Pas de notion d'extension.
 
-Les groupes de mots séparés par des espaces doivent être encadrès par des guillements :
+Les groupes de mots séparés par des espaces doivent être encadrés par des guillemets :
 [source,bash]
 ----
 [root]# mkdir "repertoire travail"
@@ -620,7 +626,7 @@ Sous Linux, la notion d'extension n'existe pas. Cependant, elle peut être utili
 Exemples de conventions d'extension :
 
 * .c : fichier source en langage C ;
-* .h : fichier d'entête C et Fortran ;
+* .h : fichier d'en-tête C et Fortran ;
 * .o : fichier objet en langage C ;
 * .tar : fichier de données archivées avec l'utilitaire tar ;
 * .cpio : fichier de données archivées avec l'utilitaire cpio ;
@@ -721,10 +727,10 @@ La lettre *c* au début du groupe de droits indique qu'il s'agit d'un fichier sp
 ==== Fichiers de communication
 Il s'agit des fichiers tubes (pipes) et des fichiers sockets.
 
-*Les fichiers tubes* passent les informations entre processus par FIFO (first in first out).
+*Les fichiers tubes* passent les informations entre processus par FIFO (First In First Out).
 Un processus écrit de informations transitoires dans un fichier __pipe__ et un autre les lit. Après lecture, les informations ne sont plus accessibles.  
 
-*Les fichiers sockets* permettent la communication bidirectionnelle interprocessus (sur système local ou distant). Ils utilisent un inode du système de fichiers.
+*Les fichiers sockets* permettent la communication bidirectionnelle inter-processus (sur système local ou distant). Ils utilisent un inode du système de fichiers.
 
 ==== Fichiers liens
 Ces fichiers donnent la possibilité de donner plusieurs noms logiques à un même fichier physique. Un nouveau point d'accès au fichier est par conséquent créé.
@@ -742,8 +748,9 @@ Le fichier lien et le fichier source ont le même numéro d'inode et le compteur
 Si le fichier source est détruit, le compteur est décrémenté et le fichier lien accède toujours au fichier.
 ====
 
-====== Commande indexterm2:[ln]
-La commande *ln* permet de créer des liens
+====== Commande ln
+
+La commande *indexterm2:[ln]* permet de créer des liens
 
 [source,bash]
 ----
@@ -761,6 +768,7 @@ La commande *ln* permet de créer des liens
 image::./images/FON-040-009.png[scaledwidth="100%"]
 
 ===== Le lien symbolique
+
 Contrairement au lien physique, le lien symbolique implique la création d'un nouvel *inode*. Au niveau du lien symbolique, seul un chemin d'accès est stocké dans la table des inodes.
 
 Le fichier créé ne contient qu'une indication sur le chemin permettant d'atteindre le fichier. Cette notion n'a plus les limitations des liens physiques et il est désormais possible de lier des répertoires et des fichiers appartenant à des systèmes de fichiers différents.
@@ -785,7 +793,7 @@ Si le fichier source est détruit, le fichier lien ne peut plus accéder au fich
 .Représentation d'un lien symbolique
 image::./images/FON-040-010.png[scaledwidth="100%"]
 
-== indexterm2:[Attributs des fichiers]
+== Attributs des fichiers
 Linux est système d'exploitation multi-utilisateurs où l'accès aux fichiers est contrôlé.
 
 Ces contrôles sont fonctions :
@@ -830,7 +838,7 @@ Déplacer ou renommer un fichier dépend des droits du répertoire cible. Suppri
 
 === Droits associés aux répertoires
 * **r**ead : Permet la lecture du contenu d'un répertoire (ls -R).
-* **w**rite : Aurotise la modification du contenu d'un répertoire (touch) et permet la **création et suppression de fichiers** si la permission **x** est activée.
+* **w**rite : Autorise la modification du contenu d'un répertoire (touch) et permet la **création et suppression de fichiers** si la permission **x** est activée.
 * e**x**ecute : Permet de descendre dans le répertoire (cd).
 * **-** : Aucun droit.
 
@@ -865,8 +873,9 @@ La modification des attributs s'effectue à l'aide de la commande *chmod*
 
 Seuls l'administrateur et le propriétaire d'un fichier peuvent modifier les droits d'un fichier.
 
-==== Commande indexterm2:[chmod]
-La commande *chmod* permet de modifier les autorisations d'accès à un fichier.
+==== Commande chmod
+
+La commande *indexterm2:[chmod]* permet de modifier les autorisations d'accès à un fichier.
 
 [source,bash]
 ----
@@ -984,12 +993,13 @@ image::./images/FON-040-015.png[scaledwidth="100%"]
 **S, S** et **T** en majuscules **si le droit n'existe pas**.
 ====
 
-==== Le indexterm2:[Sticky-bit]
+==== Le Sticky-bit
+
 Une des particularités des droits sous Linux est que le droit d'écrire sur un répertoire permet également de supprimer **tous** les fichiers, propriétaire ou non.
 
-Le sticky-bit positionné sur le répertoire ne permettra aux utilisateurs d'effacer que les fichiers dont ils sont propriétaires.
+Le indexterm2:[sticky-bit] positionné sur le répertoire ne permettra aux utilisateurs d'effacer que les fichiers dont ils sont propriétaires.
 
-La mise en place du sitcky-bit peut s'effectuer comme ci-dessous :  
+La mise en place du sticky-bit peut s'effectuer comme ci-dessous :  
 
 Méthode octale :
 [source,bash]
@@ -1009,10 +1019,11 @@ Méthode symbolique :
 drwxrwxrwt … repertoire
 ----
 
-==== indexterm2:[SUID] et indexterm2:[SGID]
+==== SUID et SGID
+
 Ces droits permettent d'exécuter une commande suivant les droits positionnés sur la commande et non plus suivant les droits de l'utilisateur.  
 
-La commande s'exécute avec l'identité du propriétaire (**suid**) ou du groupe (**sgid**) de la commande.
+La commande s'exécute avec l'identité du propriétaire (**indexterm2:[suid]**) ou du groupe (**indexterm2:[sgid]**) de la commande.
 
 [NOTE]
 ====
@@ -1079,8 +1090,9 @@ Pour un fichier, les droits d'exécution sont retirés :
 .Droits par défaut d'un fichier
 image::./images/FON-040-018.png[scaledwidth="100%"]
 
-=== Commande indexterm2:[umask]
-La commande *umask* permet d'afficher et de modifier le masque.
+=== Commande umask
+
+La commande *indexterm2:[umask]* permet d'afficher et de modifier le masque.
 
 [source,bash]
 ----

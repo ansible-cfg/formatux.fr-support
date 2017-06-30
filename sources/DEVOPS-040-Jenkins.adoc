@@ -11,9 +11,9 @@ Licence Art Libre : http://artlibre.org/
 Auteurs : Antoine Le Morvan
 ////
 
-= indexterm2:[Jenkins]
+= Jenkins
 
-Jenkins est un outil Open Source d'intégration continue écrit en Java.
+indexterm2:[Jenkins] est un outil Open Source d'intégration continue écrit en Java.
 
 Interfacé avec des systèmes de gestion de version tel que Git, Subversion etc., il permet d'exécuter des scripts Shell ou des projets Ant, Maven, etc, selon des planifications ou des requêtes à des URLs.
 

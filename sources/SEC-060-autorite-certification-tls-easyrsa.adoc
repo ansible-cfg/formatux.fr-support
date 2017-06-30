@@ -10,9 +10,9 @@ Licence Art Libre : http://artlibre.org/
 
 Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 ////
-= Autorité de certification indexterm2:[TLS] avec easy-rsa
+= Autorité de certification TLS avec easy-rsa
 
-*indexterm2:[SSL]* (Secure Socket Layer) est le protocole historique développé par la société Netscape pour sécuriser les échanges entre les clients et les serveurs Web. SSL a été *standardisé par l'IETF* sous le nom de *TLS* (Transport Layer Security). TLS n'est rien d'autre que SSLv3 avec quelques corrections et améliorations.
+*indexterm2:[SSL]* (Secure Socket Layer) est le protocole historique développé par la société Netscape pour sécuriser les échanges entre les clients et les serveurs Web. SSL a été *standardisé par l'IETF* sous le nom de *indexterm2:[TLS]* (Transport Layer Security). TLS n'est rien d'autre que SSLv3 avec quelques corrections et améliorations.
 
 Une autorité de certification (**indexterm2:[CA], Certificate Authority**) agit comme une entité disposant d'une biclé (couple de clé privée/publique) de confiance représentant un “certificat racine”. Ce certificat va seulement être employé pour signer d'autres certificats après avoir vérifié l'identité qui y est inscrite. Tout client voulant utiliser un service s'appuyant sur TLS devra disposer du certificat de sa CA pour valider l'authenticité du certificat TLS du serveur.
 
@@ -20,7 +20,7 @@ Une autorité de certification (**indexterm2:[CA], Certificate Authority**) agit
 
 [NOTE]
 ====
-Easy-rsa est disponible dans le dépot EPEL.
+Easy-rsa est disponible dans le dépôt EPEL.
 ====
 
 [source,bash]

@@ -21,7 +21,7 @@ Linux est une implémentation libre du système **UNIX** et respecte les spécif
 GNU/Linux est généralement distribué dans un ensemble cohérent de logiciels, assemblés autour du noyau Linux et prêt à être installé. Cet ensemble porte le nom de “**Distribution**”.
 
 *  La plus ancienne des distributions est la distribution **Slackware**.
-*  Les plus connues et utilisées sont les distributions **Debian**, **Redhat** et **Arch**, et servent de base pour d'autres distributions comme **Ubuntu**, **CentOS**, **Fedora**, **Mageia** ou **Manjaro**.
+*  Les plus connues et utilisées sont les distributions **Debian**, **RedHat** et **Arch**, et servent de base pour d'autres distributions comme **Ubuntu**, **CentOS**, **Fedora**, **Mageia** ou **Manjaro**.
 
 Chaque distribution présente des particularités et peut être développée pour répondre à des besoins très précis : 
 
@@ -54,10 +54,10 @@ Les supports de Formatux sont publiés sous licence Creative Commons-BY-SA et so
 * Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
 * Licence Art Libre : http://artlibre.org/
 
-Les documents de formatux et leurs sources sont librements téléchargeables sur framagit :
+Les documents de Formatux et leurs sources sont librement téléchargeables sur framagit :
 
 * https://framagit.org/alemorvan/formatux.fr-support/
 
 Vous y trouverez la dernière version de ce document.
 
-A partir des sources, vous pouvez générer votre support de formation personnalisé. Nous vous recommandons le logiciel AscidocFX téléchargeable ici : http://asciidocfx.com/
+A partir des sources, vous pouvez générer votre support de formation personnalisé. Nous vous recommandons le logiciel AsciidocFX téléchargeable ici : http://asciidocfx.com/

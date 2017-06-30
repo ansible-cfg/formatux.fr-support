@@ -26,18 +26,36 @@ DHCP::
 	Dynamic Host Control Protocol
 DNS::
 	Domain Name Service
+FIFO::
+	First In First Out
 FQDN::
     Fully Qualified Domain Name
+GNU::
+    Gnu is Not Unix
+HTTP::
+    HyperText Transfer Protocol
+ICP::
+    Internet Cache Protocol
+IFS::
+    Internal Field Separator
 LAN::
     Local Area Network
+LDIF::
+    LDAP Data Interchange Format
 NTP::
     Network Time Protocol
 nsswitch::
     Name Service Switch
+OTP::
+    One Time Password
 POSIX::
     Portable Operating System Interface
 POST::
     Power On Self Test
+RDBMS::
+    Relational DataBase Managed System
+SGBD-R::
+    Systèmes de Gestion de Base de Données Relationnelles
 SHELL::
     En français "coquille". Á traduire par "interface système".
 SMB::
@@ -46,8 +64,12 @@ SMTP::
     Simple Mail Tranfer Protocol
 SSH::
     Secure SHell
+SSL::
+    Secure Socket Layer
 TLS::
     Transport Layer Security, un protocole de cryptographie pour sécuriser les communications IP.
+TTL::
+    Time To Live
 TTY::
     teletypewriter, qui se traduit téléscripteur. C'est la console physique.
 UEFI::

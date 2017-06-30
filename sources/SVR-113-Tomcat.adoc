@@ -11,5 +11,7 @@ Licence Art Libre : http://artlibre.org/
 Auteurs : Antoine Le Morvan
 ////
 
-= Serveur indexterm2:[Tomcat]
+= Serveur Tomcat
+
+indexterm2:[Tomcat]
 

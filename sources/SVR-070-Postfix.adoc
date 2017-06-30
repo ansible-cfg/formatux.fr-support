@@ -11,7 +11,7 @@ Licence Art Libre : http://artlibre.org/
 Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 ////
 
-= Serveur de messagerie indexterm2:[Postfix]
+= Serveur de messagerie Postfix
 
 == Généralités
 
@@ -21,7 +21,7 @@ Le courrier électronique est apparu sur le réseau **ARPANET** dans les années
 
 Avec Internet, les systèmes de messagerie ont pris de l'importance et en 1980, **indexterm2:[Sendmail]** a été développé. Sendmail est devenu le premier serveur de messagerie important et utilisait déjà le protocole SMTP.
 
-**Postfix**, dont le développement a été aidé par IBM, est apparu dès **1998**, afin de résoudre les problèmes de sécurité de Sendmail, tout en offrant une **administration beaucoup plus souple et modulaire**.
+**indexterm2:[Postfix]**, dont le développement a été aidé par IBM, est apparu dès **1998**, afin de résoudre les problèmes de sécurité de Sendmail, tout en offrant une **administration beaucoup plus souple et modulaire**.
 
 Le **indexterm2:[MTA]** (**Mail Transfer Agent**) par défaut de la distribution RedHat (Sendmail) est remplacé par Postfix sur la RedHat 6 (Novembre 2010).
 
@@ -50,7 +50,7 @@ La **réception de message** peut se faire à l'aide de deux protocoles :
 * **Internet Message Access Protocol** (**indexterm2:[IMAP]**) ;
 * **Post Office Protocol** (**indexterm2:[POP]**).
 
-**IMAP** est un protocole permettant de récupérer les courriers électroniques déposés sur des serveurs de messagerie. Les messages sont conservés sur le serveur, ses fonctionnalités avancées en font le protocole de préférence (accès **multipostes**, accès via **webmail**, etc.).
+**IMAP** est un protocole permettant de récupérer les courriers électroniques déposés sur des serveurs de messagerie. Les messages sont conservés sur le serveur, ses fonctionnalités avancées en font le protocole de préférence (accès **multi-postes**, accès via **webmail**, etc.).
 
 IMAP utilise le port **143** en clair ou via **STARTTLS** et le port **993** via **IMAPS** (déprécié) en SSL.
 
@@ -75,7 +75,7 @@ Parmi les MUA les plus connus, citons : Thunderbird (Mozilla), Evolution (Novell
 
 ==== Mail Tranfer Agent
 
-Lorsqu'un message est envoyé depuis un client de messagerie **MUA**, il est transféré au serveur de courrier, le **Mail Transfer Agent** (**MTA**). Un MTA implémente à la fois le **client** (tranfert de mail) et le **serveur** (réception) du protocole SMTP.
+Lorsqu'un message est envoyé depuis un client de messagerie **MUA**, il est transféré au serveur de courrier, le **Mail Transfer Agent** (**MTA**). Un MTA implémente à la fois le **client** (transfert de mail) et le **serveur** (réception) du protocole SMTP.
 
 Les termes Mail Server, Mail Exchanger, Mail Relay et MX Hosts peuvent aussi faire référence à un serveur MTA.
 
@@ -215,7 +215,7 @@ image::./images/SVR-070-arborescence.png[scaledwitdh="100%"]
 * Les boîtes de messagerie mbox sont stockées dans /var/spool/mail/ ;
 * Les logs sont dans le fichier : /var/log/maillog.
 
-Le fichier /etc/postfix/main.cf contient les paramètres de configuration de Postfix. Les paramètres qui n'y sont pas explicitement renseignés sont initialisés avec leur valeur par défaut. Seule la dernière occurence du paramètre compte lorsque ce paramètre est défini plusieurs fois.
+Le fichier /etc/postfix/main.cf contient les paramètres de configuration de Postfix. Les paramètres qui n'y sont pas explicitement renseignés sont initialisés avec leur valeur par défaut. Seule la dernière occurrence du paramètre compte lorsque ce paramètre est défini plusieurs fois.
 
 En cas de besoin, un fichier commenté de main.cf existe sous /usr/share/postfix/main.cf.
 
@@ -307,7 +307,7 @@ postfix/smtpd[19747]: disconnect from localhost[::1]
 
 L'agent **indexterm2:[smtpd]** a pris en charge la connexion du client par le réseau en passant par **telnet** sur le port **25**. Si la connexion avait été faîte via un outil local, c'est l'agent **indexterm2:[pickup]** qui aurait alors pris en charge le message, comme nous le verrons à la section suivante.
 
-L'agent **indexterm2:[cleanup]** a ensuite pris en charge le message. Le destinataire d'origine, bob, n'étant pas **pleinement qualifié** et non conforme à la norme **RFC 822**, **cleanup** l'a fourni au démon **indexterm2:[trivial-rewrite]** (évènement qui est non journalisé) pour permettre la réécriture de l'adresse de messagerie d'origine.
+L'agent **indexterm2:[cleanup]** a ensuite pris en charge le message. Le destinataire d'origine, bob, n'étant pas **pleinement qualifié** et non conforme à la norme **RFC 822**, **cleanup** l'a fourni au démon **indexterm2:[trivial-rewrite]** (événement qui est non journalisé) pour permettre la réécriture de l'adresse de messagerie d'origine.
 
 L'agent **cleanup** a ensuite déposé le message dans la file d'attente **incoming**, en attendant que l'agent **indexterm2:[qmgr]** le déplace dans la file **active** (queue active).
 
@@ -315,9 +315,9 @@ Le message ayant une portée locale (**orig_to=<alice>**), l'agent **trivial-rew
 
 L'agent qmgr supprime alors le message de la file active. 
 
-=== La commande indexterm2:[mailx]
+=== La commande mailx
 
-La commande mailx est une commande de traitement du courrier (un MUA) dont nous n'étudierons que la partie envoi du courrier.
+La commande **indexterm2:[mailx]** est une commande de traitement du courrier (un MUA) dont nous n'étudierons que la partie envoi du courrier.
 
 [source,bash]
 ----
@@ -349,7 +349,7 @@ Quelques options supplémentaires :
 signaux d'interruption du terminal. Cela est particulièrement utile lors
  de l'utilisation de mail sur des lignes téléphoniques à bruit. 
 | -l	 |  Force mailx à se 
-lancer en mode interactif même losque l'entrée n'est pas un terminal. En
+lancer en mode interactif même lorsque l'entrée n'est pas un terminal. En
  particulier, le caractère de commande spécial ~, utilisé lors de 
 l'envoi d'un courrier, est seulement disponible interactivement. 
 |  -N  |  Désactive l'affichage 
@@ -451,9 +451,9 @@ Le fichier /home/alice/mbox doit maintenant contenir les messages qui ont été 
 | q |  Quitte mailx 
 |====
 
-=== La commande indexterm2:[swaks]
+=== La commande swaks
 
-La commande swaks (SWiss Army Knife for Smtp) est un outil de test orienté transaction pour SMTP.
+La commande **indexterm2:[swaks]** (SWiss Army Knife for Smtp) est un outil de test orienté transaction pour SMTP.
 
 .Syntaxe de la commande swaks
 [source,bash]
@@ -817,7 +817,7 @@ Postfix accepte des messages provenant de plusieurs sources :
 * Source locale : envoyé par un utilisateur du serveur via un logiciel local (mailx, php, etc.) ;
 * En provenance du réseau connecté au serveur ;
 * Produit par Postfix lui-même ;
-* Un message ressoumis pour être transféré à une autre adresse.
+* Un message resoumis pour être transféré à une autre adresse.
 
 .Synoptique de postfix partie réception des messages
 image::./images/SVR-070-003.jpg[scaledwidth="80%"]
@@ -886,7 +886,7 @@ Le message peut être délivré à un autre processus, comme un gestionnaire de 
 * **http://www.postfix.org/local.8.html[local]** : indexterm:[local] agent de livraison des messages locaux, MDA. L'agent local met à jour les files d'attente des messages et marque les messages si finis ou informe qmgr si les messages doivent être retraités plus tard. Les messages de livraison sont transmis à l'agent approprié (bounce, defer ou trace).
 
 * **http://www.postfix.org/smtp.8.html[smtp]** : indexterm:[smtp] agent de livraison des messages vers le réseau. Il implémente les protocoles SMTP et LMTP. Il procède à la livraison des messages à la demande de qmgr. L'agent met à jour les files d'attente des messages et marque les messages si finis ou informe qmgr si les messages doivent être retraités plus tard. Les messages de livraison sont transmis à l'agent approprié (bounce, defer ou trace).
-** L'agent smtp interroge le service DNS pour obtenir une liste d'adresses de serveurs de messagerie MX du domaine du destinataire de message, les trie par ordre de préférence et tente une connection vers chacun jusqu'à ce qu'il en trouve un qui réponde.
+** L'agent smtp interroge le service DNS pour obtenir une liste d'adresses de serveurs de messagerie MX du domaine du destinataire de message, les trie par ordre de préférence et tente une connexion vers chacun jusqu'à ce qu'il en trouve un qui réponde.
 
 * **http://www.postfix.org/pipe.8.html[pipe]** : indexterm:[pipe] agent de livraison des messages vers une commande externe.
 
@@ -1005,7 +1005,7 @@ Dans notre exemple, le %d sera remplacé par le domaine de messagerie et le %n p
 
 Les comptes de messagerie ne nécessitent plus de compte système, ce qui facilite l’administration et améliore la sécurité.
 
-Les fichiers plats utilisés dans nos exemples peuvent facilement être remplacés par une table mysql ou un annuaire LDAP.
+Les fichiers plats utilisés dans nos exemples peuvent facilement être remplacés par une table MySQL ou un annuaire LDAP.
 
 [TIP]
 ====

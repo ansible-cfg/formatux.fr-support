@@ -36,7 +36,7 @@ A L’AIDE !
 
 '''
 
-CREATION DE REPERTOIRES
+CRÉATION DE RÉPERTOIRES
 
 * Afficher le répertoire courant.
 * Se déplacer de deux façons différentes sous le répertoire « /home ».
@@ -54,13 +54,13 @@ GESTION DES FICHIERS
 * Renommer le fichier « /home/stagiaire/tickets/jacques/listing_en_cours » en « listing_fini ».
 * Déplacer et renommer le fichier « /home/stagiaire/listing_en_cours » en « /STAGE/commandes/archive_listing ».
 
-GESTION DES REPERTOIRES
+GESTION DES RÉPERTOIRES
 
 * Copier le répertoire « /home/stagiaire/tickets/pierre/ » et son contenu en le renommant « /home/stagiaire/tickets/sauvegarde ».
 * Renommer le répertoire « /home/stagiaire/tickets/sauvegarde/ » en « /home/stagiaire/tickets/archives ».
 * Copier le répertoire « /home/stagiaire/tickets/ » dans le répertoire « /STAGE/commandes/ ».
 
-SUPPRESSION DE FICHIERS ET REPERTOIRES
+SUPPRESSION DE FICHIERS ET RÉPERTOIRES
 
 * Afficher le contenu des répertoires « /home/stagiaire/tickets/jacques/ » et « /home/stagiaire/tickets/pierre/ ».
 * Supprimer le répertoire « /home/stagiaire/tickets/jacques/ » avec la commande « rmdir ».

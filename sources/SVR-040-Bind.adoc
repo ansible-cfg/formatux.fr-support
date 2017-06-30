@@ -35,7 +35,7 @@ La résolution est possible en IPv4 comme en IPv6.
 .Principe de fonctionnement du DNS
 image::images/SVR-040-001-Bind.png[]
 
-Les Top Levels Domain indexterm2:[TLD] sont gérés par des organismes bien défini. Les Registars se chargent pour les clients d’enregistrer les noms de domaine auprès de ces organismes.
+Les Top Levels Domain indexterm2:[TLD] sont gérés par des organismes bien défini. Les registraires (registars en anglais) de nom de domaine se chargent pour les clients d’enregistrer les noms de domaine auprès de ces organismes.
 
 Le dialogue se fait en général via le protocole UDP (User Datagram Protocol) mais parfois aussi en TCP sur le port 53.
 
@@ -97,7 +97,7 @@ En environnement de production, les logs des requêtes clientes seront séparés
 
 Par défaut, Bind est configuré pour faire office de serveur de proxy-cache DNS (mandataire). Un serveur proxy, ou mandataire, effectue une requête réseau au nom d’un client.
 
-Lorsqu’il résoud pour la première fois une requête DNS, la réponse est stockée dans son cache pour la durée de son indexterm2:[TTL] (Time To Live) restant. Si le même enregistrement est à nouveau demandé par un autre client DNS, le traitement de la requête sera plus rapide, puisque la réponse sera disponible depuis le cache du serveur.
+Lorsqu’il résout pour la première fois une requête DNS, la réponse est stockée dans son cache pour la durée de son indexterm2:[TTL] (Time To Live) restant. Si le même enregistrement est à nouveau demandé par un autre client DNS, le traitement de la requête sera plus rapide, puisque la réponse sera disponible depuis le cache du serveur.
 
 Chaque enregistrement DNS dispose d’un TTL lorsqu’il est fourni par le serveur qui fait autorité pour la zone.
 Ce TTL est décrémenté jusqu’à la fin de sa validité. Il est ensuite supprimé des caches.
@@ -121,9 +121,9 @@ Dans quel cadre utiliser un serveur non-récursif ?
 
 Lorsque la latence entre le serveur DNS et le reste du réseau est trop forte, ou quand le débit est limité, il peut être intéressant de configurer un serveur DNS en non-récursif.
 
-Ce sera par exemple le cas pour un théâtre d’opération ou un élément mobile d’une force.
+Ce sera par exemple le cas pour un site distant ou un élément mobile.
 
-Le serveur DNS local fera autorité sur la zone locale, mais déléguera la résolution des FQDN de l’intradef à un serveur en métropole, qui lui, prendra la requête en charge de manière récursive.
+Le serveur DNS local fera autorité sur la zone locale, mais déléguera la résolution des FQDN des autres zones à un serveur distant, qui lui, prendra la requête en charge de manière récursive.
 ====
 
 .Le mode récursif
@@ -386,11 +386,11 @@ $TTL 259200
 200		PTR		inf1-formatux.formatux.lan.
 ----
 
-=== La commande indexterm2:[nsupdate]
+=== La commande nsupdate
 
 [IMPORTANT]
 ====
-L’usage de la commande nsupdate est exclusive. Il ne faut plus modifier les fichiers de zone manuellement, sous peine de pertes d’informations.
+L’usage de la commande indexterm2:[nsupdate] est exclusive. Il ne faut plus modifier les fichiers de zone manuellement, sous peine de pertes d’informations.
 ====
 
 Syntaxe :
@@ -423,9 +423,9 @@ Ces requêtes peuvent être :
 * *update delete nom* : Supprime l'enregistrement nom.
 * *send* : Valide et envoie les requêtes.
 
-=== La commande indexterm2:[rndc]
+=== La commande rndc
 
-La commande *rndc* permet de manipuler le serveur DNS à chaud.
+La commande *indexterm2:[rndc]* permet de manipuler le serveur DNS à chaud.
 
 .Syntaxe de la commande rndc
 [source,bash]
@@ -508,9 +508,9 @@ NetworkManager, si actif, écrasera les valeurs entrées manuellement dans ce fi
 
 L’utilitaire *system-config-network-tui* (**nmtui** sous CentOS 7) permet une configuration graphique correcte du réseau par une interface ncurse.
 
-=== La commande indexterm2:[dig]
+=== La commande dig
 
-La commande dig (Domain Information Groper) permet d'interroger des serveurs DNS.
+La commande **indexterm2:[dig]** (Domain Information Groper) permet d'interroger des serveurs DNS.
 
 [NOTE]
 ====
