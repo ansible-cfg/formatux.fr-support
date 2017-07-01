@@ -13,6 +13,7 @@ DATE=$(date +%x) # La date au format Local
 # Generation des fichiers PDF
 for file in $FILES
 do
+  echo "Debut de la compilation du fichier ${file}"
   asciidoctor-pdf \
     -a pdf-stylesdir=${SOURCES}/theme/  \
     -n  \
@@ -24,4 +25,7 @@ do
     -a chapter-label="Chapitre" \
     -a part-label="Partie"      \
     -D $DEST ${SOURCES}/${file}
+  echo "Fin de la compilation du fichier ${file}"
+  echo "----------------------------------------"
+  echo ""
 done
