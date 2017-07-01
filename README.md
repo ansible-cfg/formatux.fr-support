@@ -54,8 +54,8 @@ Après avoir forké notre projet ou l'avoir cloné (git clone https://framagit.o
 
 Vous avez ensuite plusieurs possibilités : 
 
-* Vous utilisez le logiciel AsciiDocFX (recommandé sous Windows) : lancer le logiciel, ouvrez le fichier .adoc désiré (le fichier Sources/SupportLinux.adoc contient la totalité des documents), et cliquez sur le bouton **PDF**.
+* Vous utilisez le logiciel AsciiDocFX (recommandé sous Windows) : lancez le logiciel, ouvrez le fichier .adoc désiré (le fichier Sources/SupportLinux.adoc contient la totalité des documents), et cliquez sur le bouton **PDF**.
 
 * Vous êtes sous Linux et vous avez déjà installé le paquet asciidoctor : déplacez vous dans le dossier bin et exécutez le fichier build-doc.sh.
-* Vous etes sous Linux et vous avez déjà installé le paquet maven : restez à la racine du projet et lancez la commande **mvn**.
+* Vous êtes sous Linux et vous avez déjà installé le paquet maven : restez à la racine du projet et lancez la commande **mvn**.
 
