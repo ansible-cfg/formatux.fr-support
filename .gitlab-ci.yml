@@ -4,3 +4,8 @@ build1:
     stage: build
     script:
         - cd ./bin/ && ./build-doc.sh
+    artifacts:
+        name: "compilation-pdf"
+        paths:
+            - build/
+        expire_in: 2 week
