@@ -538,7 +538,7 @@ La valeur minimale pour la variable long_query_time est de 0 et la valeur par d√
 
 Relancez le service pour que les modifications soient prises en compte.
 
-Une fois que le fichier de log se rempli, il est possible de l'analyser avec la commande **indexterm2:[mysqldumpslow].
+Une fois que le fichier de log se rempli, il est possible de l'analyser avec la commande **indexterm2:[mysqldumpslow]**.
 
 .Syntaxe de la commande mysqldumpslow
 [source,]
