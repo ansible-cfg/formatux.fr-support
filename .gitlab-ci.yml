@@ -8,4 +8,4 @@ build1:
         name: "compilation-pdf"
         paths:
             - build/
-        expire_in: 2 week
+        expire_in: 1 week
