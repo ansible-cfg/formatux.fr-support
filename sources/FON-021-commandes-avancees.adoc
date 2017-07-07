@@ -197,3 +197,136 @@ $ tar tvfP /root/log.tar
 -rw------- root/root    499270 2017-04-06 11:01 /var/log/audit/audit.log
 ----
 
+== Le paquet yum-utils
+
+Le paquet *indexterm2:[yum-utils]* est une collection d'utilitaires de différents auteurs pour indexterm2:[yum], qui le rendent plus simple et plus puissant à utiliser.
+
+Voici quelques exemples d'utilisation :
+
+* La commande indexterm2:[package-cleanup] :
+
+Elle permet (entre autre) la suppression des anciens noyau.
+
+.Syntaxe de la commande package-cleanup
+[source,]
+----
+package-cleanup --oldkernels --count=1
+----
+
+.Options de la commande package-cleanup
+[cols="1,4"]
+|====
+| Options  |  Commentaires
+|  --oldkernels  |  Demande la suppression des anciens noyaux. 
+|  --count=X  |  Nombre de noyaux à conserver (par défaut = 2)
+|====
+
+* La commande indexterm2:[repoquery] :
+
+La commande *repoquery* interroge les dépots.
+
+Exemples d'utilisation :
+
+** Connaître les dépendances d'un paquet non-installé :
+
+[source,bash]
+----
+repoquery --requires <package>
+----
+
+** Connaître les fichiers fournis par un paquet non-installé :
+
+[source,bash]
+----
+$ repoquery -l yum-utils
+/etc/bash_completion.d
+/etc/bash_completion.d/yum-utils.bash
+/usr/bin/debuginfo-install
+/usr/bin/find-repos-of-install
+/usr/bin/needs-restarting
+/usr/bin/package-cleanup
+/usr/bin/repo-graph
+/usr/bin/repo-rss
+/usr/bin/repoclosure
+/usr/bin/repodiff
+/usr/bin/repomanage
+/usr/bin/repoquery
+/usr/bin/reposync
+/usr/bin/repotrack
+/usr/bin/show-changed-rco
+/usr/bin/show-installed
+/usr/bin/verifytree
+/usr/bin/yum-builddep
+/usr/bin/yum-config-manager
+/usr/bin/yum-debug-dump
+/usr/bin/yum-debug-restore
+/usr/bin/yum-groups-manager
+/usr/bin/yumdownloader
+...
+----
+
+* La commande indexterm2:[yumdownloader] :
+
+La commande *yumdownloader* télécharge les paquets RPM depuis les dépôts.
+
+[NOTE]
+====
+Cette commande est très pratique pour construire un dépôt local de quelques rpm !
+====
+
+Exemple : yumdownloader va télécharger le paquet rpm de repoquery ainsi que toutes ses dépendances. 
+
+[source,]
+----
+$ yumdownloader --destdir /var/tmp -- resolve repoquery
+----
+
+.Options de la commande yumdownloader
+[cols="1,4"]
+|====
+| Options  |  Commentaires
+|  --destdir  |  Les paquets téléchargés seront conservés dans le dossier spécifié. 
+|  --resolve  |  Télécharge également les dépendances du paquet.
+|====
+
+== Le paquet psmisc
+
+Le paquet *indexterm2:[psmisc]* contient des utilitaires pour gérer les processus du système : 
+
+* *indexterm2:[pstree]* : la commande pstree affiche les processus en cours sur le système sous forme de structure en forme d'arbre.
+* *indexterm2:[killall]* : la commande killall envoie un signal d'extinction à tous les procesuss identifiés par un nom.
+* *indexterm2:[fuser]* : la commande fuser identifie les PIDs des processus qui utilisent les fichiers ou les systèmes de fichiers spécifiés.
+
+Exemples :
+
+[source,bash]
+----
+$ pstree
+systemd─┬─NetworkManager───2*[{NetworkManager}]
+        ├─agetty
+        ├─auditd───{auditd}
+        ├─crond
+        ├─dbus-daemon───{dbus-daemon}
+        ├─firewalld───{firewalld}
+        ├─lvmetad
+        ├─master─┬─pickup
+        │        └─qmgr
+        ├─polkitd───5*[{polkitd}]
+        ├─rsyslogd───2*[{rsyslogd}]
+        ├─sshd───sshd───bash───pstree
+        ├─systemd-journal
+        ├─systemd-logind
+        ├─systemd-udevd
+        └─tuned───4*[{tuned}]
+----
+
+[source,bash]
+----
+# killall httpd
+----
+
+Tue les processus (option -k) qui accèdent au fichier _/etc/httpd/conf/httpd.conf_ :
+[source,bash]
+----
+# fuser -k /etc/httpd/conf/httpd.conf
+----
