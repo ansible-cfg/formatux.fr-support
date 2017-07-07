@@ -13,10 +13,10 @@ Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 
 = FORMATUX - Support de cours GNU/Linux
 :doctype: book
+:toc!:
 :docinfo:
 :encoding: utf-8
 :lang: fr
-:toc: preamble
 :toc-title: Table des matières
 :chapter-title: Chapitre
 :part-title: Partie
