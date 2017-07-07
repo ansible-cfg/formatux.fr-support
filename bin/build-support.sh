@@ -8,7 +8,7 @@
 DIRNAME=$(dirname $0)
 SOURCES=$DIRNAME/../sources/
 DEST=$DIRNAME/../build/
-FILES=$(find $SOURCES -name *.adoc)
+FILES=$(find $SOURCES -name Support*.adoc)
 DATE=$(date +%x) # La date au format Local
 # Generation des fichiers PDF
 for file in $FILES
