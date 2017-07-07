@@ -32,6 +32,8 @@ FQDN::
     Fully Qualified Domain Name
 GNU::
     Gnu is Not Unix
+HA::
+    High Availability (Haute Disponibilité)
 HTTP::
     HyperText Transfer Protocol
 ICP::
