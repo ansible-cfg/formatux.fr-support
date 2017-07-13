@@ -330,3 +330,52 @@ Tue les processus (option -k) qui accèdent au fichier _/etc/httpd/conf/httpd.co
 ----
 # fuser -k /etc/httpd/conf/httpd.conf
 ----
+
+== La commande watch
+
+La commande **indexterm2:[watch]** exécute régulièrement une commande et affiche le résultat dans le terminal en plein écran.
+
+L'option *-n* permet de spécifier le nombre de secondes entre chaque exécution de la commande.
+
+[NOTE]
+====
+Pour quitter la commande watch, il faut saisir les touches : <CTRL>+<C> pour tuer le processus.
+====
+
+Exemples :
+
+* Afficher la fin du fichier /etc/passwd toutes les 5 secondes :
+
+
+[source,bash]
+----
+$ watch -n 5 tail -n 5 /etc/passwd
+----
+
+Résultat :
+
+[source,bash]
+----
+Toutes les 5,0s: tail -n 5 /etc/p...  
+
+lightdm:x:620:620:Light Display Manager:/var/lib/lightdm:/usr/bin/nologin
+clamav:x:64:64:Clam AntiVirus:/dev/null:/bin/false
+systemd-coredump:x:994:994:systemd Core Dumper:/:/sbin/nologin
+ceph:x:993:993::/run/ceph:/sbin/nologin
+dnsmasq:x:992:992:dnsmasq daemon:/:/sbin/nologin
+----
+
+
+* Surveillance du nombre de fichier dans un dossier :
+
+[source,bash]
+----
+$ watch -n 1 'ls -l | wc -l'
+----
+
+* Afficher une horloge :
+
+[source,bash]
+----
+$ watch -t -n 1 date
+----
