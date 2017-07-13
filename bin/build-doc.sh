@@ -5,9 +5,10 @@
 # gem install --pre asciidoctor-pdf
 # Ajouter le PATH dans votre $HOME/.bashrc :
 # export PATH="$HOME/.gem/ruby/2.4.0/bin:$PATH"
+# $1 = chemin vers le chemin de build
 DIRNAME=$(dirname $0)
 SOURCES=$DIRNAME/../sources/
-DEST=$DIRNAME/../build/
+DEST=$DIRNAME/../$1/
 FILES=$(find $SOURCES -name *.adoc)
 DATE=$(date +%x) # La date au format Local
 # Generation des fichiers PDF
