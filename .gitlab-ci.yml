@@ -3,7 +3,7 @@ image: asciidoctor/docker-asciidoctor
 build1:
     stage: build
     script:
-        - cd ./bin/ && ./build-doc.sh public
+        - cd ./bin/ && ./build-doc.sh "public"
     only:
         - master
     artifacts:
@@ -12,14 +12,14 @@ build1:
             - public/
 
 build2:
-    stage: test
+    stage: build
     script:
-        - cd ./bin/ && ./build-doc.sh build
+        - cd ./bin/ && ./build-doc.sh "build"
     except:
         - master
     artifacts:
-        name: "compilation-pdf"
+        name: "compilation-dev"
         paths:
             - build/
-        expire_in: 2 day
+        expire_in: 2 days
     
