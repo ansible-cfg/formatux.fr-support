@@ -1,6 +1,6 @@
 image: asciidoctor/docker-asciidoctor
 
-build1:
+pages:
     stage: build
     script:
         - cd ./bin/ && ./build-doc.sh "public"
