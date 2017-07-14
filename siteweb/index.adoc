@@ -1,0 +1,49 @@
+= Supports Formatux
+:doctype: article
+:encoding: utf-8
+:lang: fr
+:toc: left
+:numbered:
+
+
+Formatux propose des supports de cours Linux *libres de droits* à destination des formateurs ou des personnes désireuses d'apprendre à administrer un système Linux en autodidacte.
+
+== Licences
+
+Les supports de Formatux sont publiés sous licence *Creative Commons-BY-SA* et sous licence **Art Libre**. Vous êtes ainsi libre de copier, de diffuser et de transformer librement les œuvres dans le respect des droits de l’auteur.
+
+* *BY* : Paternité. Vous devez citer le nom de l’auteur original.
+
+* *SA* : Partage des Conditions Initiales à l’Identique.
+
+* Licence Creative Commons-BY-SA : https://creativecommons.org/licenses/by-sa/3.0/fr/
+* Licence Art Libre : http://artlibre.org/
+
+
+A partir des sources, vous pouvez générer votre support de formation personnalisé. Nous vous recommandons le logiciel AscidocFX téléchargeable http://asciidocfx.com/[ici].
+
+
+== Télécharger les supports ou une partie des supports
+
+Vous pouvez télécharger le support complet :
+
+* https://alemorvan.frama.io/formatux.fr-support/SupportLinux.pdf[SupportLinux.pdf]
+
+Ou une partie du support :
+
+* https://alemorvan.frama.io/formatux.fr-support/SupportLinux-Admin.pdf[SupportLinux-Admin.pdf]
+* https://alemorvan.frama.io/formatux.fr-support/SupportLinux-Securite.pdf[SupportLinux-Securite.pdf]
+* https://alemorvan.frama.io/formatux.fr-support/SupportLinux-Services.pdf[SupportLinux-Services.pdf]
+* https://alemorvan.frama.io/formatux.fr-support/SupportLinux-Shell.pdf[SupportLinux-Shell.pdf]
+* https://alemorvan.frama.io/formatux.fr-support/SupportLinux-Automatismes-DevOPS.pdf[SupportLinux-Automatismes-DevOPS.pdf]
+
+Les dernières versions des documents sont disponibles sur notre dépot Framagit. Vous êtes libre de copier le dépôt, de le cloner, d'y apporter des modifications et de nous les proposer via git.
+
+== Nous contacter
+
+Rejoignez-nous sur https://gitter.im/formatux-fr/formatux[Gitter]
+
+ou :
+
+Ecrivez-nous à contact(at)formatux.fr
+
