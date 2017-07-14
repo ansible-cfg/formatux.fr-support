@@ -9,8 +9,17 @@
 DIRNAME=$(dirname $0)
 SOURCES=$DIRNAME/../sources/
 DEST=$DIRNAME/../$1/
+WEBSITE=$DIRNAME/../siteweb/
 FILES=$(find $SOURCES -name *.adoc)
 DATE=$(date +%x) # La date au format Local
+
+# Test si un argument est fourni
+if [ $# -eq 0 ]
+  then
+    echo "Aucun argument fourni : public ou build"
+    exit 1
+fi
+
 # Generation des fichiers PDF
 for file in $FILES
 do
@@ -43,3 +52,15 @@ do
   echo ""
 done
 
+if test "$1" = "public"
+then
+  FILES=$(find $WEBSITE -name *.adoc)
+  for file in $FILES
+  do
+    echo "Debut de la compilation du fichier ${file}"
+    asciidoctor -D $DEST ${file}
+    echo "Fin de la compilation du fichier ${file}"
+    echo "----------------------------------------"
+    echo ""
+  done
+fi

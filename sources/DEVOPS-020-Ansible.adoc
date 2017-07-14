@@ -13,29 +13,30 @@ Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 
 = Ansible
 
-Ansible centralise et automatise les tâches d'administration. Il est sans agent (il ne nécessite pas de déploiements spécifiques sur les clients) et utilise le protocole SSH pour configurer à distance les clients Linux. 
+Ansible centralise et automatise les tâches d'administration. Il est sans agent (il ne nécessite pas de déploiements spécifiques sur les clients), idempotent (effet identique à chaque exécution) et utilise le protocole SSH pour configurer à distance les clients Linux. 
 
-L'interface graphique web d'Ansible est payante.
+L'interface graphique web Ansible Tower est payante.
+
+.Les fonctionnalités d'Ansible
+image::images/DEVOPS-020-Ansible-001.png[scaledwidth="100%"]
 
 [IMPORTANT]
 ====
 L'ouverture des flux SSH vers l'ensemble des clients depuis le serveur Ansible font de lui un elément critique de l'architecture qu'il faudra attentivement surveiller.
 ====
 
-[TIP]
-====
-Pourquoi scripter en Bash n'est pas considéré comme de l'automatisation ? (langage Impératif vs Déclaratif)
+== Le vocabulaire ansible
 
-Même si la connaissance du Bash est une exigence de base pour un administrateur système, celui-ci est un langage de programmation interprété "**impératif**". Il exécute les instructions les unes à la suite des autres.
+* Le *poste de gestion* : la machine sur laquelle Ansible est installé. Ansible étant **agentless**, aucun logiciel n'est déployé sur les serveurs gérés.
+* L'**inventaire** : un fichier contenant les informations concernant les serveurs gérés.
+* Les *tâches* (tasks) : une tâche est un bloc définissant une procédure à exectuer (par exemple créer un utilisateur ou un groupe, installer un paquet logiciel, etc.)
+* Un *module* : un module rend abstrait une tâche. Il existe de nombreux modules fournis par Ansible.
+* Les *playbooks* : un fichier simple au format yaml définissant les serveurs cibles et les tâches devant être effectuées.
+* Un *rôle* : un rôle permet d'organiser les playbooks et tous les autres fichiers nécessaires (modèles, scripts, etc.) pour faciliter le partage et la réutilisation du code.
+* Les *facts* : ce sont des variables globales contenant des informations à propos du système (nom de la machine, version du système, interface et configuration réseau, etc.)
+* les **handlers**: il sont utilisés pour provoquer un arrêt ou un redémarrage d'un service en cas de changement.
 
-Les langages dédiés au domaine (DSL Domain Specific Language) comme Ansible ou Puppet, quant à eux, ne spécifient pas les étapes à réaliser mais l'état à obtenir.
-
-Parce qu'Ansible est un langage déclaratif, il est très simple. Il suffit de lui dire "Fais cette action" ou "Met le serveur dans cet état". Ansible considérera l'état désirée indépendamment de l'état initial ou du contexte. Peu importe dans quel état le serveur se situe au départ, les étapes à franchir pour arriver au résultat, le serveur est mis dans l'état désiré avec un rapport de succès (avec ou sans changement d'état) ou d'échec.
-
-La même tâche d'automatisation en bash nécessiterait de vérifier tous les états possibles, les autorisations, etc. afin de déterminer la tâche à accomplir avant de lancer l'exécution de la commande, souvent en imbriquant de nombreux "si", ce qui complique la tâche, l'écriture et la maintenance du script.
-====
-
-== Installation sur le serveur
+== Installation sur le serveur de gestion
 
 Ansible est disponible dans le dépôt EPEL :
 
@@ -50,7 +51,7 @@ La configuration du serveur se situe sous /etc/ansible.
 Deux fichiers de configuration :
 
 * Le fichier de configuration principal __ansible.cfg__ : commandes, modules, plugins, configuration ssh ;
-* Le fichier de gestion des machines clientes  __hosts__ : déclaration des clients, des groupes.
+* Le fichier inventaire de gestion des machines clientes  __hosts__ : déclaration des clients, des groupes.
 
 
 .Le fichier /etc/ansible/hosts
@@ -101,7 +102,17 @@ Deux fichiers de configuration :
 ## db-[99:101]-node.example.com
 ----
 
-== La commande ansible
+Par exemple, un groupe "centos7" est créé en insérant le bloc suivant dans ce fichier :
+
+.Le fichier /etc/ansible/hosts
+[source,]
+----
+[centos7]
+172.16.1.217
+172.16.1.192
+----
+
+== Utilisation en ligne de commande
 
 La commande ansible lance une tâche sur un ou plusieurs hôtes cibles.
 
@@ -167,19 +178,7 @@ ansible {{group}} -i {{inventory_file}} -m command -a '{{commande}}'
 | -m module | Exécute le module appelé
 |====================
 
-== Gestion des clients
 
-Les serveurs clients doivent être ajoutés dans le fichiers /etc/ansibles/hosts. 
-
-Un groupe "centos6" est créé :
-
-.Le fichier /etc/ansible/hosts
-[source,]
-----
-[centos6]
-172.16.1.217
-172.16.1.192
-----
 
 === Tester avec le module ping
 
@@ -196,7 +195,7 @@ Lancer un ping sur chacun des serveurs du groupe CentOS 6 :
 
 [source,bash]
 ----
-# ansible centos6 -m ping
+# ansible centos7 -m ping
 SSH password:
 172.16.1.192 | SUCCESS => {
     "changed": false,
@@ -266,7 +265,7 @@ Pour le prochain test, le module shell, permettant l'exécution de commandes à 
 
 [source,]
 ----
-# ansible centos6 -m shell -a "uptime"
+# ansible centos7 -m shell -a "uptime"
 172.16.1.192 | SUCCESS | rc=0 >>
  12:36:18 up 57 min,  1 user,  load average: 0.00, 0.00, 0.00
 
@@ -274,7 +273,7 @@ Pour le prochain test, le module shell, permettant l'exécution de commandes à 
  12:37:07 up 57 min,  1 user,  load average: 0.00, 0.00, 0.00
 ----
 
-Aucun mot de passe n'est demandé, l'authentification par clef privée/publique fonctionne !
+Aucun mot de passe n'est demandé, l'authentification par clé privée/publique fonctionne !
 
 === Exemple de connexion à une instance Cloud Amazon ECS
 
@@ -293,6 +292,13 @@ Lancement des facts sur les serveurs aws :
 ansible aws --user=ec2-user --become -m setup
 ----
 
+Pour une image ubuntu, il faudra utiliser l'utilisateur ubuntu :
+
+[source,]
+----
+ansible aws --user=ubuntu --become -m setup
+----
+
 == Utilisation
 
 Ansible peut être utilisé depuis l'interpréteur de commandes ou via des playbooks.
@@ -303,13 +309,36 @@ La liste des modules classés par catégories se trouve à l'adresse http://docs
 
 Un module s'invoque avec l'option -m de la commande ansible
 
+Il existe un module pour chaque besoin ou presque ! Il est donc conseillé, au lui d'utiliser le module shell, de chercher un module adapté au besoin.
+
+Chaque catégorie de besoin dispose de son module. En voici une liste non exhaustive :
+
+
+.Catégories de modules
+[width="100%",options="header"]
+|====================
+| Type | Exemples
+| Gestion du système | user (création des utilisateurs), group (gestion des groupes), etc. 
+| Gestion des logiciels | yum, apt, pip, npm 
+| Gestion des fichiers | copy, fetch, lineinfile, template, archive 
+| Gestion des bases de données | mysql, postgresql, redis 
+| Gestion du cloud | amazon S3, cloudstack, openstack
+| Gestion d'un cluster |  consul, zookeeper
+| Envoyer des commandes |  shell, script, expect
+| Gestion des messages |  
+| Gestion du monitoring |  
+| Gestion du réseau |  get_url
+| Gestion des notifications |  
+| Gestion des sources |  git, gitlab
+|====================
+
 ==== Exemples d'installation logiciel
 
 Le module yum permet d'installer des logiciels sur les clients cibles :
 
 [source,]
 ----
-# ansible centos6 -m yum -a name="httpd"
+# ansible centos7 -m yum -a name="httpd"
 172.16.1.192 | SUCCESS => {
     "changed": true,
     "msg": "",
@@ -334,7 +363,7 @@ Le logiciel installé étant un service, il faut maintenant le démarrer avec le
 
 [source,]
 ----
-# ansible centos6 -m service -a "name=httpd state=started"
+# ansible centos7 -m systemd -a "name=httpd state=started"
 172.16.1.192 | SUCCESS => {
     "changed": true,
     "name": "httpd",
@@ -349,7 +378,7 @@ Le logiciel installé étant un service, il faut maintenant le démarrer avec le
 
 === Les playbooks
 
-Les playbooks ansible décrivent une politique à appliquer à des systèmes distants, pour forcer leur configuration. Les playbooks sont écris dans un format texte facilement compréhensible regroupant un ensemble de tâches : le format yaml.
+Les playbooks ansible décrivent une politique à appliquer à des systèmes distants, pour forcer leur configuration. Les playbooks sont écrits dans un format texte facilement compréhensible regroupant un ensemble de tâches : le format yaml.
 
 [NOTE]
 ====
@@ -386,18 +415,18 @@ Le playbook suivant permet d'installer Apache et MySQL sur nos serveurs cibles :
 [source,yaml]
 ----
 ---
-- hosts: centos6
+- hosts: centos7
   remote_user: root
 
   tasks:
   - name: ensure apache is at the latest version
     yum: name=httpd,php,php-mysqli state=latest
   - name: ensure httpd is started
-    service: name=httpd state=started
+    systemd: name=httpd state=started
   - name: ensure mysql is at the latest version
     yum: name=mysql-server state=latest
   - name: ensure mysqld is started
-    service: name=mysqld state=started
+    systemd: name=mysqld state=started
 ----
 
 L'exécution du playbook s'effectue avec la commande *ansible-playbook* : 
@@ -406,7 +435,7 @@ L'exécution du playbook s'effectue avec la commande *ansible-playbook* :
 ----
 $ ansible-playbook test
 
-PLAY [centos6] ****************************************************************
+PLAY [centos7] ****************************************************************
 
 TASK [setup] ******************************************************************
 ok: [172.16.1.192]
@@ -483,3 +512,80 @@ Le playbook utilise :
 ...
 
 ----
+
+== La gestion des boucles
+
+Il existe plusieurs type de boucles sous Ansible :
+
+* with_items
+* with_file
+* with_fileglob
+* ...
+
+Exemple d'utilisation : création de 3 utilisateurs :
+
+[source,]
+----
+- name: ajouter des utilisateurs
+  user:
+    name: "{{ item }}"
+    state: present
+    groups: "users"
+  with_items:
+     - antoine
+     - xavier
+     - patrick
+----
+
+== Les rôles
+
+Un rôle Ansible est une unité favorisant la réutilisabilité des playbooks.
+
+Un squelette de rôle, servant comme point de départ du développement d'un rôle personnalisé, peut être généré par la commande **ansible-galaxy** :
+
+[source,]
+----
+$ ansible-galaxy init formatux
+----
+
+La commande aura pour effet de générer l'arborescence suivante pour contenir le rôle formatux :
+
+[source,]
+----
+$ tree formatux
+formatux/
+├── defaults
+│   └── main.yml
+├── handlers
+│   └── main.yml
+├── meta
+│   └── main.yml
+├── README.md
+├── tasks
+│   └── main.yml
+├── tests
+│   ├── inventory
+│   └── test.yml
+└── vars
+    └── main.yml
+----
+
+=== La commande ansible-galaxy
+
+La commande *ansible-galaxy* gère des rôles en utilisant le site http://galaxy.ansible.com[galaxy.ansible.com].
+
+.Syntaxe de la commande ansible-galaxy
+[source,]
+----
+ansible-galaxy [import|init|install|login|remove|...]
+----
+
+.Sous-commandes de la commande ansible-galaxy
+[cols="1,4",width="100%",options="header"]
+|====
+| Sous-commandes  |  Observations
+| install   |  installe un rôle
+| remove    |  retire un ou plusieurs rôles
+| init | génère un squelette de nouveau rôle
+| import | importe un rôle depuis le site web galaxy. Nécessite un login au préalable.
+|====
