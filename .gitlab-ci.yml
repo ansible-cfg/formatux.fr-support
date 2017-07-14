@@ -3,9 +3,23 @@ image: asciidoctor/docker-asciidoctor
 build1:
     stage: build
     script:
-        - cd ./bin/ && ./build-doc.sh
+        - cd ./bin/ && ./build-doc.sh "public"
+    only:
+        - master
     artifacts:
         name: "compilation-pdf"
         paths:
+            - public/
+
+build2:
+    stage: build
+    script:
+        - cd ./bin/ && ./build-doc.sh "build"
+    except:
+        - master
+    artifacts:
+        name: "compilation-dev"
+        paths:
             - build/
-        expire_in: 1 week
+        expire_in: 2 days
+    
