@@ -40,7 +40,7 @@ La "Haute Disponibilité" (en anglais "**High Availability**" - **indexterm2:[HA
 Un *indexterm2:[cluster]* est une **__"grappe d'ordinateurs"__**, un groupe de deux machines ou plus.
 
 .Schéma d'un cluster actif/passif
-image::images/SVR-140-mise-en-clusters-001.png[]
+image::images/SVR-140-mise-en-clusters-001.png[scaledwidth="60%"]
 
 Un cluster permet :
 
@@ -96,7 +96,7 @@ Pacemaker est composé de *5 composants clés* :
 * Le démon de protection (Fencing daemon - **STONITHd**)
 
 .Les composants logiciels du cluster
-image::images/SVR-140-mise-en-clusters-002.png[]
+image::images/SVR-140-mise-en-clusters-002.png[scaledwidth="60%"]
 
 La *CIB* représente la configuration du cluster et l'état en cours de toutes les ressources du cluster. Le contenu de la CIB est automatiquement synchronisé sur le cluster complet et est utilisé par le *PEngine* pour calculer l'état idéal du cluster et comment il doit être obtenu.
 

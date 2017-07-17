@@ -19,9 +19,9 @@ Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 :numbered:
 :sectnumlevels: 2
 :description: Support de cours Linux de Formatux - Automatisation - DevOPS
-:revnumber: 1.0
-:revdate: 17-04-2017
-:revremark: Version 1 
+:revnumber: 1.1
+:revdate: 17-07-2017
+:revremark: Version 1 .1
 :version-label!: 
 :experimental:
 :source-highlighter: coderay
@@ -36,7 +36,10 @@ include::0000-preface.adoc[]
 |====================
 | Version | Date | Observations 
 | 1.0 | Avril 2017 | Version initiale.
+| 1.1 | Juillet 2017 | Ajout de généralités.
 |====================
+
+include::DEVOPS-000-Devops.adoc[leveloffset=+1]
 
 include::DEVOPS-010-Puppet.adoc[leveloffset=+1]
 

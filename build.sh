@@ -5,4 +5,4 @@ export MAVEN_OPTS="-Xmx1024m"
 
 # Lance le build avec mvn (maven)
 # Configuration dans pom.xml
-./mvn
+mvn
