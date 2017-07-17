@@ -31,7 +31,7 @@ do
     -n                                       \
     -a pdf-style="asciidoctor"               \
     -a pdf-fontsdir="${SOURCES}/theme/fonts" \
-    -a revdate="${DATE}"                     \
+#    -a revdate="${DATE}"                     \
     -a lang="fr"                             \
     -a icons="font"                          \
     -a chapter-label="Chapitre"              \

@@ -24,9 +24,9 @@ Auteurs : Patrick Finet, Xavier Sauvignon, Antoine Le Morvan
 :numbered:
 :sectnumlevels: 2
 :description: Support de cours Linux de Formatux
-:revnumber: 1.2
-:revdate: 27-06-2017
-:revremark: Version 1.2
+:revnumber: 1.3
+:revdate: 17-07-2017
+:revremark: Version 1.3
 :version-label!: 
 :experimental:
 :source-highlighter: coderay
@@ -45,6 +45,7 @@ include::0000-preface.adoc[]
 | 1.0 | Avril 2017 | Version initiale.
 | 1.1 | Juin 2017 | Ajout des cours Nginx et Php-fpm.
 | 1.2 | Juin 2017 | Ajout des cours MySQL et MySQL Master/Master.
+| 1.2 | Juillet 2017 | Ajout de généralités devops.
 |====================
 
 = Administration
@@ -128,6 +129,8 @@ include::SVR-131-Mysql.adoc[leveloffset=+1]
 include::SVR-133-Mysql-master-master.adoc[leveloffset=+1]
 
 = Automatisation - DevOPS
+
+include::DEVOPS-000-Devops.adoc[leveloffset=+1]
 
 include::DEVOPS-010-Puppet.adoc[leveloffset=+1]
 

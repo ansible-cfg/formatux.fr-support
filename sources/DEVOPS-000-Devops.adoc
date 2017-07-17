@@ -1,3 +1,5 @@
+= Généralités devops
+
 Le mouvement *indexterm2:[devops]* cherche à optimiser le travail de toutes les équipes intervenant sur un système d'information.
 
 * Les développeurs (les **dev**) cherchent à ce que leurs applications soient déployées le plus souvent et le plus rapidement possible.
@@ -22,7 +24,7 @@ Le travail des développeurs et des administrateurs doit être simplifié afin d
 * l'**intégration continue** (Continuous Integration CI) : chaque modification d'un code source entraîne une vérification de non-régression de l'application.
 
 .Schéma de fonctionnement de l'intégration continue
-image::images/DEVOPS-000-Integration-continue-001.png[scaledwidth=100%]
+image::images/DEVOPS-000-Integration-continue-001.png[scaledwidth=60%]
 
 * *automation* (automatisation) : fonctionnement d'un système sans intervention humaine, automatisation d'une suite d'opération.
 
