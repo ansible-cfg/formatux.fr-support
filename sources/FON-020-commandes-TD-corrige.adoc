@@ -1,16 +1,18 @@
 = Correction du TD commandes de bases
 
-'''
-*ATELIER AFFICHAGE ET IDENTIFICATION*
+== Atelier affichage et identification
 
-* Objectifs
+=== Objectifs
 
 ** Prendre en main un poste de travail,
 ** Se renseigner sur les utilisateurs connectés.
 
 '''
 
+=== Exercices
+
 * Se connecter sur la console 1.
+
 * Afficher les informations concernant le login courant.
 [source,bash]
 ----
@@ -19,6 +21,7 @@ uid=1000(stagiaire) gid=100(users) groupes=100(users) …
 ----
 
 * Se connecter sur la console 2 avec le même utilisateur.
+
 * Afficher les informations concernant le login courant.
 
 [source,bash]
@@ -52,6 +55,7 @@ Les terminaux physiques sont nommés ttyX, les terminaux virtuels (ceux de l’i
 ====
 
 * Depuis quelle console êtes-vous connecté ? 
+
 [source,bash]
 ----
 [stagiaire]$ who am i 
@@ -60,7 +64,16 @@ stagiaire tty2 2016-01-04 13:10
 stagiaire
 ----
 
-A L’AIDE !
+== A L’AIDE !
+
+=== Objectifs
+
+** Rechercher dans la documentation,
+** Se renseigner sur les utilisateurs connectés.
+
+'''
+
+=== Exercices
 
 * Rechercher de l’aide sur la commande passwd
 
@@ -76,21 +89,23 @@ passwd (5) – Fichier des mots de passe
 [stagiaire]$ man passwd
 ----
 
-* Rechercher des informations sur le formatage du fichier passwd :
+* Rechercher des informations sur le formatage du fichier passwd
+
 [source,bash]
 ----
 [stagiaire]$ man 5 passwd
 ----
 
 * Quel est l’emplacement de l’UID dans le fichier « passwd » à l’aide du man.
+
 [source,bash]
 ----
 [stagiaire]$ man 5 passwd 
 /UID
 ----
 
+* Vérifier la date du jour.
 
-* Vérifier la date et la mettre à jour si nécessaire.
 [source,bash]
 ----
 [stagiaire]$ date
@@ -98,24 +113,26 @@ jeu. mars 14 15:15:25 CET 2015
 ----
 
 * Effacer la console.
+
+* Effacer la console.
 [source,bash]
 ----
 [stagiaire]$ clear
 ----
 
-'''
-*ATELIER ARBORESCENCE ET FICHIERS*
+== Atelier arborescence et fichiers
 
-* Objectifs
+=== Objectifs
 
 ** créer, supprimer, déplacer des fichiers ou des répertoires ;
 ** se déplacer dans l’arborescence.
 
 '''
 
-CRÉATION DE RÉPERTOIRES
+=== Création de répertoires
 
 * Afficher le répertoire courant.
+
 [source,bash]
 ----
 [stagiaire]$ pwd 
@@ -123,18 +140,23 @@ CRÉATION DE RÉPERTOIRES
 ----
 
 * Se déplacer de deux façons différentes sous le répertoire « /home ».
+
 ** chemin absolu : 
+
 [source,bash]
 ----
 [stagiaire]$ cd /home/
 ----
+
 ** chemin relatif : 
+
 [source,bash]
 ----
 [stagiaire]$ cd ..
 ----
 
 * Vérifier que /home soit bien le nouveau répertoire courant.
+
 [source,bash]
 ----
 [stagiaire]$ pwd
@@ -142,6 +164,7 @@ CRÉATION DE RÉPERTOIRES
 ----
 
 * Retourner dans le répertoire de connexion, et vérifier.
+
 [source,bash]
 ----
 [stagiaire]$ cd
@@ -150,6 +173,7 @@ CRÉATION DE RÉPERTOIRES
 ----
 
 * Créer les répertoires suivants : /home/stagiaire/tickets/ /home/stagiaire/tickets/pierre/ /home/stagiaire/tickets/jacques/
+
 [source,bash]
 ----
 [stagiaire]$ mkdir -p tickets/pierre tickets/jacques 
@@ -157,7 +181,7 @@ CRÉATION DE RÉPERTOIRES
 jacques pierre
 ----
 
-GESTION DES FICHIERS
+=== Gestion des fichiers
 
 * Créer le fichier « /home/stagiaire/tickets/listing_en_cours ».
 
@@ -212,7 +236,7 @@ puis le déplacer :
 [stagiaire]$ mv tickets/listing_en_cours /STAGE/commandes/archive_listing
 ----
 
-GESTION DES RÉPERTOIRES
+=== Gestion des répertoires
 
 * Copier le répertoire « /home/stagiaire/tickets/pierre/ » et son contenu en le renommant « /home/stagiaire/tickets/sauvegarde ».
 
@@ -233,7 +257,8 @@ GESTION DES RÉPERTOIRES
 ----
 [stagiaire]$ cp –r tickets/ /STAGE/commandes/
 ----
-SUPPRESSION DE FICHIERS ET RÉPERTOIRES
+
+=== Suppression de fichiers et répertoires
 
 * Afficher le contenu des répertoires « /home/stagiaire/tickets/jacques/ » et « /home/stagiaire/tickets/pierre/ ».
 
@@ -276,17 +301,17 @@ listing_en_cours
 ----
 ====
 
-'''
+== Atelier recherches et filtres
 
-*ATELIER RECHERCHES ET FILTRES*
-
-* Objectifs
+=== Objectifs
 
 ** rechercher un fichier ;
 ** rechercher du texte dans un fichier ;
 ** afficher un fichier, trier son contenu.
 
 '''
+
+=== Exercices
 
 * Copier dans le répertoire de connexion « /home/stagiaire » le fichier « /etc/passwd ».
 Dorénavant, travailler sur cette copie.
@@ -351,16 +376,16 @@ Le fichier passwd contient 39 lignes, il y a donc 39 utilisateurs créés sur le
 /STAGE/commandes/passwd: ASCII text
 ----
 
-'''
+== Atelier tubes et redirections
 
-*ATELIER TUBES ET REDIRECTIONS*
-
-* Objectifs
+=== Objectifs
 
 ** utiliser un tube ;
 ** utiliser une redirection.
 
 '''
+
+=== Exercices
 
 * Créer un fichier « /home/stagiaire/suivi_admin ».
 [source,bash]
@@ -369,7 +394,7 @@ Le fichier passwd contient 39 lignes, il y a donc 39 utilisateurs créés sur le
 ----
 
 * Se connecter sur le terminal 2 et suivre les modifications du fichier en direct.
-Se connecter sur le terminal 2 avec kbd:[CTRL+SHIFT+ALT+F2] et afficher le fichier en temps réel : 
+Se connecter sur le terminal 2 avec <CTRL>+<SHIFT>+<ALT>+<F2> et afficher le fichier en temps réel : 
 [source,bash]
 ----
 [stagiaire]$ tail -f /home/stagiaire/suivi_admin
@@ -382,7 +407,7 @@ La suite de ce TP se fait sans éditeur de texte !
 
 Retourner sous le terminal 1 et ajouter au fichier « suivi_admin » le texte "Voici les répertoires de /STAGE/commandes/gestion/ :".
 
-* Retourner sur l'interface graphique avec kbd:[ALT+F1] et modifier le fichier :
+* Retourner sur l'interface graphique avec <ALT>+<F1> et modifier le fichier :
 
 [source,bash]
 ----
@@ -435,7 +460,7 @@ Il faut donc corriger la commande :
 
 * Retourner sous le terminal 2 et se déconnecter.
 
-taper kbd:[Ctrl+d] puis: 
+taper <Ctrl>+<d> puis: 
 [source,bash]
 ----
 [stagiaire]$ exit

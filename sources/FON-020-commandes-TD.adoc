@@ -1,15 +1,15 @@
 = TD commandes de bases
 
-'''
-*ATELIER AFFICHAGE ET IDENTIFICATION*
+== Atelier affichage et identification
 
-* Objectifs
+=== Objectifs
 
 ** Prendre en main un poste de travail,
 ** Se renseigner sur les utilisateurs connectés.
 
 '''
 
+=== Exercices
 * Se connecter sur la console 1.
 * Afficher les informations concernant le login courant.
 * Se connecter sur la console 2 avec le même utilisateur.
@@ -18,25 +18,33 @@
 * D'autres utilisateurs sont-ils connectés sur le serveur ?
 * Depuis quelle console êtes-vous connecté ? 
 
-A L’AIDE !
+== A L’AIDE !
+
+=== Objectifs
+
+** Rechercher dans la documentation,
+** Se renseigner sur les utilisateurs connectés.
+
+'''
+
+=== Exercices
 
 * Rechercher de l’aide sur la commande passwd
 * Rechercher des informations sur le formatage du fichier passwd
 * Quel est l’emplacement de l’UID dans le fichier « passwd » à l’aide du man.
-* Vérifier la date et la mettre à jour si nécessaire.
+* Vérifier la date du jour.
 * Effacer la console.
 
-'''
-*ATELIER ARBORESCENCE ET FICHIERS*
+== Atelier arborescence et fichiers
 
-* Objectifs
+=== Objectifs
 
 ** créer, supprimer, déplacer des fichiers ou des répertoires ;
 ** se déplacer dans l’arborescence.
 
 '''
 
-CRÉATION DE RÉPERTOIRES
+=== Création de répertoires
 
 * Afficher le répertoire courant.
 * Se déplacer de deux façons différentes sous le répertoire « /home ».
@@ -46,37 +54,37 @@ CRÉATION DE RÉPERTOIRES
 * Retourner dans le répertoire de connexion, et vérifier.
 * Créer les répertoires suivants : /home/stagiaire/tickets/ /home/stagiaire/tickets/pierre/ /home/stagiaire/tickets/jacques/
 
-GESTION DES FICHIERS
+=== Gestion des fichiers
 
 * Créer le fichier « /home/stagiaire/tickets/listing_en_cours ».
 * Copier ce fichier dans les répertoires « /home/stagiaire/tickets/pierre » et « /home/stagiaire/tickets/jacques ». Vérifier la taille de ces fichiers.
-** Vérifier la copie en comparant les tailles :
+* Vérifier la copie en comparant les tailles
 * Renommer le fichier « /home/stagiaire/tickets/jacques/listing_en_cours » en « listing_fini ».
 * Déplacer et renommer le fichier « /home/stagiaire/listing_en_cours » en « /STAGE/commandes/archive_listing ».
 
-GESTION DES RÉPERTOIRES
+=== Gestion des répertoires
 
 * Copier le répertoire « /home/stagiaire/tickets/pierre/ » et son contenu en le renommant « /home/stagiaire/tickets/sauvegarde ».
 * Renommer le répertoire « /home/stagiaire/tickets/sauvegarde/ » en « /home/stagiaire/tickets/archives ».
 * Copier le répertoire « /home/stagiaire/tickets/ » dans le répertoire « /STAGE/commandes/ ».
 
-SUPPRESSION DE FICHIERS ET RÉPERTOIRES
+=== Suppression de fichiers et répertoires
 
 * Afficher le contenu des répertoires « /home/stagiaire/tickets/jacques/ » et « /home/stagiaire/tickets/pierre/ ».
 * Supprimer le répertoire « /home/stagiaire/tickets/jacques/ » avec la commande « rmdir ».
 * Supprimer le répertoire « /home/stagiaire/pierre/ » en une seule commande.
 
-'''
+== Atelier recherches et filtres
 
-*ATELIER RECHERCHES ET FILTRES*
-
-* Objectifs
+=== Objectifs
 
 ** rechercher un fichier ;
 ** rechercher du texte dans un fichier ;
 ** afficher un fichier, trier son contenu.
 
 '''
+
+=== Exercices
 
 * Copier dans le répertoire de connexion « /home/stagiaire » le fichier « /etc/passwd ».
 Dorénavant, travailler sur cette copie.
@@ -88,20 +96,21 @@ Dorénavant, travailler sur cette copie.
 * Déplacer ce fichier dans le répertoire « /STAGE/commandes ».
 * Afficher les fichiers « passwd » présents dans le dossier /STAGE en précisant leur type.
 
-'''
 
-*ATELIER TUBES ET REDIRECTIONS*
+== Atelier tubes et redirections
 
-* Objectifs
+=== Objectifs
 
 ** utiliser un tube ;
 ** utiliser une redirection.
 
 '''
 
+=== Exercices
+
 * Créer un fichier « /home/stagiaire/suivi_admin ».
 * Se connecter sur le terminal 2 et suivre les modifications du fichier en direct.
-Se connecter sur le terminal 2 avec kbd:[CTRL+SHIFT+ALT+F2] et afficher le fichier en temps réel : 
+Se connecter sur le terminal 2 avec <CTRL>+<SHIFT>+<ALT>+<F2> et afficher le fichier en temps réel : 
 
 [IMPORTANT]
 ====
@@ -114,11 +123,11 @@ La suite de ce TP se fait sans éditeur de texte !
 
 * Vérifier le contenu du fichier en basculant sur le terminal 2.
 
-Se connecter sur le terminal 2 avec kbd:[CTRL+SHIFT+ALT+F2]
+Se connecter sur le terminal 2 avec CTRL+SHIFT+ALT+F2
 
 * Retourner sous terminal 1 et ajouter au fichier « suivi_admin » le texte "Voici les personnes ayant un fichier listing_en_cours sous /STAGE/commandes/gestion/ :".
 
-Retourner sur l'interface graphique avec kbd:[ALT+F1].
+Retourner sur l'interface graphique avec ALT+F1.
 
 * Tapez la commande :
 [source,bash]
@@ -128,7 +137,10 @@ Retourner sur l'interface graphique avec kbd:[ALT+F1].
 
 * Basculer sur le terminal 2 et vérifier que la commande se soit bien exécutée.
 
+[TIP]
+====
 Sur le terminal 2, rien n'a été modifié. En fait, la commande saisie comporte une erreur. Son affichage a donc été redirigé sur le canal d'erreur, le fichier erreur, et non suivi_admin.
+====
 
 * Corriger la commande pour remplir le fichier « suivi_admin ».
 
